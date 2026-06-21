@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "liyang-resume",
+  "compatibility_date": "2026-06-21",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "2026-06-19-08-31-27"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
