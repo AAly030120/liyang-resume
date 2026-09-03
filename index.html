@@ -1443,7 +1443,7 @@
     </ul>
 
     <div class="nav-cta">
-        <a class="btn-download-nav" href="李阳简历_产品运营经理.pdf" download>
+        <a class="btn-download-nav" href="resume.pdf" download="李阳-产品岗.pdf">
             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             下载简历
         </a>
@@ -1483,7 +1483,7 @@
                 <p class="hero-slogan" id="heroSlogan"></p>
 
                 <div class="hero-btns">
-                    <a class="btn-hero-primary" href="李阳简历_产品运营经理.pdf" download>
+                    <a class="btn-hero-primary" href="resume.pdf" download="李阳-产品岗.pdf">
                         <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         下载简历 PDF
                     </a>
@@ -2354,6 +2354,7 @@ var PROJECT_DATA = {
         ],
         tech: ['Python', 'Streamlit', 'OpenAI API', 'ChromaDB', 'NetworkX', 'PyVis', 'Pydantic', 'Knowledge Graph', 'GraphRAG'],
         github: 'https://github.com/AAly030120/litkg-assistant',
+        demo: '', // TODO: 部署 Streamlit 在线 Demo 后填入 URL（如 https://litkg-assistant.streamlit.app），留空则不显示按钮
         background: '科研人员面对海量文献时，传统「逐篇阅读」效率低下且难以建立跨论文的知识关联。本项目以 Vibe-Coding 独立完成从需求设计到云端部署的全链路，利用 LLM 从 PDF 中自动抽取实体与关系，构建领域知识图谱，结合向量检索实现 GraphRAG 融合问答，让文献从非结构化文本升级为可探索、可问答、可溯源的结构化知识库。',
         results: [
             { label: '实体 / 关系类型', value: '10 / 10 种' },
@@ -2373,7 +2374,17 @@ function openDrawer(projectId) {
 
     var techHTML = data.tech.map(function(t) { return '<span class="drawer-tech-tag">' + t + '</span>'; }).join('');
 
-    var githubHTML = data.github ? '<div class="drawer-section"><a class="drawer-github-link" href="' + data.github + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--r-pill);background:linear-gradient(135deg,#24292e,#000);color:#fff;text-decoration:none;font-size:13px;font-weight:600;">🔗 查看 GitHub 仓库</a></div>' : '';
+    var linksHTML = '';
+    if (data.github || data.demo) {
+        var linkBtns = [];
+        if (data.github) {
+            linkBtns.push('<a class="drawer-github-link" href="' + data.github + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--r-pill);background:linear-gradient(135deg,#24292e,#000);color:#fff;text-decoration:none;font-size:13px;font-weight:600;">🔗 查看 GitHub 仓库</a>');
+        }
+        if (data.demo) {
+            linkBtns.push('<a class="drawer-demo-link" href="' + data.demo + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--r-pill);background:linear-gradient(135deg,#3B82F6,#8B5CF6);color:#fff;text-decoration:none;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(59,130,246,0.3);">🚀 在线演示</a>');
+        }
+        linksHTML = '<div class="drawer-section"><div style="display:flex;gap:10px;flex-wrap:wrap;">' + linkBtns.join('') + '</div></div>';
+    }
 
     var metaHTML = data.meta.map(function(m) {
         return '<div class="drawer-meta-item"><div class="drawer-meta-label">' + m.label + '</div><div class="drawer-meta-value">' + m.value + '</div></div>';
@@ -2396,7 +2407,7 @@ function openDrawer(projectId) {
         '<div class="drawer-section">' +
         '<div class="drawer-section-title">🛠 技术栈</div>' +
         '<div class="drawer-tech-tags">' + techHTML + '</div>' +
-        '</div>' + githubHTML +
+        '</div>' + linksHTML +
 
         '<div class="drawer-section">' +
         '<div class="drawer-section-title">📖 项目背景</div>' +
