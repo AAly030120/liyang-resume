@@ -1,0 +1,17 @@
+# WorkBuddy 工作区数据
+.workbuddy/
+
+# 备份文件
+*.bak
+*.bak_*
+
+# 构建/提取脚本与中间产物（非网站运行所需）
+build_v8.js
+extract_resumes.py
+resume_texts.json
+new_resume_text.txt
+new_resume_docx.txt
+
+# 系统文件
+Thumbs.db
+.DS_Store
