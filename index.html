@@ -1832,6 +1832,23 @@
                             </div>
                         </div>
 
+                        <!-- 项目0-2：ResearchPal（Vibe-Coding 新增，紧邻 LitKG 之后） -->
+                        <div class="project-card" data-project="project6">
+                            <div class="project-cover">🧪</div>
+                            <div class="project-body">
+                                <div class="project-title">ResearchPal</div>
+                                <div class="project-desc">AI 驱动的科研工作台：文献总结 / 数据分析 / PPT 制作 / 代码生成一站式自动化（Vibe-Coding 全链路）</div>
+                                <div class="project-tags">
+                                    <span class="project-tag">FastAPI</span>
+                                    <span class="project-tag">Next.js 15</span>
+                                    <span class="project-tag">多模型 LLM</span>
+                                    <span class="project-tag">python-pptx</span>
+                                </div>
+                                <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
+                                <a class="project-link">查看详情 →</a>
+                            </div>
+                        </div>
+
                         <!-- 项目1 -->
                         <div class="project-card" data-project="project1">
                             <div class="project-cover">🔬</div>
@@ -2363,6 +2380,28 @@ var PROJECT_DATA = {
             { label: 'LLM 容错', value: '三级 Fallback' }
         ],
         outcome: '从「科研人员读论文慢、难关联」的痛点出发，设计「上传→抽取→图谱→问答」的完整用户旅程：用 Python/Streamlit/ChromaDB/NetworkX 搭建 PDF 智能抽取、跨论文图谱问答与三级实体消歧的可交互产品，并上线公开 Demo 验证知识图谱在文献多跳推理与跨文档关联上的产品价值。三级实体消歧解决同名异义问题，Chunk 级增量更新（SHA256 去重）节省 API 成本，Triple 溯源系统为低置信度结论标注「待验证」。'
+    },
+    project6: {
+        icon: '🧪', gradient: 'linear-gradient(135deg, #3B82F6, #06B6D4)',
+        title: 'ResearchPal',
+        subtitle: 'AI 驱动的科研工作台 · 5 大工具一站式自动化 · Vibe-Coding · 2026',
+        meta: [
+            { label: '我的角色', value: '产品经理 / 全栈开发' },
+            { label: '核心能力', value: '5 大工具 + 1 智能对话' },
+            { label: '项目周期', value: '6 个月' },
+            { label: '技术形态', value: '可交互 Web 产品' }
+        ],
+        tech: ['FastAPI', 'Next.js 15', 'React 19', 'SQLAlchemy', 'JWT', 'python-pptx', 'Multi-LLM Router', 'TailwindCSS', 'Vibe-Coding'],
+        github: 'https://github.com/AAly030120/ResearchPal',
+        demo: '',
+        background: '高校学生做研究时工具割裂：文献总结用 ChatGPT、数据分析跑 Python、PPT 找模板、翻译切窗口——每一步都伴随 LLM 试错成本与上下文切换。本项目以 Vibe-Coding 独立完成从需求设计到云端部署的全链路，把「文献总结、数据可视化、PPT 制作、代码生成、文件翻译」五大高频任务集成到同一 Web 工作台，多模型路由按任务特性自动选型，并对零配置用户开放 Demo 模式——无需 API Key 即可点遍全流程，降低试用门槛。',
+        results: [
+            { label: '工具 / PPT 版式', value: '5 大 / 6 种' },
+            { label: 'LLM 模型路由', value: '4 主流' },
+            { label: 'Demo 模式覆盖', value: '100% 任务' },
+            { label: '代码量', value: '~8600 行' }
+        ],
+        outcome: '从「学生做研究时工具分散、试错成本高」的痛点出发，用 RICE 排优先级决定先做最高频的文献总结与 PPT 制作，模型路由按「短任务/长任务/代码/中文」分流以平衡成本与质量，零依赖 PPT 降级（python-pptx）解决外部技能不可移植问题，零配置 Demo 模式让面试官 clone 后无需 Key 即可点遍全流程。产品侧另撰 PRODUCT.md（用户研究/优先级/指标/AI 安全）作为产品决策的可验证证据。'
     }
 };
 
