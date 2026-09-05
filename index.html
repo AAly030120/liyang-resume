@@ -1731,22 +1731,87 @@
     /* =============================================
        打印样式（建议 4：Ctrl+P 输出干净简历）
        ============================================= */
+    /* —— V12: 首屏价值主张钩子 —— */
+    .hero-hook {
+        display: block; width: fit-content; margin: 6px auto 8px;
+        padding: 9px 18px; border-radius: 999px;
+        font-size: 14px; font-weight: 700; letter-spacing: .2px; color: #fff;
+        background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(139,92,246,.16));
+        border: 1px solid rgba(99,102,241,.35);
+        backdrop-filter: blur(4px);
+    }
+    [data-theme="dark"] .hero-hook { color: #E6EDF3; }
+
+    /* —— V12: 项目卡片 hover 预览浮层 —— */
+    .project-hover {
+        position: absolute; inset: 0; z-index: 5;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        text-align: center; padding: 24px 22px; gap: 12px;
+        background: linear-gradient(160deg, rgba(15,23,42,.94), rgba(30,58,138,.94));
+        color: #fff; opacity: 0; transform: scale(1.04);
+        transition: opacity .25s var(--ease), transform .25s var(--ease);
+        pointer-events: none;
+    }
+    .project-hover::before {
+        content: '✨ 核心亮点'; position: absolute; top: 18px; left: 0; right: 0;
+        font-size: 11px; letter-spacing: 3px; color: #818CF8; text-align: center;
+    }
+    .project-card:hover .project-hover { opacity: 1; transform: scale(1); }
+    .project-hover-line { font-size: 15px; font-weight: 700; line-height: 1.5; max-width: 90%; }
+    .project-hover-metrics { font-size: 12.5px; color: #93C5FD; line-height: 1.55; max-width: 92%; }
+    @media (hover: none) { .project-hover { display: none !important; } }
+
     @media print {
-        #mainNav, #readingProgressBar, #copyToast, .fab, .theme-toggle, .nav-cta,
+        #mainNav, #readingProgressBar, #copyToast, .fab, .theme-toggle, .nav-cta, .footer, .project-links,
         .hero-btns, .section-next-wrap, .matcher-card, .result-actions, .config-tip,
         .upload-zone, .loading-area, .matcher-intro, .btn-analyze, .matcher-head,
         .modal-overlay, .drawer, .toast, .hero-scroll-hint, .jd-input-tabs,
-        .jd-paste-area, .jd-meta-row, .result-panel, #contactFab { display: none !important; }
+        .jd-paste-area, .jd-meta-row, .result-panel, #contactFab, .project-hover { display: none !important; }
+        #matcher { display: none !important; }
         html, body { background: #fff !important; color: #000 !important; }
         .main, .container { width: 100% !important; max-width: none !important; padding: 0 !important; }
-        .page { display: none !important; }
-        .page.active { display: block !important; }
+        .page { display: block !important; }
+        [data-aos] { opacity: 1 !important; transform: none !important; }
+        .project-card { transform: none !important; }
         * { box-shadow: none !important; text-shadow: none !important; }
         a { color: #000 !important; text-decoration: none !important; }
+        /* 压缩排布，控制打印页数 */
+        .section, .hero { min-height: 0 !important; }
+        .hero { padding: 14px 0 6px !important; }
+        .hero-avatar-wrap { display: none !important; }
+        .container { padding-left: 12px !important; padding-right: 12px !important; }
+        .section { padding: 10px 0 !important; }
+        .section-head { margin-bottom: 12px !important; }
+        .bento-grid, .projects-grid { gap: 10px !important; }
+        .project-card { margin-bottom: 10px !important; }
+        .project-cover { height: 64px !important; font-size: 26px !important; }
+        .project-cover-icon { font-size: 30px !important; }
+        .project-body { padding: 12px 14px !important; }
+        .timeline-line, .tl-dot-col { display: none !important; }
+        .tl-item { padding-left: 4px !important; grid-template-columns: 120px 1fr !important; column-gap: 14px !important; }
+        .radar-wrap { display: none !important; }
+        .skill-section { margin-bottom: 8px !important; }
         .hero-name { -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; }
-        .project-card, .bento-card, .edu-card-v2, .tl-item, .dim-row, .kw-tag, .about-card {
+        /* 控制分页：仅大块避免跨页，碎片允许流动以压缩页数 */
+        .project-card, .edu-card-v2, .tl-item, .course-card {
             break-inside: avoid; page-break-inside: avoid; border: 1px solid #ddd !important;
         }
+        .bento-card, .about-card, .kw-tag, .dim-row {
+            padding: 8px 12px !important; margin-bottom: 6px !important; border: 1px solid #e5e7eb !important;
+        }
+        .hero-roles, .hero-meta { margin: 6px 0 !important; }
+        .project-title { margin-bottom: 4px !important; }
+        .project-desc { margin-bottom: 6px !important; font-size: 12px !important; line-height: 1.45 !important; }
+        .project-tags, .project-metrics { margin-top: 6px !important; }
+        .section-head h2 { margin: 0 0 4px !important; font-size: 22px !important; }
+        .section-head .subtitle { margin: 0 !important; }
+        .tl-item ul, .tl-item p, .about-card ul { margin: 4px 0 !important; }
+        .tl-item li, .about-card li, .skill-section li { margin: 2px 0 !important; font-size: 12.5px !important; }
+        .bento-grid, .projects-grid { gap: 8px !important; }
+        .skill-bars-grid > div { margin: 3px 0 !important; }
+        .edu-card-v2 { gap: 10px !important; }
+        .course-grid { gap: 6px !important; }
+        h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
     }
 
     </style>
@@ -1818,6 +1883,8 @@
                 <div class="hero-meta">
                     <span>实习时间：<strong>最早到岗两周内 · 全勤 · 可持续6个月以上</strong></span>
                 </div>
+
+                <div class="hero-hook">🚀 已落地 2 个 AI 产品 Demo（可现场演示）· 3 段产品实习 · RAG / 大模型 / 数据驱动全流程经验</div>
 
                 <p class="hero-slogan" id="heroSlogan"></p>
 
@@ -2197,6 +2264,10 @@
                                     <a class="project-link" onclick="event.stopPropagation();openDrawer('project5')">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">知识图谱 + GraphRAG 科研阅读助手，Vibe-Coding 全链路落地</div>
+                                    <div class="project-hover-metrics">9 项核心功能 · 已上线在线 Demo · Streamlit + ChromaDB</div>
+                                </div>
                         </div>
 
                         <!-- 项目6：ResearchPal -->
@@ -2219,6 +2290,10 @@
                                     <a class="project-link" onclick="event.stopPropagation();openDrawer('project6')">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">AI 科研工作台：文献总结 / 数据分析 / PPT / 代码生成一站式</div>
+                                    <div class="project-hover-metrics">Next.js 15 + FastAPI · 多 Agent 编排 · 已上线演示</div>
+                                </div>
                         </div>
 
                         <!-- 项目3：智能交通研究院 AI 产品实习落地 -->
@@ -2245,6 +2320,10 @@
                                     <a class="project-link">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">搭建 1000+ 评测体系，推动回答可用率 68%→89%</div>
+                                    <div class="project-hover-metrics">幻觉率 15%→4% · 知识库 0-1 治理 · 已落地生产</div>
+                                </div>
                         </div>
 
                         <!-- 项目1 -->
@@ -2271,6 +2350,10 @@
                                     <a class="project-link">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">800 万+ 气象数据 → LSTM 预测，产出 2 篇 SCI</div>
+                                    <div class="project-hover-metrics">1 项软件著作权 · 预测准确率 ↑12% · 参与国重课题</div>
+                                </div>
                         </div>
 
                         <!-- 项目2 -->
@@ -2297,6 +2380,10 @@
                                     <a class="project-link">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">质量日报自动化，定位湿度-缺陷强相关（R&gt;0.7）</div>
+                                    <div class="project-hover-metrics">缺陷率 ↓8% · 报表 2h→15min · 提出 3 项改进</div>
+                                </div>
                         </div>
 
                         <!-- 项目4 -->
@@ -2323,6 +2410,10 @@
                                     <a class="project-link">查看详情 →</a>
                                 </div>
                             </div>
+                                <div class="project-hover">
+                                    <div class="project-hover-line">3.2 亿合同额项目成本/进度管理数字化</div>
+                                    <div class="project-hover-metrics">周报效率 ↑60% · SQL + Tableau/Power BI 分析</div>
+                                </div>
                         </div>
 
                     </div>
@@ -2405,6 +2496,8 @@
 
                     <div class="result-actions">
                         <button class="btn-result-action primary" id="copyResultBtn">📋 复制分析结果</button>
+                        <button class="btn-result-action" id="copyImageBtn">🖼 复制图片</button>
+                        <button class="btn-result-action" id="downloadMdBtn">⬇ 下载 Markdown</button>
                         <button class="btn-result-action" id="shareCardBtn">🖼 生成分享卡片</button>
                         <canvas id="shareCardCanvas" class="share-card-canvas" style="display:none;"></canvas>
                     </div>
@@ -3395,8 +3488,42 @@ function fallbackCopy(text) {
     ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta); ta.select();
     try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(ta);
-}
+        document.body.removeChild(ta);
+    }
+
+    // V12: 复制分享卡片图片到剪贴板（一键发给微信/邮件）
+    function copyShareImage() {
+        var canvas = document.getElementById('shareCardCanvas');
+        if (!canvas || !canvas.width) { generateShareCard(); canvas = document.getElementById('shareCardCanvas'); }
+        if (!canvas || !canvas.width) { showToast('⚠️ 请先生成分享卡片'); return; }
+        try {
+            canvas.toBlob(function(blob) {
+                if (!blob) { showToast('⚠️ 图片生成失败，请点“生成分享卡片”下载'); return; }
+                if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+                    navigator.clipboard.write([new window.ClipboardItem({ 'image/png': blob })])
+                        .then(function() { showToast('📋 图片已复制，可直接粘贴到微信/邮件'); })
+                        .catch(function() { showToast('⚠️ 复制失败，请点“生成分享卡片”下载图片'); });
+                } else {
+                    showToast('当前浏览器不支持复制图片，请点“生成分享卡片”下载');
+                }
+            }, 'image/png');
+        } catch (e) {
+            showToast('⚠️ 复制失败，请点“生成分享卡片”下载图片');
+        }
+    }
+
+    // V12: 下载 Markdown 分析报告
+    function downloadResultMd() {
+        var md = buildResultMarkdown();
+        if (!md) { showToast('暂无可下载的分析结果'); return; }
+        var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = '李阳_岗位匹配分析.md';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+        showToast('⬇ 已下载 Markdown 分析');
+    }
 
 function generateShareCard() {
     var canvas = document.getElementById('shareCardCanvas');
@@ -3567,6 +3694,10 @@ function renderResult(result) {
     if (copyBtn) copyBtn.onclick = copyResult;
     var shareBtn = document.getElementById('shareCardBtn');
     if (shareBtn) shareBtn.onclick = generateShareCard;
+    var copyImgBtn = document.getElementById('copyImageBtn');
+    if (copyImgBtn) copyImgBtn.onclick = copyShareImage;
+    var dlMdBtn = document.getElementById('downloadMdBtn');
+    if (dlMdBtn) dlMdBtn.onclick = downloadResultMd;
     // 上报：匹配结果已生成（轻量统计）
     trackEvent('match_result', { score: score });
 }
