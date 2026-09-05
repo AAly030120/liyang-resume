@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李阳 - AI产品实习生 / 产品经理实习生 / 产品实习生</title>
+    <!-- Open Graph / Twitter 分享卡片 -->
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="李阳 · 在线交互简历">
+    <meta property="og:title" content="李阳 | AI产品实习生 · 华南理工大学硕士">
+    <meta property="og:description" content="B端AI产品落地 × RAG评测体系 × 数据驱动决策。4段产品/AI实习、2个上线Demo、SCI×2。内置AI岗位匹配器，上传JD即可一键查看人岗适配度。">
+    <meta property="og:image" content="https://aaly030120.github.io/liyang-resume/og-cover.png">
+    <meta property="og:url" content="https://aaly030120.github.io/liyang-resume/">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="李阳 | AI产品实习生 · 华南理工大学硕士">
+    <meta name="twitter:description" content="B端AI产品落地 × RAG评测体系 × 数据驱动。含AI岗位匹配器，30秒查看人岗适配度。">
+    <meta name="twitter:image" content="https://aaly030120.github.io/liyang-resume/og-cover.png">
+    <meta name="description" content="李阳在线交互简历：华南理工大学工业工程与管理硕士，AI产品实习方向。含AI岗位匹配器。">
+    <link rel="icon" type="image/png" href="avatar.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1360,8 +1374,29 @@
         .nav-links { gap: 2px; }
         .nav-links a { padding: 6px 10px; font-size: 12px; }
         .hero-name { font-size: 48px; letter-spacing: -2px; }
-        .tl-item { grid-template-columns: 1fr; padding-left: 24px; border-left: 2px solid var(--blue); margin-bottom: 24px; }
-        .tl-date-col { text-align: left; padding-top: 0; padding-bottom: 6px; }
+        /* ---- 移动端时间线：左侧竖线 + 圆点 + 日期胶囊 ---- */
+        .tl-item { grid-template-columns: 1fr; padding-left: 22px; border-left: 2px solid var(--blue); margin-bottom: 28px; position: relative; }
+        .tl-item::before {
+            content: ''; position: absolute; left: -8px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--blue-deep);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--blue);
+            z-index: 1;
+        }
+        .tl-date-col { text-align: left; padding: 0 0 8px 0; }
+        .tl-date-text {
+            display: inline-block; font-size: 12px; font-weight: 700;
+            color: var(--blue); background: rgba(59,130,246,0.08);
+            padding: 3px 12px; border-radius: var(--r-pill); line-height: 1.6;
+        }
+        .tl-date-text br { display: none; }
+        .tl-card { padding: 18px 16px; border-radius: var(--r-md); }
+        .tl-card:hover { transform: none; }
+        .tl-title { font-size: 15.5px; }
+        .tl-org { font-size: 12.5px; flex-wrap: wrap; margin-bottom: 10px; }
+        .tl-list li { padding: 5px 0 5px 16px; font-size: 13px; line-height: 1.7; }
+        .tl-list li::before { width: 5px; height: 5px; top: 13px; }
         .tl-dot-col { display: none; }
         .timeline-line { display: none; }
         .bento-grid { grid-template-columns: 1fr 1fr; }
@@ -1372,6 +1407,8 @@
         .modal-box { padding: 24px; }
         .gauge-container { width: 160px; height: 80px; }
         .gauge-bg, .gauge-fill { width: 160px; height: 160px; }
+        .hero-btns .btn-hero-primary, .hero-btns .btn-hero-secondary { width: 100%; justify-content: center; padding: 13px 20px; font-size: 14px; }
+        .jd-meta-row { flex-direction: column; }
     }
 
     /* ========== V8 NEW: 阅读进度条 ========== */
@@ -1523,11 +1560,91 @@
         border-radius: var(--r-md);
     }
 
+    /* =============================================
+       V9 NEW: 导航滚动进度指示条（scroll spy）
+       ============================================= */
+    .nav-links a { position: relative; }
+    .nav-scroll-ind {
+        position: absolute; left: 12px; right: 12px; bottom: 1px;
+        height: 2px; border-radius: 2px;
+        background: linear-gradient(90deg, var(--blue), var(--purple));
+        width: 0; max-width: calc(100% - 24px);
+        transition: width 0.15s ease;
+        pointer-events: none;
+    }
+
+    /* =============================================
+       V9 NEW: 复制成功 Toast
+       ============================================= */
+    #copyToast {
+        position: fixed; left: 50%; bottom: 96px;
+        transform: translateX(-50%) translateY(16px);
+        background: var(--text); color: var(--bg-card);
+        padding: 11px 22px; border-radius: var(--r-pill);
+        font-size: 14px; font-weight: 600;
+        box-shadow: var(--sh-float);
+        opacity: 0; visibility: hidden;
+        transition: all 0.35s var(--ease);
+        z-index: 10002; white-space: nowrap;
+    }
+    #copyToast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+    /* =============================================
+       V9 NEW: 匹配器岗位名称/公司输入
+       ============================================= */
+    .jd-meta-row { display: flex; gap: 12px; margin-bottom: 14px; }
+    .jd-title-input {
+        flex: 1; min-width: 0;
+        padding: 12px 16px;
+        font-size: 14px; font-family: inherit;
+        color: var(--text);
+        background: var(--bg-card);
+        border: 1.5px dashed var(--border);
+        border-radius: var(--r-md);
+        outline: none; transition: var(--t);
+    }
+    .jd-title-input:focus { border-color: var(--blue); border-style: solid; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+    .jd-title-input::placeholder { color: var(--text-3); }
+
+    /* =============================================
+       V9 NEW: JD 关键词命中云
+       ============================================= */
+    .kw-cloud-wrap { margin-bottom: 26px; }
+    .kw-cloud-title {
+        font-size: 14px; font-weight: 800; color: var(--text);
+        margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .kw-cloud-title .kw-count {
+        font-size: 11.5px; font-weight: 700; color: var(--green);
+        background: rgba(16,185,129,0.1);
+        padding: 2px 10px; border-radius: var(--r-pill);
+    }
+    .kw-cloud { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    .kw-tag {
+        display: inline-flex; align-items: center; gap: 5px;
+        padding: 5px 14px; border-radius: var(--r-pill);
+        color: #fff; font-weight: 700; font-size: 12.5px;
+        background: linear-gradient(135deg, var(--blue), var(--indigo));
+        box-shadow: 0 2px 8px rgba(59,130,246,0.25);
+        animation: kwPop 0.45s var(--ease) both;
+        cursor: default;
+    }
+    .kw-tag .kw-check { font-size: 10px; opacity: 0.9; }
+    .kw-tag.w3 { font-size: 14px; background: linear-gradient(135deg, var(--indigo), var(--purple)); box-shadow: 0 2px 10px rgba(139,92,246,0.28); }
+    .kw-tag.w4 { font-size: 15px; padding: 7px 18px; background: linear-gradient(135deg, var(--purple), var(--pink)); box-shadow: 0 3px 12px rgba(236,72,153,0.3); }
+    .kw-tag.w5 { font-size: 16px; padding: 8px 20px; background: linear-gradient(135deg, var(--pink), var(--red)); box-shadow: 0 4px 14px rgba(239,68,68,0.3); }
+    @keyframes kwPop {
+        from { opacity: 0; transform: scale(0.6) translateY(6px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
     </style>
 </head>
 <body>
     <!-- V8: 阅读进度条 -->
     <div id="readingProgressBar"></div>
+    <!-- V9: 复制成功 Toast -->
+    <div id="copyToast">✅ 简历亮点已复制到剪贴板</div>
 
 <!-- ===================================================
      毛玻璃顶部导航栏
@@ -1596,6 +1713,9 @@
                 <div class="hero-btns">
                     <button class="btn-hero-primary" id="heroMatcherBtn">
                         🤖 AI 岗位匹配器 · 一键查看岗位适配度
+                    </button>
+                    <button class="btn-hero-secondary" id="copyHighlightsBtn" title="复制核心亮点文本，可直接粘贴到邮件/聊天中">
+                        📋 一键复制简历亮点
                     </button>
                 </div>
 
@@ -2095,6 +2215,10 @@
             </div>
 
             <div class="matcher-card" data-aos="fade-up" data-aos-delay="60">
+                <div class="jd-meta-row">
+                    <input type="text" id="jdJobTitle" class="jd-title-input" placeholder="🎯 岗位名称（选填，如：AI产品实习生）" maxlength="40">
+                    <input type="text" id="jdCompany" class="jd-title-input" placeholder="🏢 公司名称（选填，如：腾讯）" maxlength="40">
+                </div>
                 <div class="upload-zone" id="uploadZone">
                     <input type="file" id="jdFileInput" accept=".txt,.pdf,.doc,.docx,.md" style="display:none;">
                     <div class="upload-icon">📄</div>
@@ -2124,6 +2248,12 @@
                     </div>
 
                     <div class="result-dims" id="dimsArea"></div>
+
+                    <!-- V9: JD 关键词命中云 -->
+                    <div class="kw-cloud-wrap" id="kwCloudWrap" style="display:none;">
+                        <div class="kw-cloud-title">🎯 JD 关键词命中 <span class="kw-count" id="kwCount"></span></div>
+                        <div class="kw-cloud" id="kwCloud"></div>
+                    </div>
 
                     <div class="result-section">
                         <div class="result-section-title">📋 详细分析</div>
@@ -2212,7 +2342,8 @@ if (typeof AOS !== 'undefined') {
 /* ============================================================
    2. 导航栏切换
    ============================================================ */
-function switchTab(tabId) {
+function switchTab(tabId, opts) {
+    var skipScroll = opts && opts.skipScroll;
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
     var target = document.getElementById(tabId);
@@ -2221,8 +2352,18 @@ function switchTab(tabId) {
     for (var j = 0; j < links.length; j++) {
         links[j].classList.toggle('active', links[j].getAttribute('data-tab') === tabId);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     if (typeof AOS !== 'undefined') setTimeout(function() { AOS.refresh(); }, 100);
+
+    // V9: 深度链接 —— 同步 URL hash，便于分享定位到具体板块
+    try {
+        if (('#' + tabId) !== window.location.hash) {
+            history.replaceState(null, '', '#' + tabId);
+        }
+    } catch (e) { /* ignore */ }
+
+    // V9: 切换板块后重置导航滚动指示条
+    updateNavScrollIndicator(0);
 
     // 切换到"技能与证书"板块时，确保雷达图在容器可见后再初始化/重绘
     if (tabId === 'skills-honors') {
@@ -2233,6 +2374,44 @@ function switchTab(tabId) {
                 window._radarChart.resize();
             }
         }, 80);
+    }
+}
+
+/* V9: 导航滚动高亮（scroll spy）—— 当前板块的导航项显示阅读进度指示条 */
+var navIndicatorsInitialized = false;
+function initNavScrollIndicator() {
+    if (navIndicatorsInitialized) return;
+    var links = document.querySelectorAll('#navLinks a');
+    for (var i = 0; i < links.length; i++) {
+        var ind = document.createElement('span');
+        ind.className = 'nav-scroll-ind';
+        links[i].appendChild(ind);
+    }
+    navIndicatorsInitialized = true;
+}
+function updateNavScrollIndicator(progress) {
+    if (!navIndicatorsInitialized) initNavScrollIndicator();
+    var activeLink = document.querySelector('#navLinks a.active');
+    if (!activeLink) return;
+    var ind = activeLink.querySelector('.nav-scroll-ind');
+    if (!ind) return;
+    var p = Math.min(1, Math.max(0, progress));
+    var avail = activeLink.clientWidth - 24;
+    ind.style.width = (avail > 0 ? Math.round(avail * p) : 0) + 'px';
+}
+function handleNavScrollSpy() {
+    var doc = document.documentElement;
+    var scrollable = (doc.scrollHeight - window.innerHeight);
+    var progress = scrollable > 40 ? (window.scrollY / scrollable) : 1;
+    updateNavScrollIndicator(progress);
+}
+
+/* V9: 初始化时按 URL hash 恢复板块（支持 #edu-work 等深链） */
+function initHashRoute() {
+    var hash = (window.location.hash || '').replace('#', '');
+    var validTabs = ['home', 'edu-work', 'skills-honors', 'explore', 'matcher'];
+    if (hash && validTabs.indexOf(hash) > -1 && hash !== 'home') {
+        switchTab(hash, { skipScroll: true });
     }
 }
 
@@ -2251,7 +2430,8 @@ if (navBrand) navBrand.onclick = function() { switchTab('home'); };
 window.addEventListener('scroll', function() {
     var nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+    handleNavScrollSpy(); // V9: 导航滚动进度指示
+}, { passive: true });
 
 /* ============================================================
    4. 头像加载
@@ -2678,6 +2858,52 @@ function initModal() {
 }
 
 /* ============================================================
+   12.5 V9: 一键复制简历亮点
+   ============================================================ */
+var HIGHLIGHTS_TEXT = [
+    '李阳 | AI产品实习生 / 产品经理实习生 / 产品实习生',
+    '华南理工大学 工业工程与管理 硕士研究生（推免） | 广州 | 可实习6个月以上、全勤',
+    '',
+    '【核心亮点】',
+    '1. B端AI产品落地（广电运通集团·产品实习，2026.04-2026.09）：跟进对话系统从Q&A向RAG、Agent演进，参与Agent状态收敛/任务路由/硬件适配方案评审，完成AI方案业务侧效果验证，具备需求拆解-PRD-研发对齐完整链路经验。',
+    '2. RAG评测体系0-1（广东交通集团·AI产品实习，2025.12-2026.03）：搭建准确率/召回率/幻觉率3维度评测体系，覆盖1000+真实问答用例，推动回答可用率68%→89%、幻觉率15%→4%。',
+    '3. 数据与科研能力：Python/SQL/Tableau/Power BI；参与"十四五"国家重点研发计划（800万+数据，LSTM预测），SCI×2 + 软著×1。',
+    '4. 独立AI产品实践：LitKG Assistant（知识图谱+GraphRAG科研文献助手）、ResearchPal（AI科研工作台，已上线Demo）。',
+    '5. 荣誉：国家奖学金（唯一）、省政府奖学金（唯二）等5项奖学金。',
+    '',
+    '联系方式：172-6761-7588 | llya3120@163.com',
+    '在线简历：https://aaly030120.github.io/liyang-resume/'
+].join('\n');
+
+function copyHighlights() {
+    function showToast() {
+        var toast = document.getElementById('copyToast');
+        if (!toast) return;
+        toast.classList.add('show');
+        clearTimeout(window._copyToastTimer);
+        window._copyToastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2400);
+    }
+    function fallbackCopy() {
+        var ta = document.createElement('textarea');
+        ta.value = HIGHLIGHTS_TEXT;
+        ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try { document.execCommand('copy'); showToast(); } catch (e) { alert('复制失败，请手动复制'); }
+        document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(HIGHLIGHTS_TEXT).then(showToast, fallbackCopy);
+    } else {
+        fallbackCopy();
+    }
+}
+(function bindCopyBtn() {
+    var btn = document.getElementById('copyHighlightsBtn');
+    if (btn) btn.onclick = copyHighlights;
+})();
+
+/* ============================================================
    13. 文件上传
    ============================================================ */
 var uploadedJDContent = '';
@@ -2764,13 +2990,23 @@ function analyzeMatch() {
 
     if (!uploadedJDContent) { alert('请先上传职位描述（JD）文件！'); return; }
 
+    // V9: 读取岗位名称 / 公司（选填），让分析更聚焦
+    var jobTitleInput = document.getElementById('jdJobTitle');
+    var companyInput = document.getElementById('jdCompany');
+    var jobTitle = jobTitleInput ? jobTitleInput.value.trim() : '';
+    var companyName = companyInput ? companyInput.value.trim() : '';
+    var targetJobDesc = [];
+    if (jobTitle) targetJobDesc.push('岗位名称：' + jobTitle);
+    if (companyName) targetJobDesc.push('公司：' + companyName);
+    var targetJobBlock = targetJobDesc.length > 0 ? ('\n【目标岗位】\n' + targetJobDesc.join('\n') + '\n') : '';
+
     btn.disabled = true;
     btn.textContent = '⏳ 分析中...';
     document.getElementById('loadingArea').classList.add('show');
     document.getElementById('resultPanel').classList.remove('show');
 
-    var systemPrompt = '你是一位资深招聘面试官，正在为团队评估候选人「李阳」与目标岗位的匹配度。请严格基于简历和职位描述(JD)进行匹配分析。\n\n输出要求（JSON格式）：\n{\n  "totalScore": 整数(85-100),\n  "dimensions": [\n    {"name":"学历背景","score":整数(82-100)},\n    {"name":"工作经验","score":整数(82-100)},\n    {"name":"技能匹配","score":整数(82-100)},\n    {"name":"综合潜力","score":整数(82-100)}\n  ],\n  "analysis": "面试官视角的Markdown报告"\n}\n\nanalysis 报告必须仅包含以下两个章节，且均以面试官口吻撰写：\n## 匹配亮点（3-5条）\n- 逐条说明候选人优势与岗位JD的契合点，引用岗位关键词与简历中的对应经历/技能。\n- 重点突出：AI产品落地、RAG/大模型应用、数据驱动、B端需求拆解、跨团队协作、科研与工程化能力。\n## 录用建议\n- 从面试官角度给出结论，说明为什么该候选人值得进入下一轮面试/录用，语言简洁专业。\n- 不要出现「建议候选人」这类站在候选人角度的表述。\n\n严禁输出任何“不足之处”“待提升”“短板”“劣势”“风险”“建议候选人补强”等负面或贬低性内容。';
-    var userMessage = '【简历】\n' + RESUME_TEXT + '\n\n【岗位JD】\n' + uploadedJDContent + '\n\n请按上述要求输出JSON匹配分析结果。';
+    var systemPrompt = '你是一位资深招聘面试官，正在为团队评估候选人「李阳」与目标岗位的匹配度。请严格基于简历和职位描述(JD)进行匹配分析。\n\n输出要求（JSON格式）：\n{\n  "totalScore": 整数(85-100),\n  "dimensions": [\n    {"name":"学历背景","score":整数(82-100)},\n    {"name":"工作经验","score":整数(82-100)},\n    {"name":"技能匹配","score":整数(82-100)},\n    {"name":"综合潜力","score":整数(82-100)}\n  ],\n  "keywords": [\n    {"k":"JD中的核心关键词(候选人已具备)","w":1到5的整数(权重，JD中越重要越大)}\n  ],\n  "analysis": "面试官视角的Markdown报告"\n}\n\nkeywords 数组：从JD中提取8-15个候选人简历中有对应经历/技能支撑的核心关键词（如产品、RAG、大模型、Python、需求分析等），w 为该关键词在JD中的重要程度(1-5)。\n\nanalysis 报告必须仅包含以下两个章节，且均以面试官口吻撰写：\n## 匹配亮点（3-5条）\n- 逐条说明候选人优势与岗位JD的契合点，引用岗位关键词与简历中的对应经历/技能。\n- 重点突出：AI产品落地、RAG/大模型应用、数据驱动、B端需求拆解、跨团队协作、科研与工程化能力。\n## 录用建议\n- 从面试官角度给出结论，说明为什么该候选人值得进入下一轮面试/录用，语言简洁专业。\n- 不要出现「建议候选人」这类站在候选人角度的表述。\n\n严禁输出任何“不足之处”“待提升”“短板”“劣势”“风险”“建议候选人补强”等负面或贬低性内容。';
+    var userMessage = '【简历】\n' + RESUME_TEXT + '\n' + targetJobBlock + '\n【岗位JD】\n' + uploadedJDContent + '\n\n请按上述要求输出JSON匹配分析结果。';
 
     var headers = { 'Content-Type': 'application/json' };
     var requestURL = apiURL;
@@ -2818,6 +3054,78 @@ function analyzeMatch() {
     });
 }
 
+/* ============================================================
+   14.5 V9: JD 关键词命中云（AI 返回 + 本地词典 双源合并）
+   ============================================================ */
+var KW_DICTIONARY = [
+    '产品', '需求', 'PRD', 'Axure', '原型', '用户调研', '用户访谈', '竞品分析',
+    '数据分析', 'Python', 'SQL', 'MySQL', 'Tableau', 'Power BI', 'Excel', '可视化',
+    '大模型', 'LLM', 'RAG', 'Agent', '智能体', 'Prompt', '提示词', 'AIGC', 'ChatGPT',
+    '知识库', '问答', '评测', '迭代', '项目管理', '敏捷', 'Scrum', '沟通', '协作',
+    '跨部门', 'B端', 'SaaS', '落地', '商业化', '增长', '转化', '指标', 'KPI',
+    '机器学习', '深度学习', 'NLP', '自然语言', '数据治理', '数据清洗', '文档', 'PPT',
+    '硕士', '研究生', '实习', '广州', '逻辑', '学习能力'
+];
+function kwInText(kw, text) {
+    if (!text) return false;
+    if (/^[a-z0-9 .]+$/i.test(kw)) {
+        // 纯 ASCII 词用整词匹配，避免 "ai" 误命中 "said" 等
+        var re = new RegExp('\\b' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+        return re.test(text);
+    }
+    return text.indexOf(kw) > -1;
+}
+function renderKeywordCloud(result) {
+    var wrap = document.getElementById('kwCloudWrap');
+    var cloud = document.getElementById('kwCloud');
+    var countEl = document.getElementById('kwCount');
+    if (!wrap || !cloud) return;
+
+    var merged = {};
+    // 来源1：AI 返回的 keywords
+    if (result && result.keywords && Array.isArray(result.keywords)) {
+        result.keywords.forEach(function(item) {
+            if (!item || !item.k) return;
+            var k = String(item.k).trim();
+            if (!k || k.length > 14) return;
+            var w = parseInt(item.w);
+            if (isNaN(w)) w = 3;
+            w = Math.min(5, Math.max(1, w));
+            merged[k] = Math.max(merged[k] || 0, w);
+        });
+    }
+    // 来源2：本地词典 —— JD 中出现 且 简历中有支撑 的关键词
+    var jdText = uploadedJDContent || '';
+    KW_DICTIONARY.forEach(function(kw) {
+        if (!kwInText(kw, jdText)) return;
+        if (!kwInText(kw, RESUME_TEXT)) return;
+        var freq = jdText.toLowerCase().split(kw.toLowerCase()).length - 1;
+        var w = Math.min(5, Math.max(1, Math.round(freq / 2) + 1));
+        merged[kw] = Math.max(merged[kw] || 0, w);
+    });
+
+    var items = Object.keys(merged).map(function(k) { return { k: k, w: merged[k] }; });
+    if (items.length === 0) { wrap.style.display = 'none'; return; }
+    items.sort(function(a, b) { return b.w - a.w || b.k.length - a.k.length; });
+    if (items.length > 18) items = items.slice(0, 18);
+
+    cloud.innerHTML = '';
+    items.forEach(function(item, i) {
+        var tag = document.createElement('span');
+        tag.className = 'kw-tag' + (item.w >= 5 ? ' w5' : item.w >= 4 ? ' w4' : item.w >= 3 ? ' w3' : '');
+        tag.title = '简历中有对应经历/技能支撑';
+        tag.style.animationDelay = (i * 40) + 'ms';
+        var check = document.createElement('span');
+        check.className = 'kw-check';
+        check.textContent = '✓';
+        tag.appendChild(check);
+        tag.appendChild(document.createTextNode(item.k));
+        cloud.appendChild(tag);
+    });
+    if (countEl) countEl.textContent = '命中 ' + items.length + ' 项 JD 核心关键词';
+    wrap.style.display = 'block';
+}
+
 function renderResult(result) {
     document.getElementById('loadingArea').classList.remove('show');
     var panel = document.getElementById('resultPanel');
@@ -2862,6 +3170,9 @@ function renderResult(result) {
             }, 200);
         });
     }
+
+    // V9: JD 关键词命中云
+    renderKeywordCloud(result);
 
     // Markdown 渲染：过滤任何可能漏出的负面章节，再做关键词高亮
     var mdContainer = document.getElementById('mdResult');
@@ -2919,6 +3230,11 @@ function init() {
     initTilt();
     initRadarChart();
     initSkillBars();
+
+    // V9: 导航滚动指示 + hash 深度链接恢复
+    initNavScrollIndicator();
+    initHashRoute();
+    handleNavScrollSpy();
 
     // 窗口 resize 时重绘雷达图
     window.addEventListener('resize', function() {
