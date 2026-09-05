@@ -1706,7 +1706,7 @@
     .share-card-canvas { display: block; max-width: 100%; margin: 14px auto 0; border-radius: var(--r-lg); box-shadow: var(--sh); }
 
     /* —— 板块间浏览动线 —— */
-    .section-next-wrap { display: flex; justify-content: center; margin-top: 50px; }
+    .section-next-wrap { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 44px; margin-bottom: 72px; }
     .section-next {
         display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
         border-radius: 999px; background: linear-gradient(135deg, var(--blue), var(--indigo));
@@ -2358,17 +2358,17 @@
                 </div>
 
                 <div class="jd-input-tabs">
-                    <button type="button" class="jd-tab active" data-jd-mode="file" id="jdTabFile">📎 上传文件</button>
-                    <button type="button" class="jd-tab" data-jd-mode="paste" id="jdTabPaste">✍️ 粘贴文本</button>
+                    <button type="button" class="jd-tab" data-jd-mode="file" id="jdTabFile">📎 上传文件</button>
+                    <button type="button" class="jd-tab active" data-jd-mode="paste" id="jdTabPaste">✍️ 粘贴文本</button>
                 </div>
-                <div class="upload-zone" id="uploadZone">
+                <div class="upload-zone" id="uploadZone" style="display:none;">
                     <input type="file" id="jdFileInput" accept=".txt,.pdf,.doc,.docx,.md" style="display:none;">
                     <div class="upload-icon">📄</div>
                     <div class="upload-text">点击或拖拽上传职位描述（JD）</div>
                     <div class="upload-hint">支持 TXT / PDF / DOC / MD 格式</div>
                     <div class="uploaded-name" id="uploadedName"><span>✅</span><span id="fileNameText"></span></div>
                 </div>
-                <textarea id="jdPasteArea" class="jd-paste-area" style="display:none;" placeholder="可直接粘贴岗位 JD 文本（支持大段招聘描述），例如：&#10;岗位职责：负责 AI 产品需求分析与方案设计……&#10;任职要求：熟悉 RAG / 大模型、具备数据分析能力……"></textarea>
+                <textarea id="jdPasteArea" class="jd-paste-area" style="display:block;" placeholder="可直接粘贴岗位 JD 文本（支持大段招聘描述），例如：&#10;岗位职责：负责 AI 产品需求分析与方案设计……&#10;任职要求：熟悉 RAG / 大模型、具备数据分析能力……"></textarea>
 
                 <div class="config-tip">💡 已内置 DeepSeek 大模型接口，<strong>无需任何配置</strong>——上传 JD 后直接点击「开始匹配分析」即可。</div>
 
@@ -2532,6 +2532,8 @@ function switchTab(tabId, opts) {
         }, 80);
     }
 }
+// 暴露到全局，供 HTML 内联 onclick="switchTab(...)" 调用（板块浏览动线按钮）
+window.switchTab = switchTab;
 
 /* V9: 导航滚动高亮（scroll spy）—— 当前板块的导航项显示阅读进度指示条 */
 var navIndicatorsInitialized = false;
@@ -3099,7 +3101,7 @@ function trackEvent(name, data) {
         }
     } catch (e) { /* 统计失败不影响主流程 */ }
 }
-var jdInputMode = 'file'; // 'file' | 'paste'  —— V10: 匹配器支持粘贴 JD 文本
+var jdInputMode = 'paste'; // 'file' | 'paste'  —— V10: 匹配器支持粘贴 JD 文本（默认粘贴，面试官更便捷）
 function initUpload() {
     var zone = document.getElementById('uploadZone');
     var input = document.getElementById('jdFileInput');
@@ -3126,6 +3128,8 @@ function initUpload() {
     }
     if (tabFile) tabFile.onclick = function() { setMode('file'); };
     if (tabPaste) tabPaste.onclick = function() { setMode('paste'); };
+    // V10: 默认进入「粘贴文本」模式（HTML 已预置 active 状态，此处确保 JS 状态一致）
+    setMode('paste');
 }
 function processFile(file) {
     var nameEl = document.getElementById('fileNameText');
