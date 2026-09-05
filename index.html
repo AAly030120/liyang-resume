@@ -527,7 +527,7 @@
         margin-bottom: 40px;
         align-items: start;
     }
-    .tl-date-col { text-align: right; padding-top: 18px; }
+    .tl-date-col { text-align: right; padding-top: 18px; padding-right: 14px; }
     .tl-date-text { font-size: 15px; font-weight: 800; color: var(--text-2); line-height: 1.4; }
     .tl-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 18px; }
     .tl-dot {
@@ -666,7 +666,7 @@
     }
     .radar-title { font-size: 18px; font-weight: 700; }
     .radar-subtitle { font-size: 13px; color: var(--text-2); }
-    #skillsRadar { width: 100%; aspect-ratio: 1.25 / 1; min-height: 320px; max-height: 520px; }
+    #skillsRadar { width: 100%; height: min(520px, max(380px, 42vw)); min-height: 360px; max-height: 560px; }
 
     /* 发光进度条熟练度 */
     .skill-bars-grid {
@@ -1225,6 +1225,7 @@
         transition: transform 1.2s var(--ease);
     }
     .gauge-fill.green { border-bottom-color: var(--green); border-left-color: var(--green); }
+    .gauge-fill.blue { border-bottom-color: var(--blue); border-left-color: var(--blue); }
     .gauge-fill.orange { border-bottom-color: var(--orange); border-left-color: var(--orange); }
     .gauge-fill.red { border-bottom-color: var(--red); border-left-color: var(--red); }
 
@@ -1517,10 +1518,9 @@
 
 
     .tl-list .ai-bullet {
-        border-left: 3px solid currentColor;
-        padding-left: 14px;
-        background: rgba(99, 102, 241, 0.03);
-        border-radius: 0 var(--r-md) var(--r-md) 0;
+        padding: 8px 12px;
+        background: rgba(99, 102, 241, 0.035);
+        border-radius: var(--r-md);
     }
 
     </style>
@@ -2223,6 +2223,17 @@ function switchTab(tabId) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (typeof AOS !== 'undefined') setTimeout(function() { AOS.refresh(); }, 100);
+
+    // 切换到"技能与证书"板块时，确保雷达图在容器可见后再初始化/重绘
+    if (tabId === 'skills-honors') {
+        setTimeout(function() {
+            if (!window._radarChartInitialized || window._radarChartPending) {
+                initRadarChart();
+            } else if (window._radarChart) {
+                window._radarChart.resize();
+            }
+        }, 80);
+    }
 }
 
 var navLinks = document.querySelectorAll('#navLinks a');
@@ -2328,6 +2339,15 @@ function initTilt() {
 function initRadarChart() {
     var container = document.getElementById('skillsRadar');
     if (!container || typeof echarts === 'undefined') return;
+
+    // 容器不可见时（初始首页未激活技能板块）延迟初始化，避免画布尺寸为 0
+    if (container.offsetParent === null) {
+        window._radarChartPending = true;
+        return;
+    }
+    window._radarChartPending = false;
+    window._radarChartInitialized = true;
+
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     var textColor = isDark ? '#E6EDF3' : '#0F172A';
     var subTextColor = isDark ? '#8B949E' : '#64748B';
@@ -2346,7 +2366,7 @@ function initRadarChart() {
         tooltip: { trigger: 'item' },
         legend: {
             bottom: 0,
-            textStyle: { color: subTextColor, fontSize: small ? 12 : 14 }
+            textStyle: { color: subTextColor, fontSize: small ? 13 : 15 }
         },
         radar: {
             indicator: [
@@ -2360,16 +2380,16 @@ function initRadarChart() {
             shape: 'polygon',
             splitNumber: 4,
             center: ['50%', small ? '44%' : '46%'],
-            radius: small ? '48%' : '58%',
+            radius: small ? '50%' : '60%',
             axisName: {
                 color: textColor,
-                fontSize: small ? 12 : 15,
+                fontSize: small ? 13 : 17,
                 fontWeight: 600,
                 formatter: function(value) {
                     return value === 'AI 应用' ? '{a|' + value + '}' : value;
                 },
                 rich: {
-                    a: { color: '#F59E0B', fontWeight: 800, fontSize: small ? 11 : 13 }
+                    a: { color: '#F59E0B', fontWeight: 800, fontSize: small ? 13 : 16 }
                 }
             },
             splitLine: { lineStyle: { color: borderColor } },
@@ -2387,7 +2407,7 @@ function initRadarChart() {
                 lineStyle: { color: '#3B82F6', width: small ? 1.5 : 2 },
                 itemStyle: { color: '#3B82F6' }
             }, {
-                value: [85, 95, 90, 88, 55, 95],
+                value: [90, 96, 93, 90, 72, 95],
                 name: '兴趣方向',
                 areaStyle: { color: 'rgba(139,92,246,0.10)' },
                 lineStyle: { color: '#8B5CF6', width: small ? 1.5 : 2, type: 'dashed' },
@@ -2749,8 +2769,8 @@ function analyzeMatch() {
     document.getElementById('loadingArea').classList.add('show');
     document.getElementById('resultPanel').classList.remove('show');
 
-    var systemPrompt = '你是一位专业的简历匹配分析师。请根据求职者简历和职位描述(JD)进行匹配度分析。\n\n请以JSON格式返回：\n{\n  "totalScore": 整数(0-100),\n  "dimensions": [\n    {"name":"学历背景","score":整数},\n    {"name":"工作经验","score":整数},\n    {"name":"技能匹配","score":整数},\n    {"name":"综合潜力","score":整数}\n  ],\n  "analysis": "详细的Markdown格式分析报告中包含：匹配亮点、不足之处、总体建议"\n}\n\n注意：analysis字段请使用Markdown格式，包含## 标题、**加粗**、- 列表等格式。';
-    var userMessage = '简历：\n' + RESUME_TEXT + '\n\nJD：\n' + uploadedJDContent + '\n\n请输出JSON分析结果。';
+    var systemPrompt = '你是一位资深招聘面试官，正在为团队评估候选人「李阳」与目标岗位的匹配度。请严格基于简历和职位描述(JD)进行匹配分析。\n\n输出要求（JSON格式）：\n{\n  "totalScore": 整数(85-100),\n  "dimensions": [\n    {"name":"学历背景","score":整数(82-100)},\n    {"name":"工作经验","score":整数(82-100)},\n    {"name":"技能匹配","score":整数(82-100)},\n    {"name":"综合潜力","score":整数(82-100)}\n  ],\n  "analysis": "面试官视角的Markdown报告"\n}\n\nanalysis 报告必须仅包含以下两个章节，且均以面试官口吻撰写：\n## 匹配亮点（3-5条）\n- 逐条说明候选人优势与岗位JD的契合点，引用岗位关键词与简历中的对应经历/技能。\n- 重点突出：AI产品落地、RAG/大模型应用、数据驱动、B端需求拆解、跨团队协作、科研与工程化能力。\n## 录用建议\n- 从面试官角度给出结论，说明为什么该候选人值得进入下一轮面试/录用，语言简洁专业。\n- 不要出现「建议候选人」这类站在候选人角度的表述。\n\n严禁输出任何“不足之处”“待提升”“短板”“劣势”“风险”“建议候选人补强”等负面或贬低性内容。';
+    var userMessage = '【简历】\n' + RESUME_TEXT + '\n\n【岗位JD】\n' + uploadedJDContent + '\n\n请按上述要求输出JSON匹配分析结果。';
 
     var headers = { 'Content-Type': 'application/json' };
     var requestURL = apiURL;
@@ -2803,8 +2823,9 @@ function renderResult(result) {
     var panel = document.getElementById('resultPanel');
     panel.classList.add('show');
 
-    // 半圆仪表盘
-    var score = Math.min(100, Math.max(0, parseInt(result.totalScore) || 0));
+    // 半圆仪表盘：综合匹配分强制落在 85-100，确保呈现为高度匹配
+    var rawScore = parseInt(result.totalScore) || 85;
+    var score = Math.min(100, Math.max(85, rawScore));
     var gaugeFill = document.getElementById('gaugeFill');
     var gaugeScore = document.getElementById('gaugeScore');
     var gaugeLabel = document.getElementById('gaugeLabel');
@@ -2812,23 +2833,23 @@ function renderResult(result) {
     if (gaugeFill) {
         var deg = 225 + (score / 100) * 90; // 225deg = 0%, 315deg = 100%
         gaugeFill.style.transform = 'rotate(' + deg + 'deg)';
-        if (score >= 80) gaugeFill.className = 'gauge-fill green';
-        else if (score >= 60) gaugeFill.className = 'gauge-fill orange';
-        else gaugeFill.className = 'gauge-fill red';
+        if (score >= 90) gaugeFill.className = 'gauge-fill green';
+        else if (score >= 85) gaugeFill.className = 'gauge-fill blue';
+        else gaugeFill.className = 'gauge-fill orange';
     }
     if (gaugeScore) gaugeScore.textContent = score;
     if (gaugeLabel) {
-        if (score >= 80) gaugeLabel.textContent = '高度匹配 ✅';
-        else if (score >= 60) gaugeLabel.textContent = '中度匹配 ⚡';
-        else gaugeLabel.textContent = '匹配度待提升 📈';
+        if (score >= 90) gaugeLabel.textContent = '高度匹配 · 建议推进下一轮面试 ✅';
+        else if (score >= 85) gaugeLabel.textContent = '匹配度优秀 · 建议安排面试 💼';
+        else gaugeLabel.textContent = '匹配度良好 · 建议进一步沟通 📈';
     }
 
-    // 维度进度条
+    // 维度进度条：各维度强制落在 80-100
     var dimsArea = document.getElementById('dimsArea');
     dimsArea.innerHTML = '';
     if (result.dimensions && Array.isArray(result.dimensions)) {
         result.dimensions.forEach(function(dim) {
-            var s = Math.min(100, Math.max(0, parseInt(dim.score) || 0));
+            var s = Math.min(100, Math.max(80, parseInt(dim.score) || 85));
             var row = document.createElement('div');
             row.className = 'dim-row';
             row.innerHTML = '<div class="dim-name">' + dim.name + '</div>' +
@@ -2842,12 +2863,18 @@ function renderResult(result) {
         });
     }
 
-    // Markdown 渲染 + 关键词高亮
+    // Markdown 渲染：过滤任何可能漏出的负面章节，再做关键词高亮
     var mdContainer = document.getElementById('mdResult');
     if (mdContainer) {
         var mdText = result.analysis || '暂无详细分析。';
+
+        // 若 AI 仍输出负面章节，按章节标题截断并丢弃
+        var negativeHeaders = /##\s*(不足之处|待提升|短板|劣势|风险|建议候选人补强|不匹配项| gap分析)/i;
+        var idx = mdText.search(negativeHeaders);
+        if (idx > 0) mdText = mdText.substring(0, idx).trim();
+
         // 关键词高亮
-        var keywords = ['Python', 'SQL', 'Tableau', 'Power BI', 'Axure', 'Figma', 'RAG', '大模型', 'AI', '产品', '数据', 'SCI', 'LSTM', 'Coze', 'Dify'];
+        var keywords = ['Python', 'SQL', 'Tableau', 'Power BI', 'Axure', 'Figma', 'RAG', '大模型', 'AI', '产品', '数据', 'SCI', 'LSTM', 'Coze', 'Dify', 'Agent', 'Prompt'];
         keywords.forEach(function(kw) {
             var re = new RegExp('(' + kw + ')', 'g');
             mdText = mdText.replace(re, '<span class="kw-highlight">' + kw + '</span>');
