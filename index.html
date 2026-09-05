@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李阳 - AI产品经理 / 产品经理 / 产品运营</title>
+    <title>李阳 - AI产品实习生 / 产品经理实习生 / 产品实习生</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -628,7 +628,13 @@
     }
     .radar-title { font-size: 18px; font-weight: 700; }
     .radar-subtitle { font-size: 13px; color: var(--text-2); }
-    #skillsRadar { width: 100%; height: 380px; }
+    #skillsRadar { width: 100%; height: 420px; min-height: 320px; }
+    @media (max-width: 900px) {
+        #skillsRadar { height: 360px; }
+    }
+    @media (max-width: 600px) {
+        #skillsRadar { height: 300px; }
+    }
 
     /* 发光进度条熟练度 */
     .skill-bars-grid {
@@ -807,13 +813,30 @@
         display: flex; align-items: center; justify-content: center;
         font-size: 42px; position: relative; overflow: hidden;
     }
+    .project-cover img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s var(--ease);
+    }
+    .project-card:hover .project-cover img { transform: scale(1.05); }
+    .project-cover-icon {
+        position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 64px;
+        opacity: 0.9;
+    }
+
     .project-cover::after {
         content: ''; position: absolute; inset: 0;
         background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.15));
     }
-    .project-card:nth-child(2) .project-cover { background: linear-gradient(135deg, var(--green), #059669); }
-    .project-card:nth-child(3) .project-cover { background: linear-gradient(135deg, var(--orange), #D97706); }
-    .project-card:nth-child(4) .project-cover { background: linear-gradient(135deg, var(--blue), #1D4ED8); }
+    .project-card[data-project="project5"] .project-cover { background: linear-gradient(135deg, var(--purple), #7C3AED); }
+    .project-card[data-project="project6"] .project-cover { background: linear-gradient(135deg, var(--indigo), #4338CA); }
+    .project-card[data-project="project1"] .project-cover { background: linear-gradient(135deg, var(--green), #059669); }
+    .project-card[data-project="project2"] .project-cover { background: linear-gradient(135deg, var(--orange), #D97706); }
+    .project-card[data-project="project3"] .project-cover { background: linear-gradient(135deg, var(--blue), #1D4ED8); }
+    .project-card[data-project="project4"] .project-cover { background: linear-gradient(135deg, #F97316, #EA580C); }
 
     .project-body { padding: 18px; }
     .project-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
@@ -1417,6 +1440,14 @@
     .nav-shortcut-hint kbd { padding: 1px 5px; border-radius: 4px; font-size: 10.5px; font-weight: 700; background: var(--bg-card); border: 1px solid var(--border); font-family: inherit; }
     @media (max-width: 900px) { .nav-shortcut-hint { display: none; } .case-study-metrics { grid-template-columns: 1fr; } }
 
+
+    .tl-list .ai-bullet {
+        border-left: 3px solid currentColor;
+        padding-left: 14px;
+        background: rgba(99, 102, 241, 0.03);
+        border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+
     </style>
 </head>
 <body>
@@ -1475,8 +1506,8 @@
                 <h1 class="hero-name">李 阳</h1>
 
                 <div class="hero-roles">
-                    <span class="hero-role-chip">AI 产品经理</span>
-                    <span class="hero-role-chip">产品经理</span>
+                    <span class="hero-role-chip">AI产品实习生</span>
+                    <span class="hero-role-chip">产品经理实习生</span>
                     <span class="hero-role-chip">产品实习生</span>
                 </div>
 
@@ -1512,60 +1543,71 @@
         <!-- 数据指标 Bento Grid -->
         <div class="bento-section">
             <div class="bento-grid">
-
-                <div class="bento-card bento-w2" data-aos="fade-up" data-aos-delay="0">
-                    <div class="bento-badge" style="background:rgba(245,158,11,0.1);color:#B45309;">本科</div>
-                    <div class="bento-stat-num" style="background:linear-gradient(135deg,#F59E0B,#D97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">4.14</div>
-                    <div class="bento-stat-label">GPA / 5.0</div>
-                    <div class="bento-stat-sub">工程管理专业</div>
+                <div class="bento-card bento-w6" data-aos="fade-up">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+                        <span style="font-size:22px;">✨</span>
+                        <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">关于我</span>
+                        <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--blue);background:rgba(59,130,246,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
+                            <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">学术背景</div>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">华南理工大学工业工程与管理硕士研究生（推免）；工科背景，有 B 端 AI 产品落地实践经验。</p>
+                        </div>
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
+                            <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">核心优势</div>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">拥有业务需求拆解、PRD 输出、跨团队对齐、上线后 AI 方案效果评估—问题归因—迭代推动的完整产品链路经验。</p>
+                        </div>
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
+                            <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">技术能力</div>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">熟练使用 Python、SQL 开展数据治理，可独立完成大模型评测、Prompt 设计、低代码 AI 平台搭建。</p>
+                        </div>
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
+                            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">产品能力</div>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">Axure / Xmind / draw.io 原型与流程设计，PRD / 用户故事撰写，竞品分析、用户访谈与跨部门对齐。</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="bento-card bento-w2" data-aos="fade-up" data-aos-delay="60">
-                    <div class="bento-badge" style="background:rgba(239,68,68,0.1);color:#DC2626;">TOP 2%</div>
-                    <div class="bento-stat-num" style="background:linear-gradient(135deg,#EF4444,#DC2626);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2<span style="font-size:28px;letter-spacing:0;">/118</span></div>
-                    <div class="bento-stat-label">专业排名</div>
-                    <div class="bento-stat-sub">全专业第 2</div>
+                <div class="bento-card bento-w6" data-aos="fade-up" data-aos-delay="60">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+                        <span style="font-size:22px;">🛠</span>
+                        <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">基本技能</span>
+                        <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--green);background:rgba(16,185,129,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗核心</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--blue);">
+                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">产品工具</div>
+                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Axure、Xmind、PRD / User Story、draw.io 泳道图、用户访谈、问卷调研、竞品分析、跨部门沟通</p>
+                        </div>
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--green);">
+                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">数据分析</div>
+                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Python、MySQL、Tableau、Power BI、Excel 高级函数，可独立完成数据清洗、可视化分析</p>
+                        </div>
+                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--purple);">
+                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">AI 大模型能力</div>
+                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">熟悉 ChatGPT、workbuddy、cursor、coze、dify 等 AI 低代码平台；掌握大模型、RAG、Agent 智能体运行原理；具备评测用例设计、Prompt 工程能力，能够将业务诉求转化为结构化产品迭代方案</p>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="bento-card bento-w2" data-aos="fade-up" data-aos-delay="120">
-                    <div class="bento-badge" style="background:rgba(16,185,129,0.1);color:#059669;">学术</div>
+                    <div class="bento-badge" style="background:rgba(99,102,241,0.1);color:var(--indigo);">项目</div>
+                    <div class="bento-stat-num" style="background:linear-gradient(135deg,var(--indigo),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2</div>
+                    <div class="bento-stat-label">上线 Demo</div>
+                    <div class="bento-stat-sub">LitKG + ResearchPal</div>
+                </div>
+
+                <div class="bento-card bento-w2" data-aos="fade-up" data-aos-delay="180">
+                    <div class="bento-badge" style="background:rgba(16,185,129,0.1);color:var(--green);">学术</div>
                     <div class="bento-stat-num" style="background:linear-gradient(135deg,#10B981,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2</div>
                     <div class="bento-stat-label">SCI 论文</div>
                     <div class="bento-stat-sub">+ 1 项软件著作权</div>
                 </div>
 
-                <div class="bento-card bento-w6" data-aos="fade-up" data-aos-delay="60">
-                    <div style="font-size:14px;font-weight:700;color:var(--text-2);margin-bottom:16px;letter-spacing:0.5px;">🏆 荣誉高光</div>
-                    <div class="honor-scroll">
-                        <div class="honor-pill" style="background:rgba(245,158,11,0.1);color:#B45309;">🏆 国家奖学金（唯一）</div>
-                        <div class="honor-pill" style="background:rgba(59,130,246,0.08);color:var(--blue);">🎖 省政府奖学金（唯二）</div>
-                        <div class="honor-pill" style="background:rgba(139,92,246,0.08);color:var(--purple);">🌟 市优秀大学生（唯一）</div>
-                        <div class="honor-pill" style="background:rgba(16,185,129,0.08);color:var(--green);">🎓 校长奖学金（唯一）</div>
-                        <div class="honor-pill" style="background:rgba(99,102,241,0.08);color:var(--indigo);">📜 推免保研至华南理工</div>
-                        <div class="honor-pill" style="background:rgba(245,158,11,0.08);color:#D97706;">🏅 市场调研大赛全国三等奖</div>
-                    </div>
-                </div>
-
-                <div class="bento-card bento-w6" data-aos="fade-up">
-                    <div style="font-size:14px;font-weight:700;color:var(--text-2);margin-bottom:20px;letter-spacing:0.5px;">✨ 关于我</div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-                        <div>
-                            <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px;">学术背景</div>
-                            <p style="font-size:14px;color:var(--text-2);line-height:1.75;">华南理工大学工业工程与管理硕士研究生（推免），本科 GPA 4.14/5.0，专业排名 <strong style="color:var(--text);">2/118</strong></p>
-                        </div>
-                        <div>
-                            <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px;">核心优势</div>
-                            <p style="font-size:14px;color:var(--text-2);line-height:1.75;">具备 <strong style="color:var(--text);">B 端 AI 产品落地</strong> 实践经验，拥有从需求拆解、PRD 输出、跨团队对齐到上线后效果评估—问题归因—迭代推动的完整产品链路经验</p>
-                        </div>
-                        <div>
-                            <div style="font-size:13px;font-weight:700;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px;">技术能力</div>
-                            <p style="font-size:14px;color:var(--text-2);line-height:1.75;">Python、SQL 数据治理；可独立完成大模型评测、Prompt 设计、低代码 AI 平台（Coze / Dify / workbuddy / cursor）搭建</p>
-                        </div>
-                        <div>
-                            <div style="font-size:13px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px;">产品能力</div>
-                            <p style="font-size:14px;color:var(--text-2);line-height:1.75;">Axure / Xmind / draw.io 原型与流程设计，PRD / 用户故事撰写，竞品分析、用户访谈与跨部门对齐</p>
-                        </div>
-                    </div>
+                <div class="bento-card bento-w2" data-aos="fade-up" data-aos-delay="240">
+                    <div class="bento-badge" style="background:rgba(245,158,11,0.1);color:#B45309;">实习</div>
+                    <div class="bento-stat-num" style="background:linear-gradient(135deg,#F59E0B,#D97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">4</div>
+                    <div class="bento-stat-label">产品/AI 实习</div>
+                    <div class="bento-stat-sub">广电运通 · 广东交通 · 中建 · 鲁欣</div>
                 </div>
 
             </div>
@@ -1596,15 +1638,32 @@
                 </div>
             </div>
 
+            <div class="edu-card-v2" data-aos="fade-up">
+                <div>
+                    <div class="edu-name">沈阳建筑大学</div>
+                    <div class="edu-major">工程管理</div>
+                    <div class="edu-degree">工商管理学院 · 本科</div>
+                    <div style="margin-top:14px;"><span class="edu-period">📅 2021.09 — 2025.07</span></div>
+                    <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
+                        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px;font-size:13px;color:var(--text-2);"><strong style="color:var(--text);">GPA 4.14</strong> / 5.0</div>
+                        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px;font-size:13px;color:var(--text-2);">专业排名 <strong style="color:var(--text);">2 / 118</strong></div>
+                    </div>
+                </div>
+                <div class="edu-stats">
+                    <div class="edu-stat-pill" style="background:rgba(59,130,246,0.08);color:var(--blue);">✅ 已毕业</div>
+                    <div class="edu-stat-pill" style="background:rgba(245,158,11,0.08);color:#B45309;">推免保研</div>
+                </div>
+            </div>
+
             <div style="margin-bottom:56px;">
-                <h4 style="font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text-2);" data-aos="fade-up">📚 本科核心课程成绩</h4>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text-2);" data-aos="fade-up">📚 核心课程成绩</h4>
                 <div class="course-grid" data-aos="fade-up">
                     <div class="course-card"><div class="course-name">运筹学 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
                     <div class="course-card"><div class="course-name">C 语言 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
                     <div class="course-card"><div class="course-name">品牌创新 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
                     <div class="course-card"><div class="course-name">数据结构 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
                     <div class="course-card"><div class="course-name">大数据技能基础 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
-                    <div class="course-card"><div class="course-name">工程项目管理 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
+                                        <div class="course-card"><div class="course-name">人因与设计 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
                     <div class="course-card"><div class="course-name">供应链管理 <span class="course-score" style="color:var(--blue);">91</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:91%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
                     <div class="course-card"><div class="course-name">运营与管理 <span class="course-score" style="color:var(--blue);">90</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:90%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
                 </div>
@@ -1622,8 +1681,8 @@
                         <div class="tl-title">产品实习生</div>
                         <div class="tl-org">广东数字科技集团 · 广电运通集团有限公司 <span class="tl-org-tag">AI 产品</span></div>
                         <ul class="tl-list">
-                            <li><strong>B 端需求拆解与研发对齐：</strong>梳理银行客户业务诉求与网点场景，区分共性与定制化需求，将业务诉求转化为研发 PRD，开发阶段协助澄清歧义、对齐业务—产品—研发三方认知</li>
-                            <li><strong>AI 产品迭代与方案验证：</strong>采集上百条网点真实会话样本，对意图识别、知识库召回、工具调用、多轮对话缺陷做结构化归类，输出标准化问题台账，完成 AI 方案的业务侧效果验证</li>
+                            <li class="ai-bullet"><strong style="color:var(--indigo);">AI 产品迭代与方案验证：</strong>跟进银行网点对话系统从 Q&A 向 RAG、Agent 演进；参与 Agent 状态收敛、任务路由、Adapter 硬件适配方案业务评审，定义业务触发门槛；采集真实会话样本，对意图识别、知识库召回、工具调用、多轮对话缺陷做结构化归类，输出标准化问题台账，完成 AI 方案的业务侧效果验证</li>
+                            <li class="ai-bullet"><strong style="color:var(--indigo);">B 端需求拆解与研发对齐：</strong>梳理银行客户业务诉求与网点场景，区分共性与定制化需求，将业务诉求转化为研发 PRD，开发阶段协助澄清歧义、对齐业务—产品—研发三方认知</li>
                             <li><strong>商业化配套输出：</strong>参与新品机器人宣发筹备，梳理产品卖点、校对对外宣传物料，支撑新品筹备</li>
                         </ul>
                     </div>
@@ -1637,9 +1696,9 @@
                         <div class="tl-title">AI 产品实习生</div>
                         <div class="tl-org">广东交通集团 · 智能交通研究院 <span class="tl-org-tag">AI 产品 / RAG</span></div>
                         <ul class="tl-list">
-                            <li><strong>垂直知识库从 0-1 落地支撑：</strong>深度参与交通行业领域 RAG 智能问答系统建设；对接业务端完成需求调研，梳理场景边界与问答能力诉求；用 Python、SQL 完成海量 PDF、政策文本等非结构化数据治理</li>
-                            <li><strong>AI 评测体系搭建与迭代闭环：</strong>设计含准确率、召回率、幻觉率的多维评估指标；定位切片策略、检索规则等十余项核心问题，形成「测试—问题归因—需求输出—迭代复测」的 AI 产品迭代闭环</li>
-                            <li><strong>用户侧落地支撑：</strong>撰写智能问答系统业务端使用说明，收集反馈并沉淀后续产品优化方向</li>
+                            <li class="ai-bullet"><strong style="color:var(--blue);">垂直知识库从 0-1 落地支撑：</strong>深度参与交通行业领域 RAG 智能问答系统产品建设；对接业务端用户完成需求调研，梳理业务场景边界、问答能力诉求；使用 Python、SQL 完成海量 PDF、政策文本等非结构化数据治理</li>
+                            <li class="ai-bullet"><strong style="color:var(--blue);">AI 评测体系搭建与迭代闭环管理：</strong>设计 RAG 智能问答系统业务侧评测方案，构建包含准确率、召回率、幻觉率的多维度评估指标；完成测试并定位知识库切片策略、检索规则等十余项核心问题；输出迭代需求报告，对齐算法落地优化方案，并跟进复测验收，形成「测试—问题归因—需求输出—迭代复测」的 AI 产品迭代闭环</li>
+                            <li><strong>用户侧落地支撑：</strong>撰写智能问答系统业务端使用说明文档，收集业务人员使用反馈，沉淀后续产品优化方向</li>
                         </ul>
                     </div>
                 </div>
@@ -1790,9 +1849,9 @@
 
                     <div class="explore-tab-panel active" id="panel-reading">
                         <ul class="explore-list">
-                            <li><div class="explore-dot" style="background:var(--blue);"></div><div><div class="explore-item-title">《启示录》</div><div class="explore-item-desc">产品管理经典，正在二刷，重点关注需求优先级排序部分</div></div></li>
-                            <li><div class="explore-dot" style="background:var(--green);"></div><div><div class="explore-item-title">《精益数据分析》</div><div class="explore-item-desc">学习如何选择对的 metrics 驱动产品迭代</div></div></li>
-                            <li><div class="explore-dot" style="background:var(--purple);"></div><div><div class="explore-item-title">《RAG 实战》</div><div class="explore-item-desc">正在跟进最新的 RAG 优化技术，包括 HyDE 和 CRAG</div></div></li>
+                            <li><div class="explore-dot" style="background:var(--blue);"></div><div><div class="explore-item-title">《启示录：打造用户喜爱的产品》</div><div class="explore-item-desc">产品管理经典，反复研读需求优先级排序、用户洞察与 MVP 验证部分，训练产品基本功</div></div></li>
+                            <li><div class="explore-dot" style="background:var(--green);"></div><div><div class="explore-item-title">《AI 产品方法论》</div><div class="explore-item-desc">聚焦 LLM 产品化路径、提示工程与效果评测，学习如何把大模型能力转化为可交付的产品功能</div></div></li>
+                            <li><div class="explore-dot" style="background:var(--purple);"></div><div><div class="explore-item-title">《机器学习系统设计与实践》</div><div class="explore-item-desc">从工程化视角理解 AI 产品落地：数据闭环、评测体系、错误分析与迭代策略</div></div></li>
                         </ul>
                     </div>
                     <div class="explore-tab-panel" id="panel-methods">
@@ -1811,13 +1870,18 @@
 
                 <!-- 右栏：项目卡片 -->
                 <div class="explore-right" data-aos="fade-up">
-                    <div class="projects-title">🚀 项目经历</div>
-                    <div class="projects-subtitle">点击卡片查看详情</div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px;">
+                        <div class="projects-title" style="margin-bottom:0;">🚀 项目经历</div>
+                        <div class="projects-subtitle" style="margin-bottom:0;">点击卡片查看详情</div>
+                    </div>
 
                     <div class="projects-grid">
                         <!-- 项目0：LitKG Assistant（Vibe-Coding 新增，置顶） -->
                         <div class="project-card" data-project="project5">
-                            <div class="project-cover">🕸️</div>
+                            <div class="project-cover">
+                                <img src="https://raw.githubusercontent.com/AAly030120/litkg-assistant/main/litkg-architecture.svg" alt="LitKG 架构" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">🕸️</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">LitKG Assistant</div>
                                 <div class="project-desc">基于知识图谱 + GraphRAG 的科研文献阅读助手（Vibe-Coding 全链路）</div>
@@ -1832,17 +1896,20 @@
                             </div>
                         </div>
 
-                        <!-- 项目0-2：ResearchPal（Vibe-Coding 新增，紧邻 LitKG 之后） -->
+                        <!-- 项目6：ResearchPal -->
                         <div class="project-card" data-project="project6">
-                            <div class="project-cover">🧪</div>
+                            <div class="project-cover">
+                                <img src="https://raw.githubusercontent.com/AAly030120/ResearchPal/main/docs/social-preview.png" alt="ResearchPal 落地页" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">🔬</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">ResearchPal</div>
-                                <div class="project-desc">AI 驱动的科研工作台：文献总结 / 数据分析 / PPT 制作 / 代码生成一站式自动化（Vibe-Coding 全链路）</div>
+                                <div class="project-desc">AI 驱动的科研工作台：文献总结、数据分析、PPT、代码生成、翻译一站式自动化</div>
                                 <div class="project-tags">
-                                    <span class="project-tag">FastAPI</span>
                                     <span class="project-tag">Next.js 15</span>
-                                    <span class="project-tag">多模型 LLM</span>
-                                    <span class="project-tag">python-pptx</span>
+                                    <span class="project-tag">FastAPI</span>
+                                    <span class="project-tag">LLM</span>
+                                    <span class="project-tag">AI 工作台</span>
                                 </div>
                                 <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
                                 <a class="project-link">查看详情 →</a>
@@ -2193,6 +2260,9 @@ function initRadarChart() {
     var borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)';
     var splitAreaColor = isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)';
 
+    if (window._radarChart) {
+        window._radarChart.dispose();
+    }
     window._radarChart = echarts.init(container);
     window._radarChart.setOption({
         backgroundColor: 'transparent',
@@ -2212,7 +2282,9 @@ function initRadarChart() {
             ],
             shape: 'polygon',
             splitNumber: 4,
-            axisName: { color: textColor, fontSize: 13, fontWeight: 600 },
+            center: ['50%', '46%'],
+            radius: '65%',
+            axisName: { color: textColor, fontSize: 12, fontWeight: 600 },
             splitLine: { lineStyle: { color: borderColor } },
             splitArea: { areaStyle: { color: [splitAreaColor, splitAreaColor] } },
             axisLine: { lineStyle: { color: borderColor } }
@@ -2279,7 +2351,30 @@ function initExploreTabs() {
    11. 项目详情 右侧抽屉
    ============================================================ */
 var PROJECT_DATA = {
+    project6: {
+        title: 'ResearchPal',
+        subtitle: 'AI 驱动的科研工作台',
+        period: '2025.09 — 至今',
+        tags: ['Next.js 15', 'FastAPI', '多模型 LLM 路由', 'AI 工作台'],
+        tech: ['Next.js 15', 'FastAPI', 'Python', 'LLM', 'Docker', 'Vercel'],
+        github: 'https://github.com/AAly030120/ResearchPal',
+        demo: '',
+        background: '高校学生在做科研时，文献阅读、数据分析、PPT 制作、代码编写、文件翻译等流程分散在不同工具之间，效率低下。本项目以 Vibe-Coding 方式独立完成从需求设计到云端部署的全链路，构建一站式的 AI 科研工作台。',
+        challenge: [
+            '如何把 LLM 能力封装成学生高频科研任务的闭环工具',
+            '零配置用户也能体验产品价值（无需 API Key）',
+            '多模型路由与任务状态的持久化、个性化记忆'
+        ],
+        solution: [
+            '用 FastAPI + Next.js 15 搭建全栈应用，支持文献总结、数据分析与图表、PPT 自动生成、代码生成与沙箱执行、文件翻译五大任务',
+            '设计离线 Demo 模式：不填 API Key 也能跑通全部功能，数据分析在隔离沙箱真实执行并出图',
+            '实现账号体系、多模型切换、基于历史任务的个性化记忆，提升复用率'
+        ],
+        outcome: '项目已在 GitHub 开源，作为展示 AI 产品设计 + 工程落地能力的作品项目，提供完整的产品决策文档与面试故事库。'
+    },
+
     project1: {
+
         icon: '🔬', gradient: 'linear-gradient(135deg, #667EEA, #764BA2)',
         title: '"十四五"国家重点研发计划',
         subtitle: ' rainfall prediction 子课题 · 2023.09 — 2024.06',
@@ -2380,28 +2475,6 @@ var PROJECT_DATA = {
             { label: 'LLM 容错', value: '三级 Fallback' }
         ],
         outcome: '从「科研人员读论文慢、难关联」的痛点出发，设计「上传→抽取→图谱→问答」的完整用户旅程：用 Python/Streamlit/ChromaDB/NetworkX 搭建 PDF 智能抽取、跨论文图谱问答与三级实体消歧的可交互产品，并上线公开 Demo 验证知识图谱在文献多跳推理与跨文档关联上的产品价值。三级实体消歧解决同名异义问题，Chunk 级增量更新（SHA256 去重）节省 API 成本，Triple 溯源系统为低置信度结论标注「待验证」。'
-    },
-    project6: {
-        icon: '🧪', gradient: 'linear-gradient(135deg, #3B82F6, #06B6D4)',
-        title: 'ResearchPal',
-        subtitle: 'AI 驱动的科研工作台 · 5 大工具一站式自动化 · Vibe-Coding · 2026',
-        meta: [
-            { label: '我的角色', value: '产品经理 / 全栈开发' },
-            { label: '核心能力', value: '5 大工具 + 1 智能对话' },
-            { label: '项目周期', value: '6 个月' },
-            { label: '技术形态', value: '可交互 Web 产品' }
-        ],
-        tech: ['FastAPI', 'Next.js 15', 'React 19', 'SQLAlchemy', 'JWT', 'python-pptx', 'Multi-LLM Router', 'TailwindCSS', 'Vibe-Coding'],
-        github: 'https://github.com/AAly030120/ResearchPal',
-        demo: '',
-        background: '高校学生做研究时工具割裂：文献总结用 ChatGPT、数据分析跑 Python、PPT 找模板、翻译切窗口——每一步都伴随 LLM 试错成本与上下文切换。本项目以 Vibe-Coding 独立完成从需求设计到云端部署的全链路，把「文献总结、数据可视化、PPT 制作、代码生成、文件翻译」五大高频任务集成到同一 Web 工作台，多模型路由按任务特性自动选型，并对零配置用户开放 Demo 模式——无需 API Key 即可点遍全流程，降低试用门槛。',
-        results: [
-            { label: '工具 / PPT 版式', value: '5 大 / 6 种' },
-            { label: 'LLM 模型路由', value: '4 主流' },
-            { label: 'Demo 模式覆盖', value: '100% 任务' },
-            { label: '代码量', value: '~8600 行' }
-        ],
-        outcome: '从「学生做研究时工具分散、试错成本高」的痛点出发，用 RICE 排优先级决定先做最高频的文献总结与 PPT 制作，模型路由按「短任务/长任务/代码/中文」分流以平衡成本与质量，零依赖 PPT 降级（python-pptx）解决外部技能不可移植问题，零配置 Demo 模式让面试官 clone 后无需 Key 即可点遍全流程。产品侧另撰 PRODUCT.md（用户研究/优先级/指标/AI 安全）作为产品决策的可验证证据。'
     }
 };
 
@@ -2571,6 +2644,7 @@ var RESUME_TEXT = [
     '',
     '【项目经历】',
     '- LitKG Assistant：基于知识图谱+GraphRAG的科研文献阅读助手（Vibe-Coding全链路），Python/Streamlit/ChromaDB/NetworkX，实体消歧准确率>92%，API成本节省60%+',
+    '- ResearchPal：AI驱动的科研工作台（Vibe-Coding全栈），FastAPI+Next.js 15+多模型LLM路由，支持文献总结/数据分析/PPT/代码生成/翻译，已上线无需API Key的Demo模式',
     '- "十四五"国家重点研发计划：800万条+数据、LSTM降雨预测、SCI×2 + 软著×1',
     '- 生产质量数据分析系统：缺陷率降低8%，提出3项改进建议',
     '',
@@ -2749,6 +2823,12 @@ function init() {
     // 窗口 resize 时重绘雷达图
     window.addEventListener('resize', function() {
         if (window._radarChart) window._radarChart.resize();
+        // Re-init radar chart on large width changes to avoid label overlap
+        var radarContainer = document.getElementById('skillsRadar');
+        if (radarContainer && window._lastRadarWidth && Math.abs(window._lastRadarWidth - radarContainer.clientWidth) > 100) {
+            initRadarChart();
+        }
+        if (radarContainer) window._lastRadarWidth = radarContainer.clientWidth;
     });
 }
 
