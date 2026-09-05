@@ -327,6 +327,14 @@
         gap: 10px; flex-wrap: wrap;
         margin-bottom: 24px;
     }
+    .hero-meta {
+        margin: 16px 0 8px;
+        font-size: 15px; color: var(--text-2);
+        display: flex; flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 18px;
+    }
+    .hero-meta strong { color: var(--text); font-weight: 800; font-size: 16px; }
     .hero-role-chip {
         padding: 8px 18px;
         border-radius: var(--r-pill);
@@ -420,6 +428,20 @@
         grid-template-rows: auto auto;
         gap: 16px;
     }
+    .about-grid { display: flex; flex-direction: column; gap: 16px; }
+    .about-block {
+        background: var(--bg);
+        border-radius: var(--r-md);
+        padding: 18px 20px;
+        border: 1px solid var(--border);
+    }
+    .about-block-title {
+        font-size: 16px; font-weight: 800;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+    .about-block-text { font-size: 14px; color: var(--text-2); line-height: 1.75; }
     .bento-card {
         background: var(--bg-card);
         border-radius: var(--r-xl);
@@ -506,7 +528,7 @@
         align-items: start;
     }
     .tl-date-col { text-align: right; padding-top: 18px; }
-    .tl-date-text { font-size: 12.5px; font-weight: 600; color: var(--text-2); line-height: 1.4; }
+    .tl-date-text { font-size: 15px; font-weight: 800; color: var(--text-2); line-height: 1.4; }
     .tl-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 18px; }
     .tl-dot {
         width: 14px; height: 14px; border-radius: 50%;
@@ -644,13 +666,7 @@
     }
     .radar-title { font-size: 18px; font-weight: 700; }
     .radar-subtitle { font-size: 13px; color: var(--text-2); }
-    #skillsRadar { width: 100%; height: 420px; min-height: 360px; }
-    @media (max-width: 900px) {
-        #skillsRadar { height: 400px; min-height: 340px; }
-    }
-    @media (max-width: 600px) {
-        #skillsRadar { height: 360px; min-height: 320px; }
-    }
+    #skillsRadar { width: 100%; aspect-ratio: 1.25 / 1; min-height: 320px; max-height: 520px; }
 
     /* 发光进度条熟练度 */
     .skill-bars-grid {
@@ -674,8 +690,8 @@
     }
     .skill-bar-card:nth-child(1)::before { background: linear-gradient(90deg, var(--blue), var(--indigo)); }
     .skill-bar-card:nth-child(2)::before { background: linear-gradient(90deg, var(--green), #34D399); }
-    .skill-bar-card:nth-child(3)::before { background: linear-gradient(90deg, var(--purple), var(--pink)); }
-    .skill-bar-card:nth-child(4)::before { background: linear-gradient(90deg, var(--orange), #FBBF24); }
+    .skill-bar-card:nth-child(3)::before { background: linear-gradient(90deg, var(--orange), #FBBF24); }
+    .skill-bar-card:nth-child(4)::before { background: linear-gradient(90deg, var(--purple), var(--pink)); }
     .skill-bar-card:nth-child(5)::before { background: linear-gradient(90deg, var(--indigo), var(--blue)); }
     .skill-bar-card:nth-child(6)::before { background: linear-gradient(90deg, var(--red), var(--orange)); }
 
@@ -856,7 +872,19 @@
 
     .project-body { padding: 18px; }
     .project-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-    .project-desc { font-size: 13px; color: var(--text-2); margin-bottom: 12px; line-height: 1.5; }
+    .project-desc { font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.5; }
+    .project-metrics {
+        display: flex; flex-wrap: wrap; gap: 6px;
+        margin-bottom: 12px;
+    }
+    .project-metrics span {
+        font-size: 11px; font-weight: 700;
+        color: var(--text-2);
+        background: var(--bg);
+        padding: 3px 8px;
+        border-radius: var(--r-pill);
+        border: 1px solid var(--border);
+    }
     .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .project-tag {
         padding: 3px 9px; border-radius: var(--r-pill);
@@ -1527,9 +1555,8 @@
                     <span class="hero-role-chip">产品实习生</span>
                 </div>
 
-                <div style="margin:14px 0 6px;font-size:13px;color:var(--text-2);display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;">
-                    <span>求职意向：<strong style="color:var(--text);">产品 / AI产品 / 产品经理</strong></span>
-                    <span>实习时间：<strong style="color:var(--text);">最早到岗两周内 · 全勤 · 可持续4个月以上</strong></span>
+                <div class="hero-meta">
+                    <span>实习时间：<strong>最早到岗两周内 · 全勤 · 可持续4个月以上</strong></span>
                 </div>
 
                 <p class="hero-slogan" id="heroSlogan"></p>
@@ -1570,22 +1597,22 @@
                         <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">关于我</span>
                         <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--blue);background:rgba(59,130,246,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
-                            <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">学术背景</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;"><span class="about-highlight">华南理工大学工业工程与管理硕士研究生（推免）</span>；工科背景，具备 <span class="about-highlight">B 端 AI 产品落地</span> 实践经验，掌握行业 <span class="about-highlight">知识库、RAG、Agent</span> 的迭代与试点验证。</p>
+                    <div class="about-grid">
+                        <div class="about-block">
+                            <div class="about-block-title" style="color:var(--blue);">学术背景</div>
+                            <p class="about-block-text"><span class="about-highlight">华南理工大学工业工程与管理硕士研究生（推免）</span>；工科背景，具备 <span class="about-highlight">B 端 AI 产品落地</span> 实践经验，掌握行业 <span class="about-highlight">知识库、RAG、Agent</span> 的迭代与试点验证。</p>
                         </div>
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
-                            <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">核心优势</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">拥有 <span class="about-highlight">业务需求分析、PRD 输出</span>、跨团队对齐、上线后 <span class="about-highlight">AI 方案效果评估—问题归因—迭代推动</span> 的完整产品链路经验。</p>
+                        <div class="about-block">
+                            <div class="about-block-title" style="color:var(--green);">核心优势</div>
+                            <p class="about-block-text">拥有 <span class="about-highlight">业务需求分析、PRD 输出</span>、跨团队对齐、上线后 <span class="about-highlight">AI 方案效果评估—问题归因—迭代推动</span> 的完整产品链路经验。</p>
                         </div>
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
-                            <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">技术能力</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">熟练使用 <span class="about-highlight">Python、SQL</span> 开展数据治理，可独立完成 <span class="about-highlight">大模型评测、Prompt 设计、低代码 AI 平台搭建</span>。</p>
+                        <div class="about-block">
+                            <div class="about-block-title" style="color:var(--purple);">技术能力</div>
+                            <p class="about-block-text">熟练使用 <span class="about-highlight">Python、SQL</span> 开展数据治理，可独立完成 <span class="about-highlight">大模型评测、Prompt 设计、低代码 AI 平台搭建</span>。</p>
                         </div>
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
-                            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">产品能力</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;"><span class="about-highlight">Axure / Xmind / draw.io</span> 原型与流程设计，<span class="about-highlight">PRD / 用户故事</span> 撰写，<span class="about-highlight">竞品分析、用户访谈、跨部门对齐</span>。</p>
+                        <div class="about-block">
+                            <div class="about-block-title" style="color:var(--orange);">产品能力</div>
+                            <p class="about-block-text"><span class="about-highlight">Axure / Xmind / draw.io</span> 原型与流程设计，<span class="about-highlight">PRD / 用户故事</span> 撰写，<span class="about-highlight">竞品分析、用户访谈、跨部门对齐</span>。</p>
                         </div>
                     </div>
                 </div>
@@ -1595,18 +1622,18 @@
                         <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">基本技能</span>
                         <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--green);background:rgba(16,185,129,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗核心</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--blue);">
-                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">产品工具</div>
-                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Axure、Xmind、PRD / User Story、draw.io 泳道图、用户访谈、问卷调研、竞品分析、跨部门沟通</p>
+                    <div class="about-grid">
+                        <div class="about-block" style="border-left:4px solid var(--blue);">
+                            <div class="about-block-title" style="color:var(--text);">产品工具</div>
+                            <p class="about-block-text"><span class="about-highlight">Axure、Xmind、PRD / User Story、draw.io</span> 泳道图，用户访谈、问卷调研、<span class="about-highlight">竞品分析</span>、跨部门沟通</p>
                         </div>
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--green);">
-                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">数据分析</div>
-                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Python、MySQL、Tableau、Power BI、Excel 高级函数，可独立完成数据清洗、可视化分析</p>
+                        <div class="about-block" style="border-left:4px solid var(--green);">
+                            <div class="about-block-title" style="color:var(--text);">数据分析</div>
+                            <p class="about-block-text"><span class="about-highlight">Python、MySQL、Tableau、Power BI</span>、Excel 高级函数，可独立完成数据清洗、可视化分析</p>
                         </div>
-                        <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);border-left:4px solid var(--purple);">
-                            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">AI 大模型能力</div>
-                            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">熟悉 ChatGPT、workbuddy、cursor、coze、dify 等 AI 低代码平台；掌握大模型、RAG、Agent 智能体运行原理；具备评测用例设计、Prompt 工程能力，能够将业务诉求转化为结构化产品迭代方案</p>
+                        <div class="about-block" style="border-left:4px solid var(--purple);">
+                            <div class="about-block-title" style="color:var(--text);">AI 大模型能力</div>
+                            <p class="about-block-text">熟悉 <span class="about-highlight">ChatGPT、workbuddy、cursor、coze、dify</span> 等 AI 低代码平台；掌握 <span class="about-highlight">大模型、RAG、Agent 智能体</span> 运行原理；具备 <span class="about-highlight">评测用例设计、Prompt 工程</span> 能力，能够将业务诉求转化为结构化产品迭代方案</p>
                         </div>
                     </div>
                 </div>
@@ -1636,61 +1663,16 @@
 
     </section>
 
-    <!-- ======== 教育与工作经历 ======== -->
+    <!-- ======== 实习与教育经历 ======== -->
     <section id="edu-work" class="page">
         <div class="container">
             <div class="section-head" data-aos="fade-up">
                 <div class="section-head-tag">Experience</div>
-                <h2>教育与工作经历</h2>
+                <h2>实习与教育经历</h2>
                 <p>扎实的学术基础，跨行业的实战积累</p>
             </div>
 
-            <h3 style="font-size:20px;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;" data-aos="fade-up">🎓 教育背景</h3>
-            <div class="edu-card-v2" data-aos="fade-up">
-                <div>
-                    <div class="edu-name">华南理工大学</div>
-                    <div class="edu-major">工业工程与管理</div>
-                    <div class="edu-degree">工商管理学院 · 硕士研究生</div>
-                    <div style="margin-top:14px;"><span class="edu-period">📅 2025.09 — 2028.07（预计）</span></div>
-                </div>
-                <div class="edu-stats">
-                    <div class="edu-stat-pill" style="background:rgba(16,185,129,0.08);color:var(--green);">✅ 当前在读</div>
-                    <div class="edu-stat-pill" style="background:rgba(59,130,246,0.08);color:var(--blue);">推免录取</div>
-                </div>
-            </div>
-
-            <div class="edu-card-v2" data-aos="fade-up">
-                <div>
-                    <div class="edu-name">沈阳建筑大学</div>
-                    <div class="edu-major">工程管理</div>
-                    <div class="edu-degree">管理学院 · 本科</div>
-                    <div style="margin-top:14px;"><span class="edu-period">📅 2021.09 — 2025.07</span></div>
-                    <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
-                        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px;font-size:13px;color:var(--text-2);"><strong style="color:var(--text);">GPA 4.14</strong> / 5.0</div>
-                        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px;font-size:13px;color:var(--text-2);">专业排名 <strong style="color:var(--text);">2 / 118</strong></div>
-                    </div>
-                </div>
-                <div class="edu-stats">
-                    <div class="edu-stat-pill" style="background:rgba(59,130,246,0.08);color:var(--blue);">✅ 已毕业</div>
-                    <div class="edu-stat-pill" style="background:rgba(245,158,11,0.08);color:#B45309;">推免保研</div>
-                </div>
-            </div>
-
-            <div style="margin-bottom:56px;">
-                <h4 style="font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text-2);" data-aos="fade-up">📚 核心课程成绩</h4>
-                <div class="course-grid" data-aos="fade-up">
-                    <div class="course-card"><div class="course-name">运筹学 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
-                    <div class="course-card"><div class="course-name">C 语言 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
-                    <div class="course-card"><div class="course-name">品牌创新 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
-                    <div class="course-card"><div class="course-name">数据结构 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
-                    <div class="course-card"><div class="course-name">大数据技能基础 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
-                                        <div class="course-card"><div class="course-name">人因与设计 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
-                    <div class="course-card"><div class="course-name">供应链管理 <span class="course-score" style="color:var(--blue);">91</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:91%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
-                    <div class="course-card"><div class="course-name">运营与管理 <span class="course-score" style="color:var(--blue);">90</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:90%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
-                </div>
-            </div>
-
-            <h3 style="font-size:20px;font-weight:800;margin-bottom:32px;display:flex;align-items:center;gap:10px;" data-aos="fade-up">💼 工作与实习经历</h3>
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:32px;display:flex;align-items:center;gap:10px;" data-aos="fade-up">💼 实习经历</h3>
             <div class="timeline-wrap" data-aos="fade-up">
                 <div class="timeline-line"></div>
 
@@ -1754,7 +1736,37 @@
                 </div>
 
             </div>
-        </div>
+        
+
+<h3 style="font-size:20px;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;" data-aos="fade-up">🎓 教育背景</h3>
+            <div class="edu-card-v2" data-aos="fade-up">
+                <div>
+                    <div class="edu-name">华南理工大学</div>
+                    <div class="edu-major">工业工程与管理</div>
+                    <div class="edu-degree">工商管理学院 · 硕士研究生</div>
+                    <div style="margin-top:14px;"><span class="edu-period">📅 2025.09 — 2028.07（预计）</span></div>
+                </div>
+                <div class="edu-stats">
+                    <div class="edu-stat-pill" style="background:rgba(16,185,129,0.08);color:var(--green);">✅ 当前在读</div>
+                    <div class="edu-stat-pill" style="background:rgba(59,130,246,0.08);color:var(--blue);">推免录取</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom:56px;">
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:18px;color:var(--text-2);" data-aos="fade-up">📚 核心课程成绩</h4>
+                <div class="course-grid" data-aos="fade-up">
+                    <div class="course-card"><div class="course-name">运筹学 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
+                    <div class="course-card"><div class="course-name">C 语言 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
+                    <div class="course-card"><div class="course-name">品牌创新 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
+                    <div class="course-card"><div class="course-name">数据结构 <span class="course-score" style="color:#D97706;">95</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:95%;background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div></div></div>
+                    <div class="course-card"><div class="course-name">大数据技能基础 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
+                                        <div class="course-card"><div class="course-name">人因与设计 <span class="course-score" style="color:var(--blue);">92</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:92%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
+                    <div class="course-card"><div class="course-name">供应链管理 <span class="course-score" style="color:var(--blue);">91</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:91%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
+                    <div class="course-card"><div class="course-name">运营与管理 <span class="course-score" style="color:var(--blue);">90</span></div><div class="course-bar-wrap"><div class="course-bar" style="width:90%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div></div>
+                </div>
+            </div>
+
+            </div>
     </section>
 
     <!-- ======== 技能特长与证书 ======== -->
@@ -1799,6 +1811,14 @@
                     </div>
                     <div class="skill-bar-card">
                         <div class="skill-bar-header">
+                            <span class="skill-bar-name">办公与可视化</span>
+                            <span class="skill-bar-badge badge-master">精通</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill green glow" data-width="90"></div></div>
+                        <div class="skill-bar-detail">Excel 高级函数/透视表 · PowerPoint 商业演示 · Tableau/Power BI · 商业图表与汇报</div>
+                    </div>
+                    <div class="skill-bar-card">
+                        <div class="skill-bar-header">
                             <span class="skill-bar-name">产品设计与原型</span>
                             <span class="skill-bar-badge badge-proficient">熟练</span>
                         </div>
@@ -1820,14 +1840,6 @@
                         </div>
                         <div class="skill-bar-track"><div class="skill-bar-fill blue glow" data-width="80"></div></div>
                         <div class="skill-bar-detail">Python 数据分析脚本 · LSTM 预测模型 · C 语言（95分）· 数据结构</div>
-                    </div>
-                    <div class="skill-bar-card">
-                        <div class="skill-bar-header">
-                            <span class="skill-bar-name">办公与可视化</span>
-                            <span class="skill-bar-badge badge-proficient">熟练</span>
-                        </div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill green glow" data-width="88"></div></div>
-                        <div class="skill-bar-detail">Excel 高级函数/透视表 · PowerPoint 商业演示 · Tableau/Power BI</div>
                     </div>
                 </div>
             </div>
@@ -1937,16 +1949,43 @@
                             </div>
                         </div>
 
+                        <!-- 项目3：智能交通研究院 AI 产品实习落地 -->
+                        <div class="project-card" data-project="project3">
+                            <div class="project-cover">🚦</div>
+                            <div class="project-body">
+                                <div class="project-title">交通行业 RAG 智能问答系统</div>
+                                <div class="project-desc">广东交通集团 · 智能交通研究院 AI 产品实习：完成知识库 0-1 数据治理、评测体系搭建与多轮迭代，推动回答可用率由 68% 提升至 89%</div>
+                                <div class="project-metrics">
+                                    <span>可用率 68%→89%</span>
+                                    <span>幻觉率 15%→4%</span>
+                                    <span>1000+ 评测用例</span>
+                                </div>
+                                <div class="project-tags">
+                                    <span class="project-tag">RAG</span>
+                                    <span class="project-tag">AI 评测</span>
+                                    <span class="project-tag">知识库</span>
+                                    <span class="project-tag">Prompt 工程</span>
+                                </div>
+                                <a class="project-link">查看详情 →</a>
+                            </div>
+                        </div>
+
                         <!-- 项目1 -->
                         <div class="project-card" data-project="project1">
                             <div class="project-cover">🔬</div>
                             <div class="project-body">
                                 <div class="project-title">"十四五"国家重点研发计划</div>
-                                <div class="project-desc">参与 rainfall prediction 子课题，负责数据获取与模型构建</div>
+                                <div class="project-desc">参与 rainfall prediction 子课题，负责 800 万+ 气象数据获取、清洗与 LSTM 模型构建，成果产出 2 篇 SCI 论文与 1 项软著</div>
+                                <div class="project-metrics">
+                                    <span>800 万+ 数据</span>
+                                    <span>2 篇 SCI</span>
+                                    <span>准确率 ↑12%</span>
+                                </div>
                                 <div class="project-tags">
                                     <span class="project-tag">Python</span>
                                     <span class="project-tag">LSTM</span>
                                     <span class="project-tag">SCI 论文</span>
+                                    <span class="project-tag">数据清洗</span>
                                 </div>
                                 <a class="project-link">查看详情 →</a>
                             </div>
@@ -1957,26 +1996,17 @@
                             <div class="project-cover">📊</div>
                             <div class="project-body">
                                 <div class="project-title">生产质量数据分析系统</div>
-                                <div class="project-desc">山东鲁欣实习期间建立质量监控体系，发现关键影响因子</div>
+                                <div class="project-desc">山东鲁欣实习期间建立质量监控日报系统，追踪 FPY、缺陷分布等关键指标，发现湿度与缺陷率强相关（R&gt;0.7），缺陷率降低 8%</div>
+                                <div class="project-metrics">
+                                    <span>缺陷率 ↓8%</span>
+                                    <span>报表 2h→15min</span>
+                                    <span>3 项建议落地</span>
+                                </div>
                                 <div class="project-tags">
                                     <span class="project-tag">Python</span>
                                     <span class="project-tag">统计分析</span>
                                     <span class="project-tag">质量监控</span>
-                                </div>
-                                <a class="project-link">查看详情 →</a>
-                            </div>
-                        </div>
-
-                        <!-- 项目3：智能交通研究院 AI 产品实习落地 -->
-                        <div class="project-card" data-project="project3">
-                            <div class="project-cover">🚦</div>
-                            <div class="project-body">
-                                <div class="project-title">交通行业 RAG 智能问答系统</div>
-                                <div class="project-desc">广东交通集团 · 智能交通研究院 AI 产品实习：知识库 0-1 落地与评测体系搭建</div>
-                                <div class="project-tags">
-                                    <span class="project-tag">RAG</span>
-                                    <span class="project-tag">AI 评测</span>
-                                    <span class="project-tag">知识库</span>
+                                    <span class="project-tag">相关性分析</span>
                                 </div>
                                 <a class="project-link">查看详情 →</a>
                             </div>
@@ -1987,11 +2017,17 @@
                             <div class="project-cover">🏗</div>
                             <div class="project-body">
                                 <div class="project-title">工程项目管理数字化</div>
-                                <div class="project-desc">中建三局实习，用数据可视化手段提升项目管理效率</div>
+                                <div class="project-desc">中建三局实习期间协助 3.2 亿合同额项目进度与成本管理，用 SQL+Tableau/Power BI 识别偏差，周报效率提升 60%</div>
+                                <div class="project-metrics">
+                                    <span>合同额 3.2 亿</span>
+                                    <span>成本 ≤98%</span>
+                                    <span>周报 ↑60%</span>
+                                </div>
                                 <div class="project-tags">
                                     <span class="project-tag">Tableau</span>
                                     <span class="project-tag">Power BI</span>
                                     <span class="project-tag">项目管理</span>
+                                    <span class="project-tag">数据可视化</span>
                                 </div>
                                 <a class="project-link">查看详情 →</a>
                             </div>
@@ -2305,9 +2341,19 @@ function initRadarChart() {
             ],
             shape: 'polygon',
             splitNumber: 4,
-            center: ['50%', small ? '42%' : '44%'],
-            radius: small ? '50%' : '62%',
-            axisName: { color: textColor, fontSize: small ? 10 : 12, fontWeight: 600 },
+            center: ['50%', small ? '44%' : '46%'],
+            radius: small ? '48%' : '58%',
+            axisName: {
+                color: textColor,
+                fontSize: small ? 10 : 12,
+                fontWeight: 600,
+                formatter: function(value) {
+                    return value === 'AI 应用' ? '{a|' + value + '}' : value;
+                },
+                rich: {
+                    a: { color: '#F59E0B', fontWeight: 800, fontSize: small ? 11 : 13 }
+                }
+            },
             splitLine: { lineStyle: { color: borderColor } },
             splitArea: { areaStyle: { color: [splitAreaColor, splitAreaColor] } },
             axisLine: { lineStyle: { color: borderColor } }
@@ -2323,7 +2369,7 @@ function initRadarChart() {
                 lineStyle: { color: '#3B82F6', width: small ? 1.5 : 2 },
                 itemStyle: { color: '#3B82F6' }
             }, {
-                value: [70, 88, 75, 60, 90, 70],
+                value: [85, 95, 90, 88, 55, 95],
                 name: '兴趣方向',
                 areaStyle: { color: 'rgba(139,92,246,0.10)' },
                 lineStyle: { color: '#8B5CF6', width: small ? 1.5 : 2, type: 'dashed' },
@@ -2648,7 +2694,7 @@ var RESUME_TEXT = [
     '【基本信息】',
     '姓名：李阳 | 电话：17267617588 | 邮箱：llya3120@163.com | 所在地：广州',
     '求职方向：产品 / AI产品 / 产品经理实习生',
-    '教育：华南理工大学 工业工程与管理 硕士研究生（推免）；本科 GPA 4.14/5.0，专业排名 2/118',
+    '教育：华南理工大学 工业工程与管理 硕士研究生（推免）',
     '',
     '【实习经历】',
     '1. 广电运通集团（广东数字科技集团）- 产品实习生（2026.08—2026.09）',
