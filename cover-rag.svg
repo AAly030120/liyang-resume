@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="doc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" fill="url(#bg)"/>
+  <circle cx="120" cy="80" r="46" fill="#ffffff" opacity="0.08"/>
+  <circle cx="690" cy="300" r="60" fill="#ffffff" opacity="0.08"/>
+  <circle cx="640" cy="70" r="26" fill="#ffffff" opacity="0.10"/>
+
+  <!-- 文档堆（左） -->
+  <g transform="translate(105,120)">
+    <rect x="0" y="54" width="86" height="104" rx="6" fill="#ffffff" opacity="0.35"/>
+    <rect x="12" y="40" width="86" height="104" rx="6" fill="#ffffff" opacity="0.55"/>
+    <rect x="24" y="26" width="86" height="104" rx="6" fill="url(#doc)"/>
+    <line x1="40" y1="50" x2="94" y2="50" stroke="#3B82F6" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+    <line x1="40" y1="68" x2="94" y2="68" stroke="#3B82F6" stroke-width="5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="40" y1="86" x2="80" y2="86" stroke="#3B82F6" stroke-width="5" stroke-linecap="round" opacity="0.3"/>
+  </g>
+
+  <!-- 向量数据库（中） -->
+  <g transform="translate(345,118)">
+    <ellipse cx="70" cy="20" rx="70" ry="20" fill="#ffffff" opacity="0.9"/>
+    <path d="M0,20 L0,96 A70,20 0 0 0 140,96 L140,20" fill="#ffffff" opacity="0.28" stroke="#ffffff" stroke-width="2.5"/>
+    <circle cx="70" cy="52" r="7" fill="#1D4ED8"/>
+    <circle cx="46" cy="70" r="6" fill="#1D4ED8" opacity="0.75"/>
+    <circle cx="94" cy="70" r="6" fill="#1D4ED8" opacity="0.75"/>
+    <line x1="70" y1="52" x2="46" y2="70" stroke="#1D4ED8" stroke-width="2" opacity="0.6"/>
+    <line x1="70" y1="52" x2="94" y2="70" stroke="#1D4ED8" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <!-- 机器人（右） -->
+  <g transform="translate(590,110)">
+    <rect x="0" y="24" width="104" height="86" rx="18" fill="#ffffff" opacity="0.95"/>
+    <circle cx="34" cy="60" r="11" fill="#1D4ED8"/>
+    <circle cx="70" cy="60" r="11" fill="#1D4ED8"/>
+    <path d="M30,84 Q52,98 74,84" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <line x1="52" y1="24" x2="52" y2="6" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="52" cy="2" r="6" fill="#ffffff"/>
+  </g>
+
+  <!-- 箭头 -->
+  <g stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M225,178 L318,178"/>
+    <path d="M318,178 L302,168 M318,178 L302,188"/>
+    <path d="M510,178 L565,178"/>
+    <path d="M565,178 L549,168 M565,178 L549,188"/>
+  </g>
+
+  <text x="400" y="330" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700" fill="#ffffff" opacity="0.95">交通行业 RAG 智能问答系统</text>
+</svg>
