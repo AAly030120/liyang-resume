@@ -1,6 +1,6 @@
 # 李阳 · 交互式在线简历
 
-> 一份用 Vibe-Coding 构建的 **交互式个人简历**（HTML + CSS + JS），部署于 GitHub Pages，用于 AI 产品岗求职。
+> 一份用 Vibe-Coding 构建的 **交互式个人简历**（HTML + CSS + JS），部署于 GitHub Pages。
 
 📄 在线访问：**https://aaly030120.github.io/liyang-resume/**
 
