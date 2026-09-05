@@ -1036,6 +1036,37 @@
     /* =============================================
        AI 匹配器 模态框
        ============================================= */
+    /* ======== AI 岗位匹配器板块 ======== */
+    .matcher-intro {
+        display: flex; align-items: flex-start; gap: 16px;
+        background: linear-gradient(135deg, rgba(102,126,234,0.08), rgba(118,75,162,0.08));
+        border: 1px solid var(--border);
+        border-radius: var(--r-xl);
+        padding: 22px 24px;
+        margin-bottom: 24px;
+    }
+    .matcher-intro-icon {
+        width: 48px; height: 48px; flex-shrink: 0;
+        background: linear-gradient(135deg, #667EEA, #764BA2);
+        border-radius: var(--r-lg);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px;
+    }
+    .matcher-intro-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .matcher-intro-text { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+    .matcher-intro-text strong { color: var(--text); }
+    .matcher-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--r-xl);
+        padding: 32px;
+        box-shadow: var(--sh-float);
+    }
+    @media (max-width: 600px) {
+        .matcher-card { padding: 20px; }
+        .matcher-intro { flex-direction: column; }
+    }
+
     .modal-overlay {
         position: fixed; inset: 0; z-index: 2000;
         background: rgba(15,23,42,0.6);
@@ -1515,6 +1546,7 @@
         <li><a href="javascript:;" data-tab="edu-work">教育与工作</a></li>
         <li><a href="javascript:;" data-tab="skills-honors">技能与证书</a></li>
         <li><a href="javascript:;" data-tab="explore">学习与探索</a></li>
+        <li><a href="javascript:;" data-tab="matcher">岗位匹配</a></li>
     </ul>
 
     <div class="nav-cta">
@@ -1556,18 +1588,14 @@
                 </div>
 
                 <div class="hero-meta">
-                    <span>实习时间：<strong>最早到岗两周内 · 全勤 · 可持续4个月以上</strong></span>
+                    <span>实习时间：<strong>最早到岗两周内 · 全勤 · 可持续6个月以上</strong></span>
                 </div>
 
                 <p class="hero-slogan" id="heroSlogan"></p>
 
                 <div class="hero-btns">
-                    <a class="btn-hero-primary" href="resume.pdf" download="李阳-产品岗.pdf">
-                        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        下载简历 PDF
-                    </a>
-                    <button class="btn-hero-secondary" id="heroMatcherBtn">
-                        🤖 AI 岗位匹配器
+                    <button class="btn-hero-primary" id="heroMatcherBtn">
+                        🤖 AI 岗位匹配器 · 一键查看岗位适配度
                     </button>
                 </div>
 
@@ -1595,7 +1623,6 @@
                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
                         <span style="font-size:22px;">✨</span>
                         <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">关于我</span>
-                        <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--blue);background:rgba(59,130,246,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗</span>
                     </div>
                     <div class="about-grid">
                         <div class="about-block">
@@ -1620,7 +1647,6 @@
                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
                         <span style="font-size:22px;">🛠</span>
                         <span style="font-size:15px;font-weight:800;color:var(--text);letter-spacing:0.5px;">基本技能</span>
-                        <span style="margin-left:auto;font-size:11px;font-weight:600;color:var(--green);background:rgba(16,185,129,0.08);padding:4px 10px;border-radius:var(--r-pill);">AI 产品岗核心</span>
                     </div>
                     <div class="about-grid">
                         <div class="about-block" style="border-left:4px solid var(--blue);">
@@ -1678,11 +1704,11 @@
 
                 <!-- 广电运通 产品实习生 -->
                 <div class="tl-item">
-                    <div class="tl-date-col"><div class="tl-date-text">2026.08<br>—<br>2026.09</div></div>
+                    <div class="tl-date-col"><div class="tl-date-text">2026.04<br>—<br>2026.09</div></div>
                     <div class="tl-dot-col"><div class="tl-dot" style="background:var(--indigo);box-shadow:0 0 0 2px var(--indigo);"></div></div>
                     <div class="tl-card indigo">
                         <div class="tl-title">产品实习生</div>
-                        <div class="tl-org">广东数字科技集团 · 广电运通集团有限公司 <span class="tl-org-tag">AI 产品</span></div>
+                        <div class="tl-org">广东数字科技集团 · 广电运通集团股份有限公司 <span class="tl-org-tag">AI 产品</span></div>
                         <ul class="tl-list">
                             <li class="ai-bullet"><strong style="color:var(--indigo);">AI 产品迭代与方案验证：</strong>跟进银行网点 <span class="ai-highlight">对话系统从 Q&A 向 RAG、Agent</span> 的技术演进；参与 <span class="ai-highlight">Agent 状态收敛、任务路由、Adapter 硬件适配方案业务评审</span>，定义业务触发门槛；采集网点真实会话样本，对 <span class="ai-highlight">意图识别、知识库召回、工具调用、多轮对话缺陷</span> 做结构化归类，输出标准化问题台账；参与 <span class="ai-highlight">Agent 架构迭代、自动评测方案设计</span>，完成 <span class="ai-highlight">AI 方案的业务侧效果验证</span>；输出模块优化建议，跟进新版本试点落地与复盘。</li>
                             <li class="ai-bullet"><strong style="color:var(--indigo);">B 端需求拆解与研发对齐：</strong>梳理银行客户业务诉求与网点场景，区分 <span class="ai-highlight">共性与定制化</span> 需求，参与需求评审；承接行方定制项目，将业务诉求转化为 <span class="ai-highlight">研发 PRD</span>，开发阶段协助澄清业务歧义，对齐 <span class="ai-highlight">业务—产品—研发</span> 三方认知。</li>
@@ -1706,31 +1732,31 @@
                     </div>
                 </div>
 
-                <!-- 中建三局（保留原 HTML 详细内容） -->
+                <!-- 山东鲁欣（第三段实习） -->
                 <div class="tl-item">
                     <div class="tl-date-col"><div class="tl-date-text">2025.02<br>—<br>2025.05</div></div>
                     <div class="tl-dot-col"><div class="tl-dot" style="background:var(--green);box-shadow:0 0 0 2px var(--green);"></div></div>
                     <div class="tl-card green">
+                        <div class="tl-title">质量监控与分析实习生</div>
+                        <div class="tl-org">山东鲁欣冶金科技有限公司 <span class="tl-org-tag">质量 / 数据</span></div>
+                        <ul class="tl-list">
+                            <li><strong>质量数据监控：</strong>建立生产质量数据日报系统，追踪 FPY、缺陷分布等关键指标</li>
+                            <li><strong>相关性分析：</strong>发现环境湿度与缺陷率显著相关(R>0.7)，提出 <span class="result-highlight">3 项改进建议</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 中建三局（第四段实习） -->
+                <div class="tl-item">
+                    <div class="tl-date-col"><div class="tl-date-text">2024.07<br>—<br>2024.09</div></div>
+                    <div class="tl-dot-col"><div class="tl-dot" style="background:var(--orange);box-shadow:0 0 0 2px var(--orange);"></div></div>
+                    <div class="tl-card orange">
                         <div class="tl-title">数据分析岗 / 项目经理助理实习生</div>
                         <div class="tl-org">中建三局第二工程有限公司 <span class="tl-org-tag">项目管理 / 数据分析</span></div>
                         <ul class="tl-list">
                             <li><strong>需求分析与流程梳理：</strong>协助项目经理与多方沟通，绘制泳道图、网络图厘清各方职责</li>
                             <li><strong>数据监控与进度管理：</strong>用 SQL、Tableau、Power BI 处理数据并可视化，识别 <span class="result-highlight">2 项进度偏差</span></li>
                             <li><strong>成本控制：</strong>运用 CPM 关键路径法编制全周期项目计划，成本控制在预算 <span class="result-highlight">98% 以内</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 山东鲁欣（保留原 HTML 详细内容，日期按新简历更新） -->
-                <div class="tl-item">
-                    <div class="tl-date-col"><div class="tl-date-text">2022.10<br>—<br>2024.06</div></div>
-                    <div class="tl-dot-col"><div class="tl-dot" style="background:var(--orange);box-shadow:0 0 0 2px var(--orange);"></div></div>
-                    <div class="tl-card orange">
-                        <div class="tl-title">质量监控与分析实习生</div>
-                        <div class="tl-org">山东鲁欣冶金科技有限公司 <span class="tl-org-tag">质量 / 数据</span></div>
-                        <ul class="tl-list">
-                            <li><strong>质量数据监控：</strong>建立生产质量数据日报系统，追踪 FPY、缺陷分布等关键指标</li>
-                            <li><strong>相关性分析：</strong>发现环境湿度与缺陷率显著相关(R>0.7)，提出 <span class="result-highlight">3 项改进建议</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1912,7 +1938,7 @@
                         <!-- 项目0：LitKG Assistant（Vibe-Coding 新增，置顶） -->
                         <div class="project-card" data-project="project5">
                             <div class="project-cover">
-                                <img src="https://raw.githubusercontent.com/AAly030120/litkg-assistant/main/litkg-architecture.svg" alt="LitKG 架构" onerror="this.style.display='none'">
+                                <img src="litkg-architecture.svg" alt="LitKG 架构" onerror="this.style.display='none'">
                                 <div class="project-cover-icon">🕸️</div>
                             </div>
                             <div class="project-body">
@@ -1932,7 +1958,7 @@
                         <!-- 项目6：ResearchPal -->
                         <div class="project-card" data-project="project6">
                             <div class="project-cover">
-                                <img src="https://raw.githubusercontent.com/AAly030120/ResearchPal/main/docs/social-preview.png" alt="ResearchPal 落地页" onerror="this.style.display='none'">
+                                <img src="researchpal-cover.png" alt="ResearchPal 落地页" onerror="this.style.display='none'">
                                 <div class="project-cover-icon">🔬</div>
                             </div>
                             <div class="project-body">
@@ -1951,7 +1977,10 @@
 
                         <!-- 项目3：智能交通研究院 AI 产品实习落地 -->
                         <div class="project-card" data-project="project3">
-                            <div class="project-cover">🚦</div>
+                            <div class="project-cover">
+                                <img src="cover-rag.svg" alt="交通行业 RAG 智能问答系统" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">🚦</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">交通行业 RAG 智能问答系统</div>
                                 <div class="project-desc">广东交通集团 · 智能交通研究院 AI 产品实习：完成知识库 0-1 数据治理、评测体系搭建与多轮迭代，推动回答可用率由 68% 提升至 89%</div>
@@ -1972,7 +2001,10 @@
 
                         <!-- 项目1 -->
                         <div class="project-card" data-project="project1">
-                            <div class="project-cover">🔬</div>
+                            <div class="project-cover">
+                                <img src="cover-research.svg" alt="国家重点研发计划 LSTM 降雨预测" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">🔬</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">"十四五"国家重点研发计划</div>
                                 <div class="project-desc">参与 rainfall prediction 子课题，负责 800 万+ 气象数据获取、清洗与 LSTM 模型构建，成果产出 2 篇 SCI 论文与 1 项软著</div>
@@ -1993,7 +2025,10 @@
 
                         <!-- 项目2 -->
                         <div class="project-card" data-project="project2">
-                            <div class="project-cover">📊</div>
+                            <div class="project-cover">
+                                <img src="cover-quality.svg" alt="生产质量数据分析 SPC 监控" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">📊</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">生产质量数据分析系统</div>
                                 <div class="project-desc">山东鲁欣实习期间建立质量监控日报系统，追踪 FPY、缺陷分布等关键指标，发现湿度与缺陷率强相关（R&gt;0.7），缺陷率降低 8%</div>
@@ -2014,7 +2049,10 @@
 
                         <!-- 项目4 -->
                         <div class="project-card" data-project="project4">
-                            <div class="project-cover">🏗</div>
+                            <div class="project-cover">
+                                <img src="cover-construction.svg" alt="工程项目管理数字化 CPM 关键路径" onerror="this.style.display='none'">
+                                <div class="project-cover-icon">🏗</div>
+                            </div>
                             <div class="project-body">
                                 <div class="project-title">工程项目管理数字化</div>
                                 <div class="project-desc">中建三局实习期间协助 3.2 亿合同额项目进度与成本管理，用 SQL+Tableau/Power BI 识别偏差，周报效率提升 60%</div>
@@ -2039,86 +2077,66 @@
         </div>
     </section>
 
+    <!-- ======== AI 岗位匹配器 ======== -->
+    <section id="matcher" class="page">
+        <div class="container">
+            <div class="section-head" data-aos="fade-up">
+                <div class="section-head-tag">AI Job Matcher</div>
+                <h2>AI 岗位匹配器</h2>
+                <p>上传目标岗位 JD，一键查看我与岗位的适配度</p>
+            </div>
+
+            <div class="matcher-intro" data-aos="fade-up">
+                <div class="matcher-intro-icon">🤖</div>
+                <div class="matcher-intro-body">
+                    <div class="matcher-intro-title">这个功能有什么用？</div>
+                    <p class="matcher-intro-text">把<strong>我的简历</strong>和您招聘的<strong>岗位 JD（职位描述）</strong>一起交给 AI 分析，即可一键得出<strong>人岗适配度</strong>：综合匹配度评分、学历背景 / 工作经验 / 技能匹配 / 综合潜力四个维度评分，以及匹配亮点、待补足项与总体建议的详细分析——帮助您在 30 秒内快速判断我与岗位的契合程度。</p>
+                </div>
+            </div>
+
+            <div class="matcher-card" data-aos="fade-up" data-aos-delay="60">
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="jdFileInput" accept=".txt,.pdf,.doc,.docx,.md" style="display:none;">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text">点击或拖拽上传职位描述（JD）</div>
+                    <div class="upload-hint">支持 TXT / PDF / DOC / MD 格式</div>
+                    <div class="uploaded-name" id="uploadedName"><span>✅</span><span id="fileNameText"></span></div>
+                </div>
+
+                <div class="config-tip">💡 已内置 DeepSeek 大模型接口，<strong>无需任何配置</strong>——上传 JD 后直接点击「开始匹配分析」即可。</div>
+
+                <button class="btn-analyze" id="analyzeBtn">✨ 开始匹配分析</button>
+
+                <div class="loading-area" id="loadingArea">
+                    <div class="spinner"></div>
+                    <div class="loading-text">AI 正在深度分析中，请稍候...</div>
+                </div>
+
+                <!-- 分析结果：半圆仪表盘 + Markdown 渲染 -->
+                <div class="result-panel" id="resultPanel">
+                    <div class="gauge-wrap">
+                        <div class="gauge-container">
+                            <div class="gauge-bg"></div>
+                            <div class="gauge-fill" id="gaugeFill"></div>
+                            <div class="gauge-score" id="gaugeScore">--</div>
+                        </div>
+                        <div class="gauge-label" id="gaugeLabel">综合匹配度</div>
+                    </div>
+
+                    <div class="result-dims" id="dimsArea"></div>
+
+                    <div class="result-section">
+                        <div class="result-section-title">📋 详细分析</div>
+                        <div class="result-md" id="mdResult"></div>
+                    </div>
+
+                    <button class="btn-close-result" id="closeResultBtn">关闭结果</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div><!-- /.main -->
-
-<!-- FAB 悬浮按钮 -->
-<button class="fab" id="fabBtn">
-    🤖
-    <div class="fab-tooltip">AI 岗位匹配器</div>
-</button>
-
-<!-- AI 匹配器 模态框 -->
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal-box">
-        <div class="modal-header">
-            <div class="modal-title-wrap">
-                <div class="modal-icon">🤖</div>
-                <div>
-                    <div class="modal-title">AI 岗位匹配器</div>
-                    <div class="modal-subtitle">上传职位 JD，智能分析与简历的匹配度</div>
-                </div>
-            </div>
-            <button class="modal-close" id="modalClose">✕</button>
-        </div>
-
-        <div class="upload-zone" id="uploadZone">
-            <input type="file" id="jdFileInput" accept=".txt,.pdf,.doc,.docx,.md" style="display:none;">
-            <div class="upload-icon">📄</div>
-            <div class="upload-text">点击或拖拽上传职位描述（JD）</div>
-            <div class="upload-hint">支持 TXT / PDF / DOC / MD 格式</div>
-            <div class="uploaded-name" id="uploadedName"><span>✅</span><span id="fileNameText"></span></div>
-        </div>
-
-        <div class="model-config">
-            <div class="config-group">
-                <label>选择大模型服务商</label>
-                <select class="config-select" id="providerSelect">
-                    <option value="deepseek" data-url="https://api.deepseek.com/v1/chat/completions" data-model="deepseek-chat">DeepSeek（推荐）</option>
-                    <option value="openai" data-url="https://api.openai.com/v1/chat/completions" data-model="gpt-4o-mini">OpenAI GPT</option>
-                    <option value="glm" data-url="https://open.bigmodel.cn/api/paas/v4/chat/completions" data-model="glm-4-flash">智谱 GLM</option>
-                    <option value="kimi" data-url="https://api.moonshot.cn/v1/chat/completions" data-model="moonshot-v1-8k">Moonshot Kimi</option>
-                    <option value="doubao" data-url="https://ark.cn-beijing.volces.com/api/v3/chat/completions" data-model="">豆包 Doubao</option>
-                    <option value="yuanbao" data-url="https://api.hunyuan.cloud.tencent.com/v1/chat/completions" data-model="hunyuan-turbos-latest">腾讯元宝 Hunyuan</option>
-                    <option value="gemini" data-url="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions" data-model="gemini-2.0-flash">Google Gemini</option>
-                </select>
-            </div>
-            <div class="config-group">
-                <label>API Key</label>
-                <input type="password" class="config-input" id="apiKeyInput" placeholder="输入所选服务商的 Key">
-            </div>
-        </div>
-        <div class="config-tip">💡 推荐 DeepSeek（便宜/中文强）或智谱 GLM（免费额度多）。</div>
-
-        <button class="btn-analyze" id="analyzeBtn">✨ 开始匹配分析</button>
-
-        <div class="loading-area" id="loadingArea">
-            <div class="spinner"></div>
-            <div class="loading-text">AI 正在深度分析中，请稍候...</div>
-        </div>
-
-        <!-- 分析结果：半圆仪表盘 + Markdown 渲染 -->
-        <div class="result-panel" id="resultPanel">
-            <div class="gauge-wrap">
-                <div class="gauge-container">
-                    <div class="gauge-bg"></div>
-                    <div class="gauge-fill" id="gaugeFill"></div>
-                    <div class="gauge-score" id="gaugeScore">--</div>
-                </div>
-                <div class="gauge-label" id="gaugeLabel">综合匹配度</div>
-            </div>
-
-            <div class="result-dims" id="dimsArea"></div>
-
-            <div class="result-section">
-                <div class="result-section-title">📋 详细分析</div>
-                <div class="result-md" id="mdResult"></div>
-            </div>
-
-            <button class="btn-close-result" id="closeResultBtn">关闭结果</button>
-        </div>
-
-    </div>
-</div>
 
 <!-- 项目详情 右侧抽屉 -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
@@ -2328,7 +2346,7 @@ function initRadarChart() {
         tooltip: { trigger: 'item' },
         legend: {
             bottom: 0,
-            textStyle: { color: subTextColor, fontSize: small ? 10 : 12 }
+            textStyle: { color: subTextColor, fontSize: small ? 12 : 14 }
         },
         radar: {
             indicator: [
@@ -2345,7 +2363,7 @@ function initRadarChart() {
             radius: small ? '48%' : '58%',
             axisName: {
                 color: textColor,
-                fontSize: small ? 10 : 12,
+                fontSize: small ? 12 : 15,
                 fontWeight: 600,
                 formatter: function(value) {
                     return value === 'AI 应用' ? '{a|' + value + '}' : value;
@@ -2466,7 +2484,7 @@ var PROJECT_DATA = {
     project2: {
         icon: '📊', gradient: 'linear-gradient(135deg, #10B981, #059669)',
         title: '生产质量数据分析系统',
-        subtitle: '山东鲁欣冶金科技 · 实习项目 · 2024.07 — 2024.09',
+        subtitle: '山东鲁欣冶金科技 · 实习项目 · 2025.02 — 2025.05',
         meta: [
             { label: '项目类型', value: '质量监控系统' },
             { label: '我的角色', value: '数据分析实习生' },
@@ -2506,7 +2524,7 @@ var PROJECT_DATA = {
     project4: {
         icon: '🏗', gradient: 'linear-gradient(135deg, #3B82F6, #1D4ED8)',
         title: '工程项目管理数字化',
-        subtitle: '中建三局第二工程有限公司 · 实习项目 · 2025.02 — 2025.05',
+        subtitle: '中建三局第二工程有限公司 · 实习项目 · 2024.07 — 2024.09',
         meta: [
             { label: '项目类型', value: '工程项目管理' },
             { label: '我的角色', value: '数据分析 / PM 助理' },
@@ -2632,28 +2650,11 @@ for (var p = 0; p < projectCards.length; p++) {
 }
 
 /* ============================================================
-   12. FAB 与模态框控制
+   12. Hero 按钮跳转岗位匹配板块
    ============================================================ */
 function initModal() {
-    var fab = document.getElementById('fabBtn');
     var heroBtn = document.getElementById('heroMatcherBtn');
-    var overlay = document.getElementById('modalOverlay');
-    var closeBtn = document.getElementById('modalClose');
-
-    function openModal() {
-        overlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-        overlay.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    if (fab) fab.onclick = openModal;
-    if (heroBtn) heroBtn.onclick = openModal;
-    if (closeBtn) closeBtn.onclick = closeModal;
-    if (overlay) overlay.onclick = function(e) { if (e.target === overlay) closeModal(); };
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+    if (heroBtn) heroBtn.onclick = function() { switchTab('matcher'); };
 }
 
 /* ============================================================
@@ -2697,7 +2698,7 @@ var RESUME_TEXT = [
     '教育：华南理工大学 工业工程与管理 硕士研究生（推免）',
     '',
     '【实习经历】',
-    '1. 广电运通集团（广东数字科技集团）- 产品实习生（2026.08—2026.09）',
+    '1. 广电运通集团股份有限公司（广东数字科技集团）- 产品实习生（2026.04—2026.09）',
     '   - B端需求拆解与研发对齐：区分共性与定制化需求，将银行客户业务诉求转化为研发PRD，对齐业务-产品-研发三方认知',
     '   - AI产品迭代与方案验证：跟进对话系统从Q&A向RAG、Agent演进；参与Agent状态收敛、任务路由、Adapter硬件适配方案评审；对意图识别/知识库召回/工具调用/多轮对话缺陷做结构化归类，完成AI方案业务侧效果验证',
     '   - 商业化配套：参与新品机器人宣发筹备，梳理卖点、校对对外物料',
@@ -2705,11 +2706,11 @@ var RESUME_TEXT = [
     '   - 垂直知识库0-1落地：深度参与交通行业RAG智能问答系统产品建设，梳理业务场景边界与问答能力诉求，Python/SQL完成海量PDF/政策文本数据治理',
     '   - AI评测体系与迭代闭环：0-1搭建RAG业务侧评测体系（准确率/召回率/幻觉率3维度，覆盖1000+真实问答用例），定位12项核心缺陷，回答可用率68%→89%、幻觉率15%→4%',
     '   - 用户侧落地：撰写使用说明，收集反馈沉淀优化方向',
-    '3. 中建三局 - 数据分析/PM助理（2025.02—2025.05）',
+    '3. 山东鲁欣 - 质量监控实习生（2025.02—2025.05）',
+    '   - 生产质量数据日报系统，发现湿度与缺陷率相关性(R>0.7)',
+    '4. 中建三局 - 数据分析/PM助理（2024.07—2024.09）',
     '   - SQL/Tableau/Power BI 数据可视化，识别2项进度偏差',
     '   - CPM关键路径法，成本控制在预算98%以内',
-    '4. 山东鲁欣 - 质量监控实习生（2022.10—2024.06）',
-    '   - 生产质量数据日报系统，发现湿度与缺陷率相关性(R>0.7)',
     '',
     '【项目经历】',
     '- LitKG Assistant：基于知识图谱+GraphRAG的科研文献阅读助手（Vibe-Coding全链路），Python/Streamlit/ChromaDB/NetworkX，实体消歧准确率>92%，API成本节省60%+',
@@ -2727,17 +2728,20 @@ var RESUME_TEXT = [
     '国家奖学金(唯一)、省政府奖学金(唯二)、市优秀大学生(唯一)、校长奖学金(唯一)、SCI×2、软著×1'
 ].join('\n');
 
-function analyzeMatch() {
-    var apiKey = document.getElementById('apiKeyInput').value.trim();
-    var btn = document.getElementById('analyzeBtn');
-    var providerSel = document.getElementById('providerSelect');
-    var opt = providerSel.options[providerSel.selectedIndex];
-    var providerName = opt.value;
-    var apiURL = opt.getAttribute('data-url') || '';
-    var modelId = opt.getAttribute('data-model') || '';
+/* 内置 DeepSeek 接口配置（已授权，供面试官免配置直接使用） */
+var MATCHER_API = {
+    url: 'https://api.deepseek.com/v1/chat/completions',
+    model: 'deepseek-chat',
+    key: 'sk-06847512c12e4a39bfd2b6508a7d443e'
+};
 
-    if (!apiKey) { alert('请先输入 API Key！'); return; }
-    if (!apiURL) { alert('"' + opt.textContent + '" 暂不支持直接调用，请选其他服务商。'); return; }
+function analyzeMatch() {
+    var btn = document.getElementById('analyzeBtn');
+    var providerName = 'deepseek';
+    var apiURL = MATCHER_API.url;
+    var modelId = MATCHER_API.model;
+    var apiKey = MATCHER_API.key;
+
     if (!uploadedJDContent) { alert('请先上传职位描述（JD）文件！'); return; }
 
     btn.disabled = true;
