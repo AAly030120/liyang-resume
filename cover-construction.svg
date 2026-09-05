@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" fill="url(#bg)"/>
+  <circle cx="130" cy="70" r="40" fill="#ffffff" opacity="0.08"/>
+  <circle cx="690" cy="300" r="58" fill="#ffffff" opacity="0.08"/>
+
+  <!-- 塔吊（右上） -->
+  <g stroke="#ffffff" stroke-width="6" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="640" y1="180" x2="640" y2="60"/>
+    <line x1="560" y1="72" x2="730" y2="72"/>
+    <line x1="640" y1="60" x2="622" y2="76"/>
+    <line x1="640" y1="60" x2="658" y2="76"/>
+    <line x1="696" y1="72" x2="696" y2="100"/>
+    <line x1="600" y1="88" x2="680" y2="88"/>
+    <line x1="612" y1="104" x2="668" y2="104"/>
+  </g>
+  <rect x="688" y="100" width="16" height="12" rx="2" fill="#ffffff" opacity="0.9"/>
+
+  <!-- 甘特图面板 -->
+  <g transform="translate(110,130)">
+    <rect x="0" y="0" width="470" height="160" rx="14" fill="#ffffff" opacity="0.15" stroke="#ffffff" stroke-width="2" stroke-opacity="0.35"/>
+    <g stroke="#ffffff" stroke-width="1.5" opacity="0.25">
+      <line x1="120" y1="14" x2="120" y2="146"/>
+      <line x1="220" y1="14" x2="220" y2="146"/>
+      <line x1="320" y1="14" x2="320" y2="146"/>
+      <line x1="420" y1="14" x2="420" y2="146"/>
+    </g>
+    <g rx="6">
+      <rect x="30" y="22" width="120" height="18" rx="9" fill="#ffffff" opacity="0.9"/>
+      <rect x="110" y="50" width="180" height="18" rx="9" fill="#ffffff" opacity="0.75"/>
+      <rect x="200" y="78" width="150" height="18" rx="9" fill="#ffffff" opacity="0.9"/>
+      <rect x="170" y="106" width="240" height="18" rx="9" fill="#ffffff" opacity="0.65"/>
+    </g>
+    <!-- 关键路径高亮 -->
+    <line x1="150" y1="31" x2="110" y2="59" stroke="#ffffff" stroke-width="2.5" opacity="0.7"/>
+    <line x1="290" y1="59" x2="200" y2="87" stroke="#ffffff" stroke-width="2.5" opacity="0.7"/>
+    <line x1="350" y1="87" x2="170" y2="115" stroke="#ffffff" stroke-width="2.5" opacity="0.7"/>
+  </g>
+
+  <text x="400" y="330" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700" fill="#ffffff" opacity="0.95">工程项目管理数字化 · CPM 关键路径</text>
+</svg>
