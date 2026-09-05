@@ -557,6 +557,22 @@
     }
     [data-theme="dark"] .result-highlight { background: rgba(251,191,36,0.15); color: #FBBF24; }
 
+    /* 黄色高亮标签（关于我/实习重点） */
+    .about-highlight, .ai-highlight {
+        display: inline;
+        background: rgba(245,158,11,0.14);
+        color: #B45309;
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+    [data-theme="dark"] .about-highlight,
+    [data-theme="dark"] .ai-highlight {
+        background: rgba(251,191,36,0.16);
+        color: #FBBF24;
+    }
+
     /* 教育背景卡片 */
     .edu-card-v2 {
         background: var(--bg-card);
@@ -628,12 +644,12 @@
     }
     .radar-title { font-size: 18px; font-weight: 700; }
     .radar-subtitle { font-size: 13px; color: var(--text-2); }
-    #skillsRadar { width: 100%; height: 420px; min-height: 320px; }
+    #skillsRadar { width: 100%; height: 420px; min-height: 360px; }
     @media (max-width: 900px) {
-        #skillsRadar { height: 360px; }
+        #skillsRadar { height: 400px; min-height: 340px; }
     }
     @media (max-width: 600px) {
-        #skillsRadar { height: 300px; }
+        #skillsRadar { height: 360px; min-height: 320px; }
     }
 
     /* 发光进度条熟练度 */
@@ -835,7 +851,7 @@
     .project-card[data-project="project6"] .project-cover { background: linear-gradient(135deg, var(--indigo), #4338CA); }
     .project-card[data-project="project1"] .project-cover { background: linear-gradient(135deg, var(--green), #059669); }
     .project-card[data-project="project2"] .project-cover { background: linear-gradient(135deg, var(--orange), #D97706); }
-    .project-card[data-project="project3"] .project-cover { background: linear-gradient(135deg, var(--blue), #1D4ED8); }
+    .project-card[data-project="project3"] .project-cover { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
     .project-card[data-project="project4"] .project-cover { background: linear-gradient(135deg, #F97316, #EA580C); }
 
     .project-body { padding: 18px; }
@@ -1511,6 +1527,11 @@
                     <span class="hero-role-chip">产品实习生</span>
                 </div>
 
+                <div style="margin:14px 0 6px;font-size:13px;color:var(--text-2);display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;">
+                    <span>求职意向：<strong style="color:var(--text);">产品 / AI产品 / 产品经理</strong></span>
+                    <span>实习时间：<strong style="color:var(--text);">最早到岗两周内 · 全勤 · 可持续4个月以上</strong></span>
+                </div>
+
                 <p class="hero-slogan" id="heroSlogan"></p>
 
                 <div class="hero-btns">
@@ -1552,19 +1573,19 @@
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
                         <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
                             <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">学术背景</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">华南理工大学工业工程与管理硕士研究生（推免）；工科背景，有 B 端 AI 产品落地实践经验。</p>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;"><span class="about-highlight">华南理工大学工业工程与管理硕士研究生（推免）</span>；工科背景，具备 <span class="about-highlight">B 端 AI 产品落地</span> 实践经验，掌握行业 <span class="about-highlight">知识库、RAG、Agent</span> 的迭代与试点验证。</p>
                         </div>
                         <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
                             <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">核心优势</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">拥有业务需求拆解、PRD 输出、跨团队对齐、上线后 AI 方案效果评估—问题归因—迭代推动的完整产品链路经验。</p>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">拥有 <span class="about-highlight">业务需求分析、PRD 输出</span>、跨团队对齐、上线后 <span class="about-highlight">AI 方案效果评估—问题归因—迭代推动</span> 的完整产品链路经验。</p>
                         </div>
                         <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
                             <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">技术能力</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">熟练使用 Python、SQL 开展数据治理，可独立完成大模型评测、Prompt 设计、低代码 AI 平台搭建。</p>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">熟练使用 <span class="about-highlight">Python、SQL</span> 开展数据治理，可独立完成 <span class="about-highlight">大模型评测、Prompt 设计、低代码 AI 平台搭建</span>。</p>
                         </div>
                         <div style="background:var(--bg);border-radius:var(--r-md);padding:16px;border:1px solid var(--border);">
                             <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.6px;">产品能力</div>
-                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;">Axure / Xmind / draw.io 原型与流程设计，PRD / 用户故事撰写，竞品分析、用户访谈与跨部门对齐。</p>
+                            <p style="font-size:13.5px;color:var(--text-2);line-height:1.7;"><span class="about-highlight">Axure / Xmind / draw.io</span> 原型与流程设计，<span class="about-highlight">PRD / 用户故事</span> 撰写，<span class="about-highlight">竞品分析、用户访谈、跨部门对齐</span>。</p>
                         </div>
                     </div>
                 </div>
@@ -1642,7 +1663,7 @@
                 <div>
                     <div class="edu-name">沈阳建筑大学</div>
                     <div class="edu-major">工程管理</div>
-                    <div class="edu-degree">工商管理学院 · 本科</div>
+                    <div class="edu-degree">管理学院 · 本科</div>
                     <div style="margin-top:14px;"><span class="edu-period">📅 2021.09 — 2025.07</span></div>
                     <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
                         <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px;font-size:13px;color:var(--text-2);"><strong style="color:var(--text);">GPA 4.14</strong> / 5.0</div>
@@ -1673,32 +1694,32 @@
             <div class="timeline-wrap" data-aos="fade-up">
                 <div class="timeline-line"></div>
 
-                <!-- 广电运通 产品实习生（新简历新增） -->
+                <!-- 广电运通 产品实习生 -->
                 <div class="tl-item">
-                    <div class="tl-date-col"><div class="tl-date-text">2026.06<br>—<br>2026.09</div></div>
+                    <div class="tl-date-col"><div class="tl-date-text">2026.08<br>—<br>2026.09</div></div>
                     <div class="tl-dot-col"><div class="tl-dot" style="background:var(--indigo);box-shadow:0 0 0 2px var(--indigo);"></div></div>
                     <div class="tl-card indigo">
                         <div class="tl-title">产品实习生</div>
                         <div class="tl-org">广东数字科技集团 · 广电运通集团有限公司 <span class="tl-org-tag">AI 产品</span></div>
                         <ul class="tl-list">
-                            <li class="ai-bullet"><strong style="color:var(--indigo);">AI 产品迭代与方案验证：</strong>跟进银行网点对话系统从 Q&A 向 RAG、Agent 演进；参与 Agent 状态收敛、任务路由、Adapter 硬件适配方案业务评审，定义业务触发门槛；采集真实会话样本，对意图识别、知识库召回、工具调用、多轮对话缺陷做结构化归类，输出标准化问题台账，完成 AI 方案的业务侧效果验证</li>
-                            <li class="ai-bullet"><strong style="color:var(--indigo);">B 端需求拆解与研发对齐：</strong>梳理银行客户业务诉求与网点场景，区分共性与定制化需求，将业务诉求转化为研发 PRD，开发阶段协助澄清歧义、对齐业务—产品—研发三方认知</li>
-                            <li><strong>商业化配套输出：</strong>参与新品机器人宣发筹备，梳理产品卖点、校对对外宣传物料，支撑新品筹备</li>
+                            <li class="ai-bullet"><strong style="color:var(--indigo);">AI 产品迭代与方案验证：</strong>跟进银行网点 <span class="ai-highlight">对话系统从 Q&A 向 RAG、Agent</span> 的技术演进；参与 <span class="ai-highlight">Agent 状态收敛、任务路由、Adapter 硬件适配方案业务评审</span>，定义业务触发门槛；采集网点真实会话样本，对 <span class="ai-highlight">意图识别、知识库召回、工具调用、多轮对话缺陷</span> 做结构化归类，输出标准化问题台账；参与 <span class="ai-highlight">Agent 架构迭代、自动评测方案设计</span>，完成 <span class="ai-highlight">AI 方案的业务侧效果验证</span>；输出模块优化建议，跟进新版本试点落地与复盘。</li>
+                            <li class="ai-bullet"><strong style="color:var(--indigo);">B 端需求拆解与研发对齐：</strong>梳理银行客户业务诉求与网点场景，区分 <span class="ai-highlight">共性与定制化</span> 需求，参与需求评审；承接行方定制项目，将业务诉求转化为 <span class="ai-highlight">研发 PRD</span>，开发阶段协助澄清业务歧义，对齐 <span class="ai-highlight">业务—产品—研发</span> 三方认知。</li>
+                            <li><strong>商业化配套输出：</strong>参与新品机器人宣发筹备，梳理产品卖点、校对对外宣传物料，支撑新品筹备。</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- 智能交通研究院 AI 产品实习生（新简历更新，原"大模型知识库构建"升级） -->
+                <!-- 智能交通研究院 AI 产品实习生 -->
                 <div class="tl-item">
-                    <div class="tl-date-col"><div class="tl-date-text">2025.12<br>—<br>2026.04</div></div>
+                    <div class="tl-date-col"><div class="tl-date-text">2025.12<br>—<br>2026.03</div></div>
                     <div class="tl-dot-col"><div class="tl-dot" style="background:var(--blue);box-shadow:0 0 0 2px var(--blue);"></div></div>
                     <div class="tl-card">
                         <div class="tl-title">AI 产品实习生</div>
-                        <div class="tl-org">广东交通集团 · 智能交通研究院 <span class="tl-org-tag">AI 产品 / RAG</span></div>
+                        <div class="tl-org">广东交通集团下属公司 · 智能交通研究院 <span class="tl-org-tag">AI 产品 / RAG</span></div>
                         <ul class="tl-list">
-                            <li class="ai-bullet"><strong style="color:var(--blue);">垂直知识库从 0-1 落地支撑：</strong>深度参与交通行业领域 RAG 智能问答系统产品建设；对接业务端用户完成需求调研，梳理业务场景边界、问答能力诉求；使用 Python、SQL 完成海量 PDF、政策文本等非结构化数据治理</li>
-                            <li class="ai-bullet"><strong style="color:var(--blue);">AI 评测体系搭建与迭代闭环管理：</strong>设计 RAG 智能问答系统业务侧评测方案，构建包含准确率、召回率、幻觉率的多维度评估指标；完成测试并定位知识库切片策略、检索规则等十余项核心问题；输出迭代需求报告，对齐算法落地优化方案，并跟进复测验收，形成「测试—问题归因—需求输出—迭代复测」的 AI 产品迭代闭环</li>
-                            <li><strong>用户侧落地支撑：</strong>撰写智能问答系统业务端使用说明文档，收集业务人员使用反馈，沉淀后续产品优化方向</li>
+                            <li class="ai-bullet"><strong style="color:var(--blue);">垂直知识库从 0-1 落地支撑：</strong><span class="ai-highlight">深度参与交通行业领域 RAG 智能问答系统产品建设</span>；对接业务端用户完成需求调研，梳理 <span class="ai-highlight">业务场景边界、问答能力诉求</span>；使用 <span class="ai-highlight">Python、SQL</span> 完成海量 PDF、政策文本等非结构化数据治理。</li>
+                            <li class="ai-bullet"><strong style="color:var(--blue);">AI 评测体系搭建与迭代闭环管理：</strong><span class="ai-highlight">0–1 搭建 RAG 业务侧评测体系</span>（<span class="ai-highlight">准确率 / 召回率 / 幻觉率</span> 3 维度，覆盖 <span class="ai-highlight">1000+ 真实问答用例</span>）；一轮评测定位切片策略、检索规则等 <span class="ai-highlight">12 项核心缺陷</span>，推动算法侧修复后 <span class="ai-highlight">回答可用率由 68% 提升至 89%</span>、<span class="ai-highlight">幻觉率由 15% 降至 4%</span>，并形成「测试→归因→需求→复测」持续机制。</li>
+                            <li><strong>用户侧落地支撑：</strong>撰写智能问答系统业务端使用说明文档，收集业务人员使用反馈，沉淀后续产品优化方向。</li>
                         </ul>
                     </div>
                 </div>
@@ -1851,7 +1872,7 @@
                         <ul class="explore-list">
                             <li><div class="explore-dot" style="background:var(--blue);"></div><div><div class="explore-item-title">《启示录：打造用户喜爱的产品》</div><div class="explore-item-desc">产品管理经典，反复研读需求优先级排序、用户洞察与 MVP 验证部分，训练产品基本功</div></div></li>
                             <li><div class="explore-dot" style="background:var(--green);"></div><div><div class="explore-item-title">《AI 产品方法论》</div><div class="explore-item-desc">聚焦 LLM 产品化路径、提示工程与效果评测，学习如何把大模型能力转化为可交付的产品功能</div></div></li>
-                            <li><div class="explore-dot" style="background:var(--purple);"></div><div><div class="explore-item-title">《机器学习系统设计与实践》</div><div class="explore-item-desc">从工程化视角理解 AI 产品落地：数据闭环、评测体系、错误分析与迭代策略</div></div></li>
+                            <li><div class="explore-dot" style="background:var(--purple);"></div><div><div class="explore-item-title">《RAG 实战：大模型应用开发》</div><div class="explore-item-desc">系统学习 RAG 检索增强生成、向量数据库、语义切分与效果优化，跟进行业最新 HyDE / CRAG 等方案</div></div></li>
                         </ul>
                     </div>
                     <div class="explore-tab-panel" id="panel-methods">
@@ -1946,15 +1967,15 @@
                             </div>
                         </div>
 
-                        <!-- 项目3 -->
+                        <!-- 项目3：智能交通研究院 AI 产品实习落地 -->
                         <div class="project-card" data-project="project3">
-                            <div class="project-cover">🤖</div>
+                            <div class="project-cover">🚦</div>
                             <div class="project-body">
-                                <div class="project-title">大模型知识库构建与评测</div>
-                                <div class="project-desc">广东交通集团实习，构建交通领域知识库并优化 RAG 检索效果</div>
+                                <div class="project-title">交通行业 RAG 智能问答系统</div>
+                                <div class="project-desc">广东交通集团 · 智能交通研究院 AI 产品实习：知识库 0-1 落地与评测体系搭建</div>
                                 <div class="project-tags">
                                     <span class="project-tag">RAG</span>
-                                    <span class="project-tag">大模型</span>
+                                    <span class="project-tag">AI 评测</span>
                                     <span class="project-tag">知识库</span>
                                 </div>
                                 <a class="project-link">查看详情 →</a>
@@ -2264,12 +2285,14 @@ function initRadarChart() {
         window._radarChart.dispose();
     }
     window._radarChart = echarts.init(container);
+    var cw = container.clientWidth || 420;
+    var small = cw < 500;
     window._radarChart.setOption({
         backgroundColor: 'transparent',
         tooltip: { trigger: 'item' },
         legend: {
             bottom: 0,
-            textStyle: { color: subTextColor, fontSize: 12 }
+            textStyle: { color: subTextColor, fontSize: small ? 10 : 12 }
         },
         radar: {
             indicator: [
@@ -2282,9 +2305,9 @@ function initRadarChart() {
             ],
             shape: 'polygon',
             splitNumber: 4,
-            center: ['50%', '46%'],
-            radius: '65%',
-            axisName: { color: textColor, fontSize: 12, fontWeight: 600 },
+            center: ['50%', small ? '42%' : '44%'],
+            radius: small ? '50%' : '62%',
+            axisName: { color: textColor, fontSize: small ? 10 : 12, fontWeight: 600 },
             splitLine: { lineStyle: { color: borderColor } },
             splitArea: { areaStyle: { color: [splitAreaColor, splitAreaColor] } },
             axisLine: { lineStyle: { color: borderColor } }
@@ -2292,18 +2315,18 @@ function initRadarChart() {
         series: [{
             type: 'radar',
             symbol: 'circle',
-            symbolSize: 8,
+            symbolSize: small ? 5 : 7,
             data: [{
                 value: [95, 92, 85, 82, 80, 88],
                 name: '能力评分',
                 areaStyle: { color: 'rgba(59,130,246,0.15)' },
-                lineStyle: { color: '#3B82F6', width: 2 },
+                lineStyle: { color: '#3B82F6', width: small ? 1.5 : 2 },
                 itemStyle: { color: '#3B82F6' }
             }, {
                 value: [70, 88, 75, 60, 90, 70],
                 name: '兴趣方向',
                 areaStyle: { color: 'rgba(139,92,246,0.10)' },
-                lineStyle: { color: '#8B5CF6', width: 2, type: 'dashed' },
+                lineStyle: { color: '#8B5CF6', width: small ? 1.5 : 2, type: 'dashed' },
                 itemStyle: { color: '#8B5CF6' }
             }]
         }]
@@ -2415,24 +2438,24 @@ var PROJECT_DATA = {
         outcome: '通过建立系统化的质量监控体系，帮助产线将缺陷率降低了 8%。发现环境湿度与产品缺陷率存在显著相关性（R>0.7），提出的 3 项改进建议均被采纳实施。'
     },
     project3: {
-        icon: '🤖', gradient: 'linear-gradient(135deg, #F59E0B, #D97706)',
-        title: '大模型知识库构建与评测',
-        subtitle: '广东交通集团 · 实习项目 · 2025.12 — 2026.04',
+        icon: '🚦', gradient: 'linear-gradient(135deg, #3B82F6, #1D4ED8)',
+        title: '交通行业 RAG 智能问答系统',
+        subtitle: '广东交通集团 · 智能交通研究院 · AI 产品实习 · 2025.12 — 2026.03',
         meta: [
-            { label: '项目类型', value: 'AI 知识库 / RAG' },
-            { label: '我的角色', value: '知识库构建实习生' },
-            { label: '数据规模', value: '10GB+ 交通领域文档' },
-            { label: '项目周期', value: '5 个月' }
+            { label: '项目类型', value: 'AI 产品 / RAG 问答' },
+            { label: '我的角色', value: 'AI 产品实习生' },
+            { label: '数据规模', value: '1000+ 真实问答用例' },
+            { label: '项目周期', value: '4 个月' }
         ],
-        tech: ['RAG', 'LangChain', 'Coze', 'Dify', 'Python', '向量数据库', '提示工程'],
-        background: '在广东交通集团利通科技智能交通研究院实习，负责构建交通领域大模型知识库。对文本、PDF 等非结构化数据进行解析和分类，构建知识库数据标准，并测试评估 RAG 检索效果。',
+        tech: ['RAG', 'Python', 'SQL', '向量数据库', 'Prompt 工程', '效果评测'],
+        background: '在广东交通集团下属公司智能交通研究院实习期间，深度参与交通行业领域 RAG 智能问答系统产品建设。负责对接业务端用户完成需求调研，梳理业务场景边界与问答能力诉求，并使用 Python、SQL 完成海量 PDF、政策文本等非结构化数据治理。',
         results: [
-            { label: '关键因素', value: '识别 10+ 条' },
-            { label: '优化建议', value: '提出 6 条' },
-            { label: '检索准确率', value: '提升约 15%' },
-            { label: '文档处理量', value: '5000+ 份' }
+            { label: '评测维度', value: '准确率/召回率/幻觉率' },
+            { label: '核心缺陷', value: '定位 12 项' },
+            { label: '回答可用率', value: '68% → 89%' },
+            { label: '幻觉率', value: '15% → 4%' }
         ],
-        outcome: '建立了完整的交通领域知识库数据标准和处理流程，识别出 10+ 条影响知识库检索能力的关键因素，提出的 6 条 RAG 优化建议被团队采纳，检索准确率提升约 15%。'
+        outcome: '0–1 搭建 RAG 业务侧评测体系，覆盖 1000+ 真实问答用例；一轮评测定位切片策略、检索规则等 12 项核心缺陷，推动算法侧修复后回答可用率由 68% 提升至 89%、幻觉率由 15% 降至 4%，并形成「测试→归因→需求→复测」的持续迭代机制。'
     },
     project4: {
         icon: '🏗', gradient: 'linear-gradient(135deg, #3B82F6, #1D4ED8)',
@@ -2628,13 +2651,13 @@ var RESUME_TEXT = [
     '教育：华南理工大学 工业工程与管理 硕士研究生（推免）；本科 GPA 4.14/5.0，专业排名 2/118',
     '',
     '【实习经历】',
-    '1. 广电运通集团（广东数字科技集团）- 产品实习生（2026.06—2026.09）',
-    '   - B端需求拆解与研发对齐：将银行客户业务诉求转化为研发PRD，对齐业务-产品-研发三方认知',
-    '   - AI产品迭代与方案验证：采集上百条网点会话样本，完成意图识别/知识库召回/多轮对话缺陷的结构化归类与效果验证',
+    '1. 广电运通集团（广东数字科技集团）- 产品实习生（2026.08—2026.09）',
+    '   - B端需求拆解与研发对齐：区分共性与定制化需求，将银行客户业务诉求转化为研发PRD，对齐业务-产品-研发三方认知',
+    '   - AI产品迭代与方案验证：跟进对话系统从Q&A向RAG、Agent演进；参与Agent状态收敛、任务路由、Adapter硬件适配方案评审；对意图识别/知识库召回/工具调用/多轮对话缺陷做结构化归类，完成AI方案业务侧效果验证',
     '   - 商业化配套：参与新品机器人宣发筹备，梳理卖点、校对对外物料',
-    '2. 广东交通集团 - 智能交通研究院 AI产品实习生（2025.12—2026.04）',
-    '   - 垂直知识库0-1落地：RAG智能问答系统建设，Python/SQL完成海量PDF/政策文本数据治理',
-    '   - AI评测体系与迭代闭环：准确率/召回率/幻觉率多维评估，定位十余项核心问题',
+    '2. 广东交通集团下属公司 - 智能交通研究院 AI产品实习生（2025.12—2026.03）',
+    '   - 垂直知识库0-1落地：深度参与交通行业RAG智能问答系统产品建设，梳理业务场景边界与问答能力诉求，Python/SQL完成海量PDF/政策文本数据治理',
+    '   - AI评测体系与迭代闭环：0-1搭建RAG业务侧评测体系（准确率/召回率/幻觉率3维度，覆盖1000+真实问答用例），定位12项核心缺陷，回答可用率68%→89%、幻觉率15%→4%',
     '   - 用户侧落地：撰写使用说明，收集反馈沉淀优化方向',
     '3. 中建三局 - 数据分析/PM助理（2025.02—2025.05）',
     '   - SQL/Tableau/Power BI 数据可视化，识别2项进度偏差',
