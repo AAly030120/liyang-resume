@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" fill="url(#bg)"/>
+  <circle cx="130" cy="70" r="40" fill="#ffffff" opacity="0.08"/>
+  <circle cx="700" cy="290" r="56" fill="#ffffff" opacity="0.08"/>
+
+  <!-- 雨滴 -->
+  <g fill="#ffffff" opacity="0.35">
+    <path d="M90,120 c8,12 12,18 12,24 a12,12 0 0 1 -24,0 c0,-6 4,-12 12,-24"/>
+    <path d="M160,60 c6,9 9,14 9,18 a9,9 0 0 1 -18,0 c0,-4 3,-9 9,-18"/>
+    <path d="M660,70 c7,10 10,15 10,20 a10,10 0 0 1 -20,0 c0,-5 3,-10 10,-20"/>
+    <path d="M720,150 c6,9 9,14 9,18 a9,9 0 0 1 -18,0 c0,-4 3,-9 9,-18"/>
+  </g>
+
+  <!-- 图表面板 -->
+  <g transform="translate(130,95)">
+    <rect x="0" y="0" width="540" height="200" rx="16" fill="#ffffff" opacity="0.14" stroke="#ffffff" stroke-width="2" stroke-opacity="0.35"/>
+    <!-- 网格 -->
+    <g stroke="#ffffff" stroke-width="1" opacity="0.18">
+      <line x1="40" y1="40" x2="510" y2="40"/>
+      <line x1="40" y1="85" x2="510" y2="85"/>
+      <line x1="40" y1="130" x2="510" y2="130"/>
+      <line x1="40" y1="170" x2="510" y2="170"/>
+    </g>
+    <!-- 坐标轴 -->
+    <line x1="40" y1="30" x2="40" y2="170" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+    <line x1="40" y1="170" x2="510" y2="170" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+    <!-- LSTM 预测曲线（实际） -->
+    <polyline points="40,150 85,138 130,148 175,118 220,128 265,98 310,110 355,82 400,94 445,66 490,76"
+      fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <!-- 预测虚线 -->
+    <polyline points="490,76 520,60 545,68" fill="none" stroke="#ffffff" stroke-width="5" stroke-dasharray="4 9" stroke-linecap="round" opacity="0.9"/>
+    <circle cx="490" cy="76" r="8" fill="#ffffff"/>
+    <circle cx="545" cy="68" r="8" fill="#ffffff" opacity="0.6"/>
+  </g>
+
+  <text x="400" y="330" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700" fill="#ffffff" opacity="0.95">"十四五"国家重点研发计划 · LSTM 降雨预测</text>
+</svg>
