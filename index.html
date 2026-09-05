@@ -21,10 +21,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- html2pdf.js for PDF export -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- 预连接第三方 CDN，加速资源握手，提升首屏速度（建议 5） -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- html2pdf.js for PDF export（defer：仅导出时用到，不阻塞首屏） -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- AOS 滚动动画 -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <!-- JSON-LD 结构化数据（建议 6：利于搜索引擎收录与富摘要） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "李阳",
+      "jobTitle": "AI产品实习生 / 产品经理实习生",
+      "url": "https://aaly030120.github.io/liyang-resume/",
+      "image": "https://aaly030120.github.io/liyang-resume/og-cover.png",
+      "email": "mailto:llya3120@163.com",
+      "telephone": "+86-17267617588",
+      "address": { "@type": "PostalAddress", "addressLocality": "广州", "addressCountry": "CN" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "华南理工大学", "department": "工业工程与管理（硕士，推免）" },
+        { "@type": "CollegeOrUniversity", "name": "山东建筑大学", "department": "工程管理（本科）" }
+      ],
+      "knowsAbout": ["AI产品", "RAG", "大模型", "需求分析", "数据分析", "产品管理", "知识图谱"],
+      "sameAs": [
+        "https://github.com/AAly030120",
+        "https://github.com/AAly030120/litkg-assistant",
+        "https://github.com/AAly030120/ResearchPal"
+      ]
+    }
+    </script>
+    <!--
+      V10: 轻量访问统计（建议 8，隐私友好、无 Cookie）
+      方式一（推荐，免费）：使用 Umami Cloud —— 注册后在下方填入你的 data-website-id 并去掉注释即可生效。
+      <script defer src="https://eu.umami.is/script.js" data-website-id="YOUR-UMAMI-WEBSITE-ID"></script>
+
+      方式二（自有后端）：把页面中 window.ANALYTICS_ENDPOINT 改为你的接收地址，事件以 POST JSON（sendBeacon）上报。
+    -->
     <style>
     /* =============================================
        CSS 变量（浅色 / 深色 双主题）
@@ -1638,6 +1673,82 @@
         to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
+    /* =============================================
+       V10: 新增功能样式（粘贴JD / 结果导出 / 板块动线 / 项目双入口）
+       ============================================= */
+    /* —— 匹配器：上传 / 粘贴 JD 切换 —— */
+    .jd-input-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+    .jd-tab {
+        flex: 1; padding: 9px 10px; border: 1px solid var(--bd); background: var(--card);
+        border-radius: var(--r-md); cursor: pointer; font-size: 13px; font-weight: 600;
+        color: var(--txt-2); transition: all .2s var(--ease);
+    }
+    .jd-tab.active {
+        background: linear-gradient(135deg, var(--blue), var(--indigo)); color: #fff;
+        border-color: transparent; box-shadow: 0 4px 12px rgba(59,130,246,.32);
+    }
+    .jd-paste-area {
+        width: 100%; min-height: 130px; resize: vertical; padding: 12px 14px;
+        border: 1px solid var(--bd); border-radius: var(--r-md); background: var(--card);
+        color: var(--txt); font-family: inherit; font-size: 14px; line-height: 1.6; margin-bottom: 12px;
+    }
+    .jd-paste-area:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,.16); }
+
+    /* —— 匹配结果：导出 / 分享 操作区 —— */
+    .result-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 4px; }
+    .btn-result-action {
+        display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px;
+        border-radius: var(--r-md); border: 1px solid var(--bd); background: var(--card);
+        color: var(--txt); font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s var(--ease);
+    }
+    .btn-result-action:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+    .btn-result-action.primary { background: linear-gradient(135deg, var(--blue), var(--indigo)); color: #fff; border-color: transparent; }
+    .share-card-canvas { display: block; max-width: 100%; margin: 14px auto 0; border-radius: var(--r-lg); box-shadow: var(--sh); }
+
+    /* —— 板块间浏览动线 —— */
+    .section-next-wrap { display: flex; justify-content: center; margin-top: 50px; }
+    .section-next {
+        display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+        border-radius: 999px; background: linear-gradient(135deg, var(--blue), var(--indigo));
+        color: #fff; font-weight: 700; font-size: 15px; border: none; cursor: pointer;
+        box-shadow: 0 6px 18px rgba(59,130,246,.32); transition: all .25s var(--ease);
+    }
+    .section-next:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(59,130,246,.42); }
+    .section-next .arrow { transition: transform .25s var(--ease); }
+    .section-next:hover .arrow { transform: translateX(4px); }
+
+    /* —— 项目卡片：双入口按钮 —— */
+    .project-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .project-link {
+        display: inline-flex; align-items: center; gap: 5px; padding: 8px 14px;
+        border-radius: var(--r-md); font-size: 13px; font-weight: 600; text-decoration: none; transition: all .2s var(--ease);
+    }
+    .project-link[href] { background: linear-gradient(135deg, var(--blue), var(--indigo)); color: #fff; box-shadow: 0 3px 10px rgba(59,130,246,.25); }
+    .project-link[href]:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(59,130,246,.38); }
+    .project-link:not([href]) { background: var(--card); color: var(--blue); border: 1px solid var(--blue); cursor: pointer; }
+    .project-link:not([href]):hover { background: rgba(59,130,246,.08); transform: translateY(-2px); }
+
+    /* =============================================
+       打印样式（建议 4：Ctrl+P 输出干净简历）
+       ============================================= */
+    @media print {
+        #mainNav, #readingProgressBar, #copyToast, .fab, .theme-toggle, .nav-cta,
+        .hero-btns, .section-next-wrap, .matcher-card, .result-actions, .config-tip,
+        .upload-zone, .loading-area, .matcher-intro, .btn-analyze, .matcher-head,
+        .modal-overlay, .drawer, .toast, .hero-scroll-hint, .jd-input-tabs,
+        .jd-paste-area, .jd-meta-row, .result-panel, #contactFab { display: none !important; }
+        html, body { background: #fff !important; color: #000 !important; }
+        .main, .container { width: 100% !important; max-width: none !important; padding: 0 !important; }
+        .page { display: none !important; }
+        .page.active { display: block !important; }
+        * { box-shadow: none !important; text-shadow: none !important; }
+        a { color: #000 !important; text-decoration: none !important; }
+        .hero-name { -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; }
+        .project-card, .bento-card, .edu-card-v2, .tl-item, .dim-row, .kw-tag, .about-card {
+            break-inside: avoid; page-break-inside: avoid; border: 1px solid #ddd !important;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -1807,6 +1918,10 @@
             </div>
         </div>
 
+        <div class="section-next-wrap">
+            <button class="section-next" onclick="switchTab('edu-work')">查看教育与工作经历 <span class="arrow">→</span></button>
+        </div>
+
     </section>
 
     <!-- ======== 实习与教育经历 ======== -->
@@ -1913,6 +2028,9 @@
             </div>
 
             </div>
+        <div class="section-next-wrap">
+            <button class="section-next" onclick="switchTab('skills-honors')">查看技能与证书 <span class="arrow">→</span></button>
+        </div>
     </section>
 
     <!-- ======== 技能特长与证书 ======== -->
@@ -2005,6 +2123,9 @@
                 </div>
             </div>
 
+        <div class="section-next-wrap">
+            <button class="section-next" onclick="switchTab('explore')">查看学习与项目探索 <span class="arrow">→</span></button>
+        </div>
         </div>
     </section>
 
@@ -2070,8 +2191,11 @@
                                     <span class="project-tag">GraphRAG</span>
                                     <span class="project-tag">ChromaDB</span>
                                 </div>
-                                <a class="project-link" href="https://github.com/AAly030120/litkg-assistant" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link" href="https://github.com/AAly030120/litkg-assistant" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
+                                    <a class="project-link" href="https://litkg-assistant-yprhhcyglsbuq9cxcewyah.streamlit.app/" target="_blank" onclick="event.stopPropagation()">🚀 在线演示</a>
+                                    <a class="project-link" onclick="event.stopPropagation();openDrawer('project5')">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
@@ -2090,8 +2214,10 @@
                                     <span class="project-tag">LLM</span>
                                     <span class="project-tag">AI 工作台</span>
                                 </div>
-                                <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
+                                    <a class="project-link" onclick="event.stopPropagation();openDrawer('project6')">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
@@ -2115,7 +2241,9 @@
                                     <span class="project-tag">知识库</span>
                                     <span class="project-tag">Prompt 工程</span>
                                 </div>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
@@ -2139,7 +2267,9 @@
                                     <span class="project-tag">SCI 论文</span>
                                     <span class="project-tag">数据清洗</span>
                                 </div>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
@@ -2163,7 +2293,9 @@
                                     <span class="project-tag">质量监控</span>
                                     <span class="project-tag">相关性分析</span>
                                 </div>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
@@ -2187,13 +2319,18 @@
                                     <span class="project-tag">项目管理</span>
                                     <span class="project-tag">数据可视化</span>
                                 </div>
-                                <a class="project-link">查看详情 →</a>
+                                <div class="project-links">
+                                    <a class="project-link">查看详情 →</a>
+                                </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
+        <div class="section-next-wrap">
+            <button class="section-next" onclick="switchTab('matcher')">体验 AI 岗位匹配器 <span class="arrow">→</span></button>
+        </div>
         </div>
     </section>
 
@@ -2219,6 +2356,11 @@
                     <input type="text" id="jdJobTitle" class="jd-title-input" placeholder="🎯 岗位名称（选填，如：AI产品实习生）" maxlength="40">
                     <input type="text" id="jdCompany" class="jd-title-input" placeholder="🏢 公司名称（选填，如：腾讯）" maxlength="40">
                 </div>
+
+                <div class="jd-input-tabs">
+                    <button type="button" class="jd-tab active" data-jd-mode="file" id="jdTabFile">📎 上传文件</button>
+                    <button type="button" class="jd-tab" data-jd-mode="paste" id="jdTabPaste">✍️ 粘贴文本</button>
+                </div>
                 <div class="upload-zone" id="uploadZone">
                     <input type="file" id="jdFileInput" accept=".txt,.pdf,.doc,.docx,.md" style="display:none;">
                     <div class="upload-icon">📄</div>
@@ -2226,6 +2368,7 @@
                     <div class="upload-hint">支持 TXT / PDF / DOC / MD 格式</div>
                     <div class="uploaded-name" id="uploadedName"><span>✅</span><span id="fileNameText"></span></div>
                 </div>
+                <textarea id="jdPasteArea" class="jd-paste-area" style="display:none;" placeholder="可直接粘贴岗位 JD 文本（支持大段招聘描述），例如：&#10;岗位职责：负责 AI 产品需求分析与方案设计……&#10;任职要求：熟悉 RAG / 大模型、具备数据分析能力……"></textarea>
 
                 <div class="config-tip">💡 已内置 DeepSeek 大模型接口，<strong>无需任何配置</strong>——上传 JD 后直接点击「开始匹配分析」即可。</div>
 
@@ -2260,9 +2403,19 @@
                         <div class="result-md" id="mdResult"></div>
                     </div>
 
+                    <div class="result-actions">
+                        <button class="btn-result-action primary" id="copyResultBtn">📋 复制分析结果</button>
+                        <button class="btn-result-action" id="shareCardBtn">🖼 生成分享卡片</button>
+                        <canvas id="shareCardCanvas" class="share-card-canvas" style="display:none;"></canvas>
+                    </div>
+
                     <button class="btn-close-result" id="closeResultBtn">关闭结果</button>
                 </div>
             </div>
+        <div class="section-next-wrap">
+            <button class="section-next" onclick="switchTab('home')">🏠 返回首页 <span class="arrow">→</span></button>
+            <a class="section-next" href="resume.pdf" download="李阳-产品岗.pdf" style="background:linear-gradient(135deg,var(--green),#059669);box-shadow:0 6px 18px rgba(16,185,129,.32);">⬇ 下载 PDF 简历</a>
+        </div>
         </div>
     </section>
 
@@ -2293,11 +2446,11 @@
 </footer>
 
 <!-- AOS + Typed.js + Vanilla-Tilt + ECharts + marked.js -->
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
 (function() {
@@ -2364,6 +2517,9 @@ function switchTab(tabId, opts) {
 
     // V9: 切换板块后重置导航滚动指示条
     updateNavScrollIndicator(0);
+
+    // V10: 轻量统计 —— 记录板块浏览（面试官真实停留路径）
+    trackEvent('view_section', { section: tabId });
 
     // 切换到"技能与证书"板块时，确保雷达图在容器可见后再初始化/重绘
     if (tabId === 'skills-honors') {
@@ -2907,9 +3063,49 @@ function copyHighlights() {
    13. 文件上传
    ============================================================ */
 var uploadedJDContent = '';
+var lastJDText = ''; // V10: 记录最近一次分析使用的 JD 文本（粘贴或文件），供关键词云使用
+var lastResult = null; // V10: 记录最近一次分析结果，供复制/分享卡片使用
+var lastJobTitle = ''; // V10: 记录最近分析的岗位名称，用于分享卡片标题
+
+// V10: 全局 Toast（带文案参数）
+function showToast(msg) {
+    var toast = document.getElementById('copyToast');
+    if (!toast) return;
+    toast.textContent = msg || '✅ 已完成';
+    toast.classList.add('show');
+    clearTimeout(window._copyToastTimer);
+    window._copyToastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2400);
+}
+
+// V10: 轻量访问统计（隐私友好，无 Cookie）
+// 配置方式（任选其一）：
+//   1) 自有后端：把 ANALYTICS_ENDPOINT 改为你的接收地址，事件以 POST JSON 发送；
+//   2) 免费 SaaS：在 <head> 启用 Umami 脚本并填入 data-website-id（见文件头部注释）。
+window.ANALYTICS_ENDPOINT = ''; // 例如 'https://your-host.example.com/collect'
+function trackEvent(name, data) {
+    try {
+        var payload = { event: name, data: data || {}, t: Date.now(), path: location.pathname };
+        // 自有端点
+        if (window.ANALYTICS_ENDPOINT && navigator.sendBeacon) {
+            navigator.sendBeacon(window.ANALYTICS_ENDPOINT, new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+        }
+        // Umami（若已启用）
+        if (window.umami && typeof window.umami.track === 'function') {
+            window.umami.track(name, payload.data);
+        }
+        // 开发期调试（不上报）
+        if (!window.ANALYTICS_ENDPOINT && !window.umami) {
+            // console.debug('[analytics]', name, payload.data);
+        }
+    } catch (e) { /* 统计失败不影响主流程 */ }
+}
+var jdInputMode = 'file'; // 'file' | 'paste'  —— V10: 匹配器支持粘贴 JD 文本
 function initUpload() {
     var zone = document.getElementById('uploadZone');
     var input = document.getElementById('jdFileInput');
+    var pasteArea = document.getElementById('jdPasteArea');
+    var tabFile = document.getElementById('jdTabFile');
+    var tabPaste = document.getElementById('jdTabPaste');
     if (!zone || !input) return;
     zone.onclick = function(e) { if (e.target !== input) input.click(); };
     zone.ondragover = function(e) { e.preventDefault(); zone.classList.add('dragover'); };
@@ -2919,6 +3115,17 @@ function initUpload() {
         if (e.dataTransfer.files.length > 0) processFile(e.dataTransfer.files[0]);
     };
     input.onchange = function(e) { if (e.target.files.length > 0) processFile(e.target.files[0]); };
+
+    // V10: 上传 / 粘贴 切换
+    function setMode(mode) {
+        jdInputMode = mode;
+        if (tabFile) tabFile.classList.toggle('active', mode === 'file');
+        if (tabPaste) tabPaste.classList.toggle('active', mode === 'paste');
+        if (zone) zone.style.display = (mode === 'file') ? '' : 'none';
+        if (pasteArea) pasteArea.style.display = (mode === 'paste') ? 'block' : 'none';
+    }
+    if (tabFile) tabFile.onclick = function() { setMode('file'); };
+    if (tabPaste) tabPaste.onclick = function() { setMode('paste'); };
 }
 function processFile(file) {
     var nameEl = document.getElementById('fileNameText');
@@ -2988,13 +3195,26 @@ function analyzeMatch() {
     var modelId = MATCHER_API.model;
     var apiKey = MATCHER_API.key;
 
-    if (!uploadedJDContent) { alert('请先上传职位描述（JD）文件！'); return; }
+    // V10: 根据输入模式取 JD 内容（粘贴文本优先于上传文件）
+    var jdText;
+    if (jdInputMode === 'paste') {
+        var pasteEl = document.getElementById('jdPasteArea');
+        jdText = (pasteEl && pasteEl.value) ? pasteEl.value.trim() : '';
+    } else {
+        jdText = uploadedJDContent;
+    }
+    if (!jdText) {
+        alert(jdInputMode === 'paste' ? '请先在文本框中粘贴岗位 JD 内容！' : '请先上传职位描述（JD）文件！');
+        return;
+    }
+    lastJDText = jdText;
 
     // V9: 读取岗位名称 / 公司（选填），让分析更聚焦
     var jobTitleInput = document.getElementById('jdJobTitle');
     var companyInput = document.getElementById('jdCompany');
     var jobTitle = jobTitleInput ? jobTitleInput.value.trim() : '';
     var companyName = companyInput ? companyInput.value.trim() : '';
+    lastJobTitle = jobTitle || companyName;
     var targetJobDesc = [];
     if (jobTitle) targetJobDesc.push('岗位名称：' + jobTitle);
     if (companyName) targetJobDesc.push('公司：' + companyName);
@@ -3006,7 +3226,7 @@ function analyzeMatch() {
     document.getElementById('resultPanel').classList.remove('show');
 
     var systemPrompt = '你是一位资深招聘面试官，正在为团队评估候选人「李阳」与目标岗位的匹配度。请严格基于简历和职位描述(JD)进行匹配分析。\n\n输出要求（JSON格式）：\n{\n  "totalScore": 整数(85-100),\n  "dimensions": [\n    {"name":"学历背景","score":整数(82-100)},\n    {"name":"工作经验","score":整数(82-100)},\n    {"name":"技能匹配","score":整数(82-100)},\n    {"name":"综合潜力","score":整数(82-100)}\n  ],\n  "keywords": [\n    {"k":"JD中的核心关键词(候选人已具备)","w":1到5的整数(权重，JD中越重要越大)}\n  ],\n  "analysis": "面试官视角的Markdown报告"\n}\n\nkeywords 数组：从JD中提取8-15个候选人简历中有对应经历/技能支撑的核心关键词（如产品、RAG、大模型、Python、需求分析等），w 为该关键词在JD中的重要程度(1-5)。\n\nanalysis 报告必须仅包含以下两个章节，且均以面试官口吻撰写：\n## 匹配亮点（3-5条）\n- 逐条说明候选人优势与岗位JD的契合点，引用岗位关键词与简历中的对应经历/技能。\n- 重点突出：AI产品落地、RAG/大模型应用、数据驱动、B端需求拆解、跨团队协作、科研与工程化能力。\n## 录用建议\n- 从面试官角度给出结论，说明为什么该候选人值得进入下一轮面试/录用，语言简洁专业。\n- 不要出现「建议候选人」这类站在候选人角度的表述。\n\n严禁输出任何“不足之处”“待提升”“短板”“劣势”“风险”“建议候选人补强”等负面或贬低性内容。';
-    var userMessage = '【简历】\n' + RESUME_TEXT + '\n' + targetJobBlock + '\n【岗位JD】\n' + uploadedJDContent + '\n\n请按上述要求输出JSON匹配分析结果。';
+    var userMessage = '【简历】\n' + RESUME_TEXT + '\n' + targetJobBlock + '\n【岗位JD】\n' + jdText + '\n\n请按上述要求输出JSON匹配分析结果。';
 
     var headers = { 'Content-Type': 'application/json' };
     var requestURL = apiURL;
@@ -3095,7 +3315,7 @@ function renderKeywordCloud(result) {
         });
     }
     // 来源2：本地词典 —— JD 中出现 且 简历中有支撑 的关键词
-    var jdText = uploadedJDContent || '';
+    var jdText = lastJDText || uploadedJDContent || '';
     KW_DICTIONARY.forEach(function(kw) {
         if (!kwInText(kw, jdText)) return;
         if (!kwInText(kw, RESUME_TEXT)) return;
@@ -3124,9 +3344,137 @@ function renderKeywordCloud(result) {
     });
     if (countEl) countEl.textContent = '命中 ' + items.length + ' 项 JD 核心关键词';
     wrap.style.display = 'block';
+    window._lastKeywordItems = items; // V10: 供分享卡片复用
+}
+
+/* ============================================================
+   14.6 V10: 匹配结果导出 —— 复制分析结果 / 生成分享卡片
+   ============================================================ */
+function buildResultMarkdown() {
+    if (!lastResult) return '';
+    var r = lastResult;
+    var score = Math.min(100, Math.max(85, parseInt(r.totalScore) || 85));
+    var lines = [];
+    lines.push('# 李阳 · AI 岗位匹配分析报告');
+    if (lastJobTitle) lines.push('岗位：' + lastJobTitle);
+    lines.push('综合匹配度：' + score + '/100');
+    if (r.dimensions && r.dimensions.length) {
+        lines.push('');
+        lines.push('## 维度评分');
+        r.dimensions.forEach(function(d) {
+            var s = Math.min(100, Math.max(80, parseInt(d.score) || 85));
+            lines.push('- ' + d.name + '：' + s);
+        });
+    }
+    lines.push('');
+    lines.push('## 详细分析');
+    lines.push((r.analysis || '').replace(/^#+\s*/gm, '### '));
+    lines.push('');
+    lines.push('—— 由李阳在线交互简历 AI 岗位匹配器生成：https://aaly030120.github.io/liyang-resume/');
+    return lines.join('\n');
+}
+
+function copyResult() {
+    var md = buildResultMarkdown();
+    if (!md) { alert('暂无可复制的分析结果。'); return; }
+    function done() { showToast('📋 分析结果已复制到剪贴板'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(md).then(done, function() {
+            fallbackCopy(md); done();
+        });
+    } else {
+        fallbackCopy(md); done();
+    }
+}
+function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+}
+
+function generateShareCard() {
+    var canvas = document.getElementById('shareCardCanvas');
+    if (!canvas || !lastResult) { alert('请先完成一次匹配分析再生成分享卡片。'); return; }
+    var r = lastResult;
+    var score = Math.min(100, Math.max(85, parseInt(r.totalScore) || 85));
+    var W = 1200, H = 630;
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+
+    // 背景渐变
+    var grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#0F172A'); grad.addColorStop(1, '#1E3A8A');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+    // 装饰圆
+    ctx.fillStyle = 'rgba(59,130,246,0.18)';
+    ctx.beginPath(); ctx.arc(W - 120, 110, 180, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(139,92,246,0.15)';
+    ctx.beginPath(); ctx.arc(120, H - 100, 150, 0, Math.PI * 2); ctx.fill();
+
+    ctx.textBaseline = 'alphabetic';
+    // 标题
+    ctx.fillStyle = '#E6EDF3'; ctx.font = 'bold 46px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText('李阳 · AI 岗位匹配报告', 70, 90);
+    ctx.fillStyle = '#93C5FD'; ctx.font = '24px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText(lastJobTitle ? ('目标岗位：' + lastJobTitle) : 'AI 产品 / 产品经理实习生', 70, 128);
+
+    // 大分数
+    ctx.fillStyle = '#FFFFFF'; ctx.font = 'bold 150px Arial';
+    ctx.fillText(String(score), 70, 320);
+    ctx.fillStyle = '#93C5FD'; ctx.font = '30px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText('/ 100  综合匹配度', 300, 300);
+    ctx.fillStyle = score >= 90 ? '#34D399' : '#60A5FA';
+    ctx.font = '26px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText(score >= 90 ? '✅ 高度匹配 · 建议推进下一轮面试' : '💼 匹配度优秀 · 建议安排面试', 70, 360);
+
+    // 维度条
+    var dims = (r.dimensions && r.dimensions.length) ? r.dimensions : [];
+    var bx = 70, by = 410, bw = 520, bh = 18, gap = 44;
+    dims.forEach(function(d, i) {
+        var s = Math.min(100, Math.max(80, parseInt(d.score) || 85));
+        var y = by + i * gap;
+        ctx.fillStyle = '#CBD5E1'; ctx.font = '22px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillText(d.name, bx, y - 6);
+        ctx.fillStyle = 'rgba(255,255,255,0.15)'; ctx.fillRect(bx, y, bw, bh);
+        var fg = ctx.createLinearGradient(bx, 0, bx + bw, 0);
+        fg.addColorStop(0, '#3B82F6'); fg.addColorStop(1, '#8B5CF6');
+        ctx.fillStyle = fg; ctx.fillRect(bx, y, bw * (s / 100), bh);
+        ctx.fillStyle = '#FFFFFF'; ctx.font = 'bold 20px Arial'; ctx.fillText(String(s), bx + bw + 16, y + 15);
+    });
+
+    // 关键词云（右侧）
+    var kwItems = (window._lastKeywordItems && window._lastKeywordItems.length) ? window._lastKeywordItems : [];
+    var kwx = 680, kwy = 410, kwGap = 46;
+    ctx.fillStyle = '#93C5FD'; ctx.font = '22px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText('🎯 JD 关键词命中', kwx, kwy - 24);
+    kwItems.slice(0, 8).forEach(function(it, i) {
+        var y = kwy + i * kwGap;
+        ctx.fillStyle = '#34D399'; ctx.fillText('✓', kwx, y);
+        ctx.fillStyle = '#E6EDF3'; ctx.font = '22px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillText(it.k, kwx + 30, y);
+    });
+
+    // 页脚
+    ctx.fillStyle = 'rgba(230,237,243,0.7)'; ctx.font = '20px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText('由李阳在线交互简历 AI 岗位匹配器生成 · aaly030120.github.io/liyang-resume', 70, H - 36);
+
+    canvas.style.display = 'block';
+    // 触发下载
+    setTimeout(function() {
+        try {
+            var url = canvas.toDataURL('image/png');
+            var a = document.createElement('a');
+            a.href = url; a.download = '李阳_岗位匹配卡片.png';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            showToast('🖼 分享卡片已生成并开始下载');
+        } catch (e) { showToast('⚠️ 卡片生成失败，请截图保存'); }
+    }, 200);
 }
 
 function renderResult(result) {
+    lastResult = result;
     document.getElementById('loadingArea').classList.remove('show');
     var panel = document.getElementById('resultPanel');
     panel.classList.add('show');
@@ -3209,6 +3557,14 @@ function renderResult(result) {
 
     var ab = document.getElementById('analyzeBtn');
     if (ab) { ab.disabled = false; ab.textContent = '🔄 重新分析'; }
+
+    // V10: 结果导出 / 分享按钮
+    var copyBtn = document.getElementById('copyResultBtn');
+    if (copyBtn) copyBtn.onclick = copyResult;
+    var shareBtn = document.getElementById('shareCardBtn');
+    if (shareBtn) shareBtn.onclick = generateShareCard;
+    // 上报：匹配结果已生成（轻量统计）
+    trackEvent('match_result', { score: score });
 }
 
 /* ============================================================
