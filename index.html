@@ -2289,6 +2289,7 @@
                                 <div class="project-links">
                                     <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
                                     <a class="project-link" href="https://researchpal-inky.vercel.app" target="_blank" onclick="event.stopPropagation()">🚀 在线演示</a>
+                                    <a class="project-link" onclick="event.stopPropagation();openDrawer('project6')">查看详情 →</a>
                                 </div>
                             </div>
                                 <div class="project-hover">
@@ -3096,7 +3097,6 @@ for (var p = 0; p < projectCards.length; p++) {
     (function(card) {
         card.onclick = function() {
             var pid = card.getAttribute('data-project');
-            if (pid === 'project6') { window.open('https://github.com/AAly030120/ResearchPal', '_blank'); return; }
             if (pid) openDrawer(pid);
         };
     })(projectCards[p]);
