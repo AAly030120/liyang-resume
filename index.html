@@ -2287,7 +2287,7 @@
                                 </div>
                                 <div class="project-links">
                                     <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
-                                    <a class="project-link" onclick="event.stopPropagation();openDrawer('project6')">查看详情 →</a>
+                                    <a class="project-link" href="https://researchpal-inky.vercel.app" target="_blank" onclick="event.stopPropagation()">🚀 在线演示</a>
                                 </div>
                             </div>
                                 <div class="project-hover">
@@ -3095,6 +3095,7 @@ for (var p = 0; p < projectCards.length; p++) {
     (function(card) {
         card.onclick = function() {
             var pid = card.getAttribute('data-project');
+            if (pid === 'project6') { window.open('https://github.com/AAly030120/ResearchPal', '_blank'); return; }
             if (pid) openDrawer(pid);
         };
     })(projectCards[p]);
@@ -4097,8 +4098,10 @@ function initV8() {
     // Override scroll event to update reading progress
     window.addEventListener('scroll', updateReadingProgress);
 
-    // Override openDrawer to use V8 Case Study format
-    window.openDrawer = openDrawerV8;
+    // 注：保留旧 openDrawer（基于完整 PROJECT_DATA，6 个项目数据齐全）。
+    // V8 的 openDrawerV8 的 projects 字典仅含 project1，会导致其余项目抽屉内容错位，
+    // 故此处不再覆盖。ResearchPal 卡片主体点击跳转 GitHub 的特判见项目卡片绑定处。
+    // window.openDrawer = openDrawerV8;
 
     console.log('V8 features initialized!');
 }
