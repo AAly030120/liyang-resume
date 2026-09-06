@@ -2256,7 +2256,7 @@
                                     <span class="project-tag">Streamlit</span>
                                     <span class="project-tag">ChromaDB</span>
                                     <span class="project-tag">NetworkX</span>
-                                    <span class="project-tag">GraphRAG</span>
+                                    <span class="project-tag">大模型 API</span>
                                 </div>
                                 <div class="project-links">
                                     <a class="project-link" href="https://github.com/AAly030120/litkg-assistant" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
@@ -2265,8 +2265,8 @@
                                 </div>
                             </div>
                                 <div class="project-hover">
-                                    <div class="project-hover-line">独立完成从需求设计到云端部署的全链路，搭建 PDF 智能抽取、跨论文图谱问答的可交互 AI 科研产品</div>
-                                    <div class="project-hover-metrics">Python/Streamlit/ChromaDB/NetworkX · 已上线公开 Demo</div>
+                                    <div class="project-hover-line">图谱增强推理 · 检索质量优化 · 产品落地交付</div>
+                                    <div class="project-hover-metrics">BM25 + 向量混合检索 · 论断证据锚定抗幻觉 · 可视化仪表盘与离线 Demo</div>
                                 </div>
                         </div>
 
@@ -2280,10 +2280,11 @@
                                 <div class="project-title">ResearchPal</div>
                                 <div class="project-desc">AI 驱动的科研工作台 · 2026.08—2026.09</div>
                                 <div class="project-tags">
+                                    <span class="project-tag">Next.js</span>
                                     <span class="project-tag">FastAPI</span>
-                                    <span class="project-tag">Next.js 15</span>
-                                    <span class="project-tag">多模型 LLM 路由</span>
-                                    <span class="project-tag">AI 工作台</span>
+                                    <span class="project-tag">Supabase</span>
+                                    <span class="project-tag">ChromaDB</span>
+                                    <span class="project-tag">大模型 API</span>
                                 </div>
                                 <div class="project-links">
                                     <a class="project-link" href="https://github.com/AAly030120/ResearchPal" target="_blank" onclick="event.stopPropagation()">🔗 GitHub 仓库</a>
@@ -2291,8 +2292,8 @@
                                 </div>
                             </div>
                                 <div class="project-hover">
-                                    <div class="project-hover-line">独立完成从需求设计到云端部署的全链路，搭建文献总结、数据可视化、PPT 自动生成与代码沙箱执行的科研 AI 工具</div>
-                                    <div class="project-hover-metrics">FastAPI + Next.js 15 + 多模型 LLM 路由 · 离线 Demo 模式已上线</div>
+                                    <div class="project-hover-line">AI 工作流编排 · 检索评测优化 · 安全产品落地</div>
+                                    <div class="project-hover-metrics">RAG-GraphRAG-Agent 三级检索 · Fernet 密钥加密 · 多用户 Demo 云端部署</div>
                                 </div>
                         </div>
 
@@ -2893,22 +2894,22 @@ var PROJECT_DATA = {
         title: 'ResearchPal',
         subtitle: 'AI 驱动的科研工作台',
         period: '2026.08 — 2026.09',
-        tags: ['FastAPI', 'Next.js 15', '多模型 LLM 路由', 'AI 工作台'],
-        tech: ['Next.js 15', 'FastAPI', 'Python', 'LLM', 'Docker', 'Vercel'],
+        tags: ['Next.js', 'FastAPI', 'Supabase', 'ChromaDB', '大模型 API'],
+        tech: ['Next.js', 'FastAPI', 'Supabase', 'ChromaDB', 'Python', 'LLM'],
         github: 'https://github.com/AAly030120/ResearchPal',
         demo: 'https://researchpal-inky.vercel.app',
-        background: '高校学生在做科研时，文献阅读、数据分析、PPT 制作、代码编写、文件翻译等流程分散在不同工具之间，效率低下。本项目独立完成从需求设计到云端部署的全链路，用 FastAPI+Next.js 15+多模型 LLM 路由搭建文献总结、数据可视化、PPT 自动生成与代码沙箱执行的科研 AI 工具；为零配置用户提供离线 Demo 模式，已上线。',
+        background: '高校学生在做科研时，文献阅读、数据分析、PPT 制作、代码编写、文件翻译等流程分散在不同工具之间，效率低下。本项目采用 Next.js+FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台，并完成多用户 Demo 云端部署上线。',
         challenge: [
             '如何把 LLM 能力封装成学生高频科研任务的闭环工具',
-            '零配置用户也能体验产品价值（无需 API Key）',
-            '多模型路由与任务状态的持久化、个性化记忆'
+            '如何系统评测并提升 RAG 在多源科研文献中的检索质量',
+            '多用户场景下的数据安全与异步索引处理'
         ],
         solution: [
-            '用 FastAPI + Next.js 15 搭建全栈应用，支持文献总结、数据分析与图表、PPT 自动生成、代码生成与沙箱执行、文件翻译五大任务',
-            '设计离线 Demo 模式：不填 API Key 也能跑通全部功能，数据分析在隔离沙箱真实执行并出图',
-            '实现账号体系、多模型切换、基于历史任务的个性化记忆，提升复用率'
+            '采用 Next.js + FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台',
+            '搭建 RAG-GraphRAG-Agent 三级检索体系，对比基线/重排/图谱增强/压测方案，提升检索质量',
+            '使用 Fernet 密钥加密用户 API Key，chunked 上传 + 后台异步索引处理，完成多用户 Demo 云端部署上线'
         ],
-        outcome: '从「科研人员重复劳动分散、门槛高」的痛点出发，独立完成需求设计到云端部署的全链路，用 FastAPI+Next.js 15+多模型 LLM 路由搭建文献总结、数据可视化、PPT 自动生成与代码沙箱执行的科研 AI 工具；为零配置用户提供离线 Demo 模式并上线验证产品价值。'
+        outcome: '采用 Next.js+FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台；通过 RAG-GraphRAG-Agent 三级检索与多组评测方案提升检索质量；使用 Fernet 密钥加密与异步索引处理，完成多用户 Demo 云端部署上线。'
     },
 
     project1: {
@@ -3002,17 +3003,17 @@ var PROJECT_DATA = {
             { label: '项目周期', value: '2 个月' },
             { label: '技术形态', value: '可交互 Web 产品' }
         ],
-        tech: ['Python', 'Streamlit', 'OpenAI API', 'ChromaDB', 'NetworkX', 'PyVis', 'Pydantic', 'Knowledge Graph', 'GraphRAG'],
+        tech: ['Python', 'Streamlit', 'ChromaDB', 'NetworkX', '大模型 API'],
         github: 'https://github.com/AAly030120/litkg-assistant',
         demo: 'https://litkg-assistant-yprhhcyglsbuq9cxcewyah.streamlit.app/',
-        background: '科研人员面对海量文献时，传统「逐篇阅读」效率低下且难以建立跨论文的知识关联。本项目独立完成从需求设计到云端部署的全链路，用 Python/Streamlit/ChromaDB/NetworkX 搭建 PDF 智能抽取、跨论文图谱问答的可交互 AI 科研产品，并上线公开 Demo 验证产品价值。',
+        background: '科研人员面对海量文献时，传统「逐篇阅读」效率低下且难以建立跨论文的知识关联。本项目基于 Python/Streamlit/ChromaDB/NetworkX 与大模型 API，构建图谱增强 RAG 方案，依托知识图谱与社区全局摘要解决跨文档多跳问答短板，并输出可视化仪表盘、交互图谱及离线 Demo。',
         results: [
-            { label: '实体 / 关系类型', value: '10 / 10 种' },
-            { label: '实体消歧准确率', value: '> 92%' },
-            { label: 'API 成本节省', value: '60%+' },
-            { label: 'LLM 容错', value: '三级 Fallback' }
+            { label: '检索方案', value: 'BM25 + 向量混合检索' },
+            { label: '抗幻觉机制', value: '论断证据锚定' },
+            { label: '交付物', value: '可视化仪表盘 + 交互图谱 + 离线 Demo' },
+            { label: '产品阶段', value: '云端部署上线' }
         ],
-        outcome: '从「科研人员读论文慢、难关联」的痛点出发，用 Python/Streamlit/ChromaDB/NetworkX 搭建 PDF 智能抽取、跨论文图谱问答的可交互 AI 科研产品，并上线公开 Demo 验证知识图谱在文献多跳推理与跨文档关联上的产品价值。三级实体消歧解决同名异义问题，Chunk 级增量更新（SHA256 去重）节省 API 成本，Triple 溯源系统为低置信度结论标注「待验证」。'
+        outcome: '构建图谱增强 RAG 方案，依托知识图谱与社区全局摘要解决跨文档多跳问答短板；落地 BM25 + 向量混合检索与论断证据锚定抗幻觉机制，问答完整度与忠实度得到明显提升；完成知识库增量更新、缓存优化，输出可视化仪表盘、交互图谱及离线 Demo，实现产品落地。'
     }
 };
 
@@ -3120,7 +3121,7 @@ var HIGHLIGHTS_TEXT = [
     '1. B端需求分析与AI产品迭代（广电运通集团有限公司·产品实习，2026.04-2026.09）：梳理银行客户业务诉求，区分共性与定制化需求，将业务诉求转化为研发PRD；跟进对话系统从Q&A向RAG、Agent演进，采集网点1000+真实会话样本，推动对话意图识别准确率提升16%、知识库召回精准度上涨19%，落地3轮版本迭代试点。',
     '2. RAG评测体系0-1（广东交通集团·AI产品实习，2025.12-2026.03）：搭建准确率/召回率/幻觉率3维度评测体系，覆盖1000+真实问答用例，推动回答可用率68%→89%、幻觉率15%→4%。',
     '3. 数据与科研能力：Python/SQL/Tableau/Power BI；参与"十四五"国家重点研发计划（800万+数据，LSTM预测），SCI×2 + 软著×1。',
-    '4. 独立AI产品实践：LitKG Assistant（基于知识图谱+GraphRAG的科研文献阅读助手，2026.08-2026.09）、ResearchPal（AI驱动的科研工作台，2026.08-2026.09）。',
+    '4. 独立AI产品实践：LitKG Assistant（基于知识图谱+GraphRAG的科研文献阅读助手，2026.08-2026.09，落地BM25+向量混合检索、论断证据锚定抗幻觉机制）、ResearchPal（AI驱动的科研工作台，2026.08-2026.09，RAG-GraphRAG-Agent三级检索，Fernet密钥加密+多用户Demo云端部署）。',
     '5. 荣誉：国家奖学金（唯一）、省政府奖学金（唯二）等5项奖学金。',
     '',
     '联系方式：172-6761-7588 | llya3120@163.com',
@@ -3263,8 +3264,8 @@ var RESUME_TEXT = [
     '   - CPM关键路径法，成本控制在预算98%以内',
     '',
     '【项目经历】',
-    '- LitKG Assistant（2026.08-2026.09）：基于知识图谱+GraphRAG的科研文献阅读助手，独立完成从需求设计到云端部署的全链路，用Python/Streamlit/ChromaDB/NetworkX搭建PDF智能抽取、跨论文图谱问答的可交互AI科研产品，已上线公开Demo',
-    '- ResearchPal（2026.08-2026.09）：AI驱动的科研工作台，独立完成从需求设计到云端部署的全链路，用FastAPI+Next.js 15+多模型LLM路由搭建文献总结、数据可视化、PPT自动生成与代码沙箱执行的科研AI工具，为零配置用户提供离线Demo模式并已上线',
+    '- LitKG Assistant（2026.08-2026.09）：基于知识图谱+GraphRAG的科研文献阅读助手，构建图谱增强RAG方案，落地BM25+向量混合检索、论断证据锚定抗幻觉机制，输出可视化仪表盘、交互图谱及离线Demo，实现产品落地',
+    '- ResearchPal（2026.08-2026.09）：AI驱动的科研工作台，采用Next.js+FastAPI架构，搭建RAG-GraphRAG-Agent三级检索体系，使用Fernet密钥加密与后台异步索引处理，完成多用户Demo云端部署上线',
     '- "十四五"国家重点研发计划：800万条+数据、LSTM降雨预测、SCI×2 + 软著×1',
     '- 生产质量数据分析系统：缺陷率降低8%，提出3项改进建议',
     '',
