@@ -2892,23 +2892,24 @@ function initExploreTabs() {
    ============================================================ */
 var PROJECT_DATA = {
     project6: {
+        icon: '🔬', gradient: 'linear-gradient(135deg, #3B82F6, #1D4ED8)',
         title: 'ResearchPal',
-        subtitle: 'AI 驱动的科研工作台',
-        period: '2026.08 — 2026.09',
-        tags: ['Next.js', 'FastAPI', 'Supabase', 'ChromaDB', '大模型 API'],
+        subtitle: 'AI 驱动的科研工作台 · 2026.08 — 2026.09',
+        meta: [
+            { label: '我的角色', value: '产品经理 / 全栈开发' },
+            { label: '项目类型', value: 'AI 科研工作台' },
+            { label: '项目周期', value: '2 个月' },
+            { label: '技术形态', value: '可交互 Web 产品' }
+        ],
         tech: ['Next.js', 'FastAPI', 'Supabase', 'ChromaDB', 'Python', 'LLM'],
         github: 'https://github.com/AAly030120/ResearchPal',
         demo: 'https://researchpal-inky.vercel.app',
         background: '高校学生在做科研时，文献阅读、数据分析、PPT 制作、代码编写、文件翻译等流程分散在不同工具之间，效率低下。本项目采用 Next.js+FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台，并完成多用户 Demo 云端部署上线。',
-        challenge: [
-            '如何把 LLM 能力封装成学生高频科研任务的闭环工具',
-            '如何系统评测并提升 RAG 在多源科研文献中的检索质量',
-            '多用户场景下的数据安全与异步索引处理'
-        ],
-        solution: [
-            '采用 Next.js + FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台',
-            '搭建 RAG-GraphRAG-Agent 三级检索体系，对比基线/重排/图谱增强/压测方案，提升检索质量',
-            '使用 Fernet 密钥加密用户 API Key，chunked 上传 + 后台异步索引处理，完成多用户 Demo 云端部署上线'
+        results: [
+            { label: '工作流编排', value: 'Next.js+FastAPI 一站式平台' },
+            { label: '检索评测', value: 'RAG-GraphRAG-Agent 三级检索' },
+            { label: '安全落地', value: 'Fernet 密钥加密 + 异步索引' },
+            { label: '部署状态', value: '多用户 Demo 云端上线' }
         ],
         outcome: '采用 Next.js+FastAPI 架构，集成 AI 对话、代码沙箱等多项科研 AI 工具，打造一站式科研平台；通过 RAG-GraphRAG-Agent 三级检索与多组评测方案提升检索质量；使用 Fernet 密钥加密与异步索引处理，完成多用户 Demo 云端部署上线。'
     },
